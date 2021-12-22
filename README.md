@@ -20,6 +20,10 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 For more information, you can refer [this](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug973-vivado-release-notes-install-license.pdf)
 
+**{SOURCES}** refers to *\\FPGA-Design-Flow-using-Vivado\\*. You can download the source files for the labs from the cloned sources directory
+
+**{LABS}** refers to *C:\vivado\_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this workshop
+
 ---
 **NOTE**
 

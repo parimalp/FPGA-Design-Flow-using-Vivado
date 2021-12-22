@@ -16,11 +16,11 @@ After completing this lab, you will be able to:
 
 ### Create a Vivado Project using IDE                                                   
 
-#### Launch Vivado and create an empty project targeting the Boolean or PYNQ-Z2 board, selecting Verilog as a target language. Use the provided lab1.v and lab1\_zynq.xdc files(For Pynq-Z2) and lab1_spartan.xdc (for Boolean) from the *.\\sources\\lab1\\* directory.
+#### Launch Vivado and create an empty project targeting the Boolean or PYNQ-Z2 board, selecting Verilog as a target language. Use the provided lab1.v and lab1\_zynq.xdc files(For PYNQ-Z2) and lab1_spartan.xdc (for Boolean) from the *.\\sources\\lab1\\* directory.
 
 1. Open Vivado by selecting **Start > Xilinx Design Tools > Vivado 2021.2**
 2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog box. Click **Next**.
-3. Click the Browse button of the *Project location* field of the **New Project** form, browse to **C:\vivado_tutorial**, and click **Select**.
+3. Click the Browse button of the *Project location* field of the **New Project** form, browse to **{LABS}**, i.e. **C:\vivado_tutorial**, and click **Select**.
 4. Enter **lab1** in the *Project name* field.  Make sure that the *Create Project Subdirectory* box is checked.  Click **Next**.
 
 <p align="center">
@@ -41,7 +41,7 @@ After completing this lab, you will be able to:
 <i>Selecting Target and Simulator language</i>
 </p>	
 
-7. Click on the **Blue Plus** button, then **Add Files…** and browse to the **.sources\lab1** directory, select *lab1.v,* click **OK**.
+7. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{sources}\lab1** directory, select *lab1.v,* click **OK**.
 
    <p align="center">
    <img src ="./images/lab1/Fig5.png">
@@ -53,11 +53,11 @@ After completing this lab, you will be able to:
 
 8. Click **Next** to get to the *Add Constraints* form.
 
-9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **C:\xup\fpga\_flow\2018\_2\_zynq\_sources\lab1** directory (if necessary), select *lab1\_zynq.xdc* and click **OK** (if necessary), and then click **Next.**
+9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{SOURCES}\lab1** directory (if necessary), select *lab1\_zynq.xdc* (for PYNQ-Z2) or *lab1_spratan.xdc* (for Boolean) and click **OK** (if necessary), and then click **Next.**
 
    The Xilinx Design Constraints file assigns the physical IO locations on FPGA to the switches and LEDs located on the board.  This information can be obtained either through the board’s schematic or the board’s user guide. 
 
-10. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section. Select the **XC7Z020clg400-1**. ​		
+10. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section. Select the **XC7Z020clg400-1**(for PYNQ-Z2) . 		
 
     <p align="center">
     <img src ="./images/lab1/Fig6.png">
@@ -65,19 +65,53 @@ After completing this lab, you will be able to:
     <p align = "center">
     <i>Part Selection for the PYNQ</i>
     </p>
+    You may also select the **Boards** option, tul.com.tw for the PYNQ-Z2 board under the Vendor filter and select the appropriate board. Notice that Boolean and  PYNQ-Z2 may not be listed as they are not in the tools database. If not listed then you can download the board files for the desired boards from TUL PYNQ-Z2 webpage.
 
-    You may also select the **Boards** option, select www.digilentinc.com for the PYNQ-Z1 board, tul.com.tw for the PYNQ-Z2 board under the Vendor filter and select the appropriate board. Notice that PYNQ-Z1 and PYNQ-Z1 may not be listed as they are not in the tools database. If not listed then you can download the board files for the desired boards either from Digilent PYNQ-Z1 webpage or TUL PYNQ-Z2 webpage. Click **Next**.
+    or **xc7s50csga-1** (for Boolean)
+
+    <p align="center">
+    <img src ="./images/lab1/boolean_select.png">
+    </p>
+    <p align = "center">
+    <i>Part Selection for the Boolean</i>
+    </p>
+
+    
+
+     Click **Next**.
 
 11.  Click **Finish** to create the Vivado project.  
 
-Use the Windows Explorer and look at the **C:\xup\fpga\_flow\2018\_2\_zynq\_labs\lab1** directory.  You will find that the lab1.cache and lab1.srcs directories and the lab1.xpr (Vivado) project file have been created. The lab1.cache directory is a place holder for the Vivado program database. Two directories, constrs\_1 and sources\_1, are created under the lab1.srcs directory; deep down under them, the copied lab1\_<board>.xdc (constraint) and lab1.v (source) files respectively are placed.
+Use the Windows Explorer and look at the **{LABS}\lab1** directory.  You will find that the lab1.cache and lab1.srcs directories and the lab1.xpr (Vivado) project file have been created. The lab1.cache directory is a place holder for the Vivado program database. Two directories, constrs\_1 and sources\_1, are created under the lab1.srcs directory; deep down under them, the copied lab1\_<board>.xdc (constraint) and lab1.v (source) files respectively are placed.
 
-<p align="center">
-<img src ="./images/lab1/Fig7.png">
-</p>
-<p align = "center">
-<i>Generated directory structure</i>
-</p>
+```
+lab1
+│  lab1.xpr
+│  struc.txt
+│  
+├─lab1.cache
+│  └─wt
+│          project.wpc
+│          
+├─lab1.hw
+│      lab1.lpr
+│      
+├─lab1.ip_user_files
+├─lab1.sim
+└─lab1.srcs
+    ├─constrs_1
+    │  └─imports
+    │      └─lab1
+    │              lab1_spartan.xdc
+    │              
+    └─sources_1
+        └─imports
+            └─lab1
+                    lab1.v
+```
+
+
+
 
 #### Open the lab1.v source and analyze the content.
 
@@ -96,7 +130,9 @@ Use the Windows Explorer and look at the **C:\xup\fpga\_flow\2018\_2\_zynq\_labs
 
 4. Lines 8-9 defines the input and output ports whereas lines 12-15 defines the actual functionality.
 
-#### Open the lab1\_zynq.xdc source and analyze the content.
+#### Open the lab1\_<board>.xdc source and analyze the content.
+
+##### For PYNQ-Z2:
 
 1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_zynq.xdc** entry to open the file in text mode. 
 
@@ -107,7 +143,15 @@ Use the Windows Explorer and look at the **C:\xup\fpga\_flow\2018\_2\_zynq\_labs
    <i>Opening the constraint file</i>
    </p>
 
-2.  Lines 5-8 define the pin locations for the input buttons and lines 13-16 define pin locations for output LEDs.
+2. Lines 5-8 define the pin locations for the input buttons and lines 13-16 define pin locations for output LEDs.
+
+##### For Boolean
+
+1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_spartan.xdc** entry to open the file in text mode. 
+
+   <img src="./images/lab1/boolean_constr.png" alt="image" style="zoom:55%;" />
+
+2. Lines 17-20 define the pin locations for the input buttons and lines 10-13 define pin locations for output LEDs.
 
 ### Perform RTL analysis on the source file.
 
@@ -147,7 +191,7 @@ The model (design) will be elaborated and a logic view of the design is displaye
 
 3. In the *Add Sources Files* form, click the **Blue Plus** button and then **Add Files…**.
 
-4. Browse to the **C:\xup\fpga\_flow\2018\_2\_zynq\_sources\lab1** folder and select *lab1\_tb.v* and click **OK**.
+4. Browse to the **{SOURCES}\lab1** folder and select *lab1\_tb.v* and click **OK**.
 
 5. Click **Finish**.
 
@@ -207,12 +251,55 @@ The model (design) will be elaborated and a logic view of the design is displaye
 
    Notice that the **lab1.sim** directory is created under the **lab1** directory, along with several lower-level directories. 
 
-   <p align="center">
-   <img src ="./images/lab1/Fig17.png">
-   </p>
-   <p align = "center">
-   <i>Directory structure after running behavioral simulation</i>
-   </p>
+```
+//Directory structure after running behavioral simulation
+lab1.sim  
+└─sim_1
+    └─behav
+        └─xsim
+            │  compile.bat
+            │  compile.log
+            │  elaborate.bat
+            │  elaborate.log
+            │  glbl.v
+            │  lab1_tb.tcl
+            │  lab1_tb_behav.wdb
+            │  lab1_tb_vlog.prj
+            │  simulate.bat
+            │  simulate.log
+            │  xelab.pb
+            │  xsim.ini
+            │  xvlog.log
+            │  xvlog.pb
+            │  
+            └─xsim.dir
+                ├─lab1_tb_behav
+                │  │  Compile_Options.txt
+                │  │  TempBreakPointFile.txt
+                │  │  xsim.dbg
+                │  │  xsim.mem
+                │  │  xsim.reloc
+                │  │  xsim.rlx
+                │  │  xsim.rtti
+                │  │  xsim.svtype
+                │  │  xsim.type
+                │  │  xsim.xdbg
+                │  │  xsimcrash.log
+                │  │  xsimk.exe
+                │  │  xsimkernel.log
+                │  │  
+                │  └─obj
+                │          xsim_0.win64.obj
+                │          xsim_1.c
+                │          xsim_1.win64.obj
+                │          
+                └─xil_defaultlib
+                        glbl.sdb
+                        lab1.sdb
+                        lab1_tb.sdb
+                        xil_defaultlib.rlx
+```
+
 
    You will see several buttons next to the waveform window which can be used for the specific purpose as listed in the table below.
 
@@ -320,12 +407,16 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
    Using Windows Explorer, verify that **lab1.runs** directory is created under **lab1**.  Under the **runs** directory, **synth\_1** directory is created which holds several files related to synthesis.
 
-   <p align="center">
-   <img src ="./images/lab1/Fig33.png">
-   </p>
-<p align = "center">
-<i>Directory structure after synthesizing the design</i>
-</p>
+   ```
+   //Directory structure after synthesizing the design
+   lab1.runs
+   ├─.jobs
+   └─synth_1
+       └─.Xil
+   ```
+
+
+
 
 ### Implement the Design
 
@@ -418,7 +509,7 @@ The implementation process will be run on the synthesized design.  When the proc
 
 1. Make sure that the Micro-USB cable is connected to the JTAG PROG connector.
 
-2. The PYNQ-Z1 and PYNQ-Z2 can be powered through USB power via the JTAG PROG.
+2. The Boolean and PYNQ-Z2 can be powered through USB power via the JTAG PROG.
 
    Make sure that the board is set to use USB power.
 
@@ -466,6 +557,8 @@ The implementation process will be run on the synthesized design.  When the proc
 
 7. From the dropdown menu, click **Auto Connect.**
 
+   **For PYNQ-Z2**:
+
    The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
 
    <p align="center">
@@ -474,6 +567,7 @@ The implementation process will be run on the synthesized design.  When the proc
    <p align = "center">
    <i>Opened hardware session</i>
    </p>
+   
 
    Select the device and verify that the lab1.bit is selected as the programming file in the General tab.
 
@@ -484,6 +578,22 @@ The implementation process will be run on the synthesized design.  When the proc
    <i>Programming file</i>
    </p>
 
+   **For Boolean**:
+
+   The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
+
+   ![Opened hardware session](./images/lab1/boolean_hwmg.png)
+
+   
+
+   <p align = "center">
+   <i>Opened hardware session</i>
+   </p>
+
+   Select the device and verify that the lab1.bit is selected as the programming file in the General tab.
+
+   ![image](lab1.assets/boolean_hw_dev_prop.png)
+
 8. Click on the *Program device* link in the green information bar to program the target FPGA device. Another way is to right click on the device and select *Program Device.*
 
 <p align="center">
@@ -492,6 +602,9 @@ The implementation process will be run on the synthesized design.  When the proc
 <p align = "center">
 <i>Selecting to program the FPGA</i>
 </p>
+
+
+
 
 9. Click **Program** to program the FPGA.
 

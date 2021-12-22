@@ -517,7 +517,7 @@ The implementation process will be run on the synthesized design.  When the proc
 <img src ="./images/lab1/boolean_sche.png">
 </p>
 <p align = "center">
-<i>Board connection for the PYNQ-Z1</i>
+<i>Board connection for the Boolean</i>
 </p>
 
 

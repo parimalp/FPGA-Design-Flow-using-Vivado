@@ -514,11 +514,12 @@ The implementation process will be run on the synthesized design.  When the proc
    Make sure that the board is set to use USB power.
 
 <p align="center">
-<img src ="./images/lab1/Fig41.png">
+<img src ="./images/lab1/boolean_sche.png">
 </p>
 <p align = "center">
 <i>Board connection for the PYNQ-Z1</i>
 </p>
+
 
 <p align="center">
 <img src ="./images/lab1/Fig42.png">
@@ -592,7 +593,7 @@ The implementation process will be run on the synthesized design.  When the proc
 
    Select the device and verify that the lab1.bit is selected as the programming file in the General tab.
 
-   ![image](lab1.assets/boolean_hw_dev_prop.png)
+   ![image](./images/lab1/boolean_hw_dev_prop.png)
 
 8. Click on the *Program device* link in the green information bar to program the target FPGA device. Another way is to right click on the device and select *Program Device.*
 

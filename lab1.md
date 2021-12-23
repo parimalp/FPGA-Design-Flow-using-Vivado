@@ -57,7 +57,7 @@ After completing this lab, you will be able to:
 
    The Xilinx Design Constraints file assigns the physical IO locations on FPGA to the switches and LEDs located on the board.  This information can be obtained either through the board’s schematic or the board’s user guide. 
 
-10. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section. Select the **XC7Z020clg400-1**(for PYNQ-Z2) . 		
+10. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section. Select the **XC7Z020clg400-1**(for PYNQ-Z2) or **xc7s50csga-1** (for Boolean). 		
 
     <p align="center">
     <img src ="./images/lab1/Fig6.png">
@@ -65,17 +65,24 @@ After completing this lab, you will be able to:
     <p align = "center">
     <i>Part Selection for the PYNQ</i>
     </p>
-    You may also select the **Boards** option, tul.com.tw for the PYNQ-Z2 board under the Vendor filter and select the appropriate board. Notice that Boolean and  PYNQ-Z2 may not be listed as they are not in the tools database. If not listed then you can download the board files for the desired boards from TUL PYNQ-Z2 webpage.
-
-    or **xc7s50csga-1** (for Boolean)
-
+    
     <p align="center">
-    <img src ="./images/lab1/boolean_select.png">
+	<img src ="./images/lab1/boolean_select.png">
     </p>
     <p align = "center">
     <i>Part Selection for the Boolean</i>
     </p>
+    
+    
+    You may also select the **Boards** option, tul.com.tw for the PYNQ-Z2 board under the Vendor filter and select the appropriate board. Notice that Boolean and  PYNQ-Z2 may not be listed as they are not in the tools database. If not listed then you can download the board files for the desired boards from TUL PYNQ-Z2 webpage.
 
+    <p align="center">
+	<img src ="./images/lab1/boolean_select.png">
+    </p>
+    <p align = "center">
+    <i>Part Selection for the Boolean</i>
+    </p>
+    
     
 
      Click **Next**.

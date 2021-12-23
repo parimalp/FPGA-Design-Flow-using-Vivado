@@ -459,7 +459,7 @@ The implementation process will be run on the synthesized design.  When the proc
    <img src ="./images/lab1/Fig37.png">
    </p>
    <p align = "center">
-   <i>Implementation results for the PYNQ-Z1 and PYNQ-Z2</i>
+   <i>Implementation results for the Boolean and PYNQ-Z2</i>
    </p>
 
 
@@ -512,13 +512,14 @@ The implementation process will be run on the synthesized design.  When the proc
 2. The Boolean and PYNQ-Z2 can be powered through USB power via the JTAG PROG.
 
    Make sure that the board is set to use USB power.
+   
+   <img src="img/lab1/boolean_sche.png" alt="image" style="zoom:70%;" />
 
-<p align="center">
-<img src ="./images/lab1/boolean_sche.png">
-</p>
+
 <p align = "center">
 <i>Board connection for the Boolean</i>
 </p>
+
 
 
 <p align="center">

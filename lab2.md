@@ -16,54 +16,43 @@ After completing this lab, you will be able to:
 
 - Write a checkpoint after the synthesis so the results can be analyzed after re-loading it
 
+## Procedure
+This lab is broken into steps that consist of general overview statements providing information on the
+detailed instructions that follow. Follow these detailed instructions to progress through the lab.
+
+## Design Description
+The design consists of a uart receiver receiving the input typed on a keyboard and displaying the binary
+equivalent of the typed character on the 8 LEDs. When a push button is pressed, the lower and upper
+nibbles are swapped. The block diagram is as shown in the following figure.
+
+![image-20220222143623444](img/lab2/image-20220222143623444.png)
+
+The Completed Design
+
+## General Flow
+
+```mermaid
+flowchart LR
+	1(Step 1 : Create a Vivado Project)-->2(Step 2: Elaborate the Design)-->3(Step 3: Synthesize the Design)-->4(Step 4: Read the Check points)
+```
+
+###  In the instructions for the tutorial
+
+The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
+
+**{SOURCES}** refers to *.\\source\\Labn*. You can use the source files from the cloned repository's *sources* directory
+
+**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
+
+**{BOARD}** refers to target *Boolean* and *Z2* boards. 
+
 ## Steps
-### Create a Vivado Project using IDE 
 
-In this design we will use board’s USB-UART which is controlled by the Zynq’s ARM Cortex-A9 processor.  Our PL design needs access to this USB-UART. So first thing we will do is to create a Processing System (PS) design which will put the USB-UART connections in a simple GPIO-style and make it available to the PL section.
+### Create a Vivado Project 
 
-#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use provided the tcl scripts (ps7\_create\_pynq.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, uart\_led\_pins\_pynq.xdc and uart\_led\_timing.xdc files from the < *2018\_2\_zynq\_sources >\lab2* directory.
+#### Launch Vivado and create a project targeting XC7A35TCPG236-1 (Basys3),or XC7A100TCSG324-1 (Nexys4 DDR), or XC7A200TSBG484-1 (Nexys Video), and using the Verilog HDL. Use the provided Verilog source files, uart_led_pins_{board}.xdc and uart_led_timing.xdc files from the {sources}\lab2 directory.
 
- **<2018\_2\_zynq\_labs>** refers to **C:\xup\fpga\_flow\2018\_2\_zynq\_labs** directory and **<2018\_2\_zynq\_sources>** refers to **C:\xup\fpga\_flow\2018\_2\_zynq\_sources** directory.     
-
-1. Open Vivado by selecting **Start > Xilinx Design Tools > Vivado 2018.2**
-
-2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog box. Click **Next**.
-
-3. Click the Browse button of the *Project location* field of the **New Project** form, browse to **<2018\_2\_zynq\_labs>**, and click **Select**.
-
-4. Enter **lab2** in the *Project name* field.  Make sure that the *Create Project Subdirectory* box is checked.  Click **Next**.
-
-5. Select **RTL Project** option in the *Project Type* form and click **Next**.
-
-6. Using the drop-down buttons, select **Verilog** as the *Target Language* and *Simulator Language* in the *Add Sources* form.
-
-7. Click on the **Blue Plus** button, then the **Add Files…** button and browse to the **<2018\_2\_zynq\_sources>\lab2** directory, select all the Verilog files *(led\_ctl.v, meta\_harden.v, uart\_baud\_gen.v, uart\_led.v, uart_rx.v, uart\_rx\_ctl.v and uart\_top.v),* click **OK**, and then click **Next** to get to the *Add Constraints* form.
-
-8. Click on the **Blue Plus** button, then **Add Files…** and browse to the **<2018\_2\_zynq\_sources>\lab2** directory (if necessary), select *uart\_led\_timing\_pynq.xdc* and click **Open**.
-
-9. Click **Next.**
-
-   This Xilinx Design Constraints file assigns the basic timing constraints (period, input delay, and output delay) to the design. 
-
-10. In the *Default Part* form, Use the **Boards** option, you may select the **PYNQ-Z1** or the **PYNQ-Z2** depending on your board from the Display Name drop down field.
-
-    You may also use the **Parts** option and various drop-down fields of the **Filter** section. Select the **XC7Z020clg400-1 part**. 
-
-    **Note: Notice that PYNQ-Z1 and PYNQ-Z2 may not be listed under Boards menu as they are not in the tools database. If not listed then you can download the board files for the desired boards either from Digilent PYNQ-Z1 web page or TUL PYNQ-Z2 web page**.
-
-11. Click **Next**.
-
-12. Click **Finish** to create the Vivado project.  
-
-13. In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**.
-
-    *cd C:/xup/fpga\_flow/2018\_2\_zynq_sources/lab2*
-
-14. Generate the PS design by executing the provided Tcl script.
-
-    *source ps7\_create\_pynq.tcl*
-
-    This script will create a block design called *system*, instantiate ZYNQ PS with one GPIO channel (GPIO14) and one EMIO channel. It will then create a top-level wrapper file called system\_wrapper.v which will instantiate the system.bd (the block design). You can check the contents of the tcl files to confirm the commands that are being run. 
+1. Open Vivado by selecting Start > All Programs > Xilinx Design Tools > Vivado 2016.2 > Vivado 2016.2
 
 #### Analyze the design source files hierarchy.
 

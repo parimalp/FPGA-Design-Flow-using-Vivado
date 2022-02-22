@@ -5,16 +5,25 @@
 After completing this lab, you will be able to:
 
 - Create a Vivado project sourcing HDL model(s) and targeting the ZYNQ or Spartan devices located on the Boolean or PYNQ-Z2
-
 - Use the provided Xilinx Design Constraint (XDC) file to constrain the pin locations
 - Simulate the design using the Vivado simulator
 - Synthesize and implement the design 
 - Generate the bitstream
 - Configure ZYNQ and Spartan using the generated bitstream and verify the functionality
 
+###  In the instructions for the tutorial
+
+The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
+
+**{SOURCES}** refers to *.\\source\\Labn*. You can use the source files from the cloned repository's *sources* directory
+
+**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
+
+**{BOARD}** refers to target *Boolean* and *Z2* boards. 
+
 ## Steps
 
-### Create a Vivado Project using IDE                                                   
+### Create a Vivado Project                                                 
 
 #### Launch Vivado and create an empty project targeting the Boolean or PYNQ-Z2 board, selecting Verilog as a target language. Use the provided lab1.v and lab1\_zynq.xdc files(For PYNQ-Z2) and lab1_spartan.xdc (for Boolean) from the *.\\sources\\lab1\\* directory.
 

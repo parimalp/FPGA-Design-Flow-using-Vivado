@@ -25,7 +25,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 ### Create a Vivado Project                                                 
 
-#### Launch Vivado and create an empty project targeting the Boolean or PYNQ-Z2 board, selecting Verilog as a target language. Use the provided lab1.v and lab1\_zynq.xdc files(For PYNQ-Z2) and lab1_spartan.xdc (for Boolean) from the *.\\sources\\lab1\\* directory.
+#### Launch Vivado and create an empty project targeting the XC7S50CSGA324-1(for Boolean) or XC7Z020CLG400-1 (PYNQ-Z2) board, selecting Verilog as a target language. Use the provided lab1.v and lab1\_zynq.xdc files(For PYNQ-Z2) and lab1_spartan.xdc (for Boolean) from the *.\\sources\\lab1\\* directory.
 
 1. Open Vivado by selecting **Start > Xilinx Design Tools > Vivado 2021.2**
 2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog box. Click **Next**.

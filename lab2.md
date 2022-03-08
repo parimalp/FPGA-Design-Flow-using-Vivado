@@ -74,7 +74,23 @@ select XC7S50CSGA324-1(for Boolean) or XC7Z020CLG400-1 (PYNQ-Z2).
 12. Click **Next**.
 13. Click **Finish** to create the Vivado project.
 
-#### Analyze the design source files hierarchy.
+(If you are using PYNQ-Z2)
+
+14. In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**.
+
+```tcl
+cd {TUTORIAL}/lab2
+```
+
+15. Generate the PS design by executing the provided Tcl script
+
+```tcl
+source ps_init.tcl
+```
+
+Please check if the path is right or not.
+
+#### Analyze the design source files hierarchy.(Taking Boolean as an example)
 
 1. In the Sources pane, expand the uart_led entry and notice hierarchy of the lower-level modules.
 

@@ -245,10 +245,10 @@ The write_bitstream command will be executed (you can verify it by looking in th
 3. Click Cancel when the bitstream generation is completed.
 
 
-### Step 4 Verify the Functionality 
+### Step 4 Verify the Functionality (Boolean Board)
 #### Connect the board and power it ON. Open a hardware session, and program the FPGA.
 
-1. Make sure that the micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). Make sure that the jumper on the board is set to select USB power (J15 for Boolean, the lower left and upper right on PYNQ-Z2).
+1. Make sure that the micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). Make sure that the jumper on the board is set to select USB power.
 
 2. Select the *Open Hardware Manager* option and click **OK**.
     The Hardware Manager window will open indicating “unconnected” status.
@@ -280,10 +280,29 @@ The write_bitstream command will be executed (you can verify it by looking in th
    The programming bit file will be downloaded and the DONE light will be turned ON when the FPGA has been programmed.
 
 6. Type in some characters in the terminal emulator window and see the corresponding ASCII equivalent bit pattern displayed on the LEDs.
+
 7. Press and hold BTNU and see the the upper four bits are swapped with the lower four bits on the LEDs.
+
 8. When satisfied, close the terminal emulator program and power OFF the board.
+
 9. Select **File > Close Hardware Manager**. Click **OK**.
+
 10. Close the Vivado program by selecting **File > Exit** and click **OK**.
+
+### Step 4 Verify the Functionality (PYNQ-Z2)
+
+#### Insert the SD card, Connect the board and power it ON. Open a hardware session, and program the FPGA.
+
+1. Copy the provided SD card boot image (**{SOURCES}**/lab3/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
+2. Insert the SD card to the SD card slot on the back of the board and set the jumper to **SD**.
+3. Select the *Open Hardware Manager* option and click **OK**.
+   The Hardware Manager window will open indicating “unconnected” status.
+
+  ![fig1](img/lab3/fig15.png)
+
+  Opening new hardware target
+
+4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status m.
 
 ## Conclusion
 In this lab, you learned about many of the reports available to designers in the Vivado IDE. You had the opportunity to learn basic design analysis tools including the Schematic viewer, delay path properties and reports viewer, Device viewer, and selecting primitive parents. You also learned about the basic timing report options that are at your disposal. You verified the functionality in hardware by typing characters on the host machine and seeing the LED pattern changes.

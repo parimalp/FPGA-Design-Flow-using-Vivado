@@ -152,3 +152,13 @@ con
 
 13:54:06 INFO  : Launch script is exported to file 'C:\xup\fpga_flow\2018_2_zynq_labs\lab3\lab3.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_uart_led_zynq.elf_on_local.tcl'
 14:56:39 INFO  : Disconnected from the channel tcfchan#2.
+15:51:30 INFO  : Registering command handlers for SDK TCF services
+15:51:30 INFO  : Launching XSCT server: xsct.bat -interactive C:\Users\lesliex\tutorial\FPGA-Design-Flow-using-Vivado\source\lab3\lab3.sdk\temp_xsdb_launch_script.tcl
+15:51:32 INFO  : XSCT server has started successfully.
+15:51:32 INFO  : Successfully done setting XSCT server connection channel  
+15:51:33 INFO  : Successfully done setting SDK workspace  
+16:17:43 INFO  : Registering command handlers for SDK TCF services
+16:17:44 INFO  : Launching XSCT server: xsct.bat -interactive C:\Users\lesliex\tutorial\FPGA-Design-Flow-using-Vivado\source\lab3\lab3.sdk\temp_xsdb_launch_script.tcl
+16:17:46 INFO  : XSCT server has started successfully.
+16:17:46 INFO  : Successfully done setting XSCT server connection channel  
+16:17:46 INFO  : Successfully done setting SDK workspace  

@@ -36,6 +36,8 @@ The wave generator can be instructed to send the appropriate number of samples o
 
 There are three clock domains within this design: **clk\_rx**, **clk\_tx**, and **clk\_samp**. The clock generator module instantiates all the clocking resources required for generating these three clocks. All three clocks are derived from a single clock input, coming in on **clk\_pin**. The frequency of the clock input is 100MHz for Boolean and 125MHz for PYNQ-Z2.
 
+---
+
 **For PYNQ-Z2:**
 
 In this design we will use board’s USB-UART which is controlled by the Zynq’s ARM Cortex-A9 processor.  Our PL design needs access to this USB-UART. So first thing we will do is to create a Processing System design which will put the USB-UART connections in a simple GPIO-style and make it available to the PL section. 
@@ -45,6 +47,8 @@ The provided design places the UART (RX and TX) pins of the PS (Processing Syste
 **For Boolean:**
 
 Boolean board will be using the on-board UART port to implement such function, without configuring the PS side.
+
+---
 
 The system block diagram is as shown below
 
@@ -118,7 +122,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 11. In the *Default Part* form, Use the **Boards** option, you may select the **Boolean** or the **PYNQ-Z2** depending on your board from the Display Name drop down field.
 
-    You may also use the **Parts** option and various drop-down fields of the **Filter** section and select the **XC7Z020clg400-1** part. 
+    You may also use the **Parts** option and various drop-down fields of the **Filter** section and select the **XC7Z020clg400-1** part(for PYNQ-Z2) or **XC7S50CSGA324-1** part(for Boolean). 
 
 12. Click **Next**.
 
@@ -136,7 +140,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 5. In the *File Type* field, select **All Files**, and then select **char\_fifo.xcix** file.
 
-6. Click on the **Blue Plus** button, then the **Add Files…** button and browse to **<2018\_2\_zynq\_sources>\lab4**
+6. Click on the **Blue Plus** button, then the **Add Files…** button and browse to **<SOURCES>\lab4**
 
 7. In the *File Type* field, select **All Files**, and then select **clogb2.txt** file.
 
@@ -297,7 +301,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 5. Select the device and verify that the **wave\_gen\_top.bit** is selected as the programming file in the General tab.
 
-### Start a terminal emulator program such as TeraTerm or HyperTerminal. Select an appropriate COM port (you can find the correct COM number using the Control Panel).  Set the COM port for 115200 baud rate communication. Program the FPGA .
+### Start a terminal emulator program such as TeraTerm or Mobaxterm. Select an appropriate COM port (you can find the correct COM number using the Control Panel).  Set the COM port for 115200 baud rate communication. Program the FPGA .
 
 1. Start a terminal emulator program such as TeraTerm or HyperTerminal. 
 
@@ -310,6 +314,10 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 5. Click on the **Program** button.
 
    The programming bit file be downloaded and the DONE light will be turned ON indicating the FPGA has been programmed.
+   
+---
+
+**Extra Steps for PYNQ-Z2**
 
 ### Start a SDK session, point it to the *c:/xup/fpga\_flow/2018\_2\_zynq\_sources /lab4/pynq/lab4.sdk* workspace. 
 
@@ -328,11 +336,13 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    <i>Running the application</i>
    </p>
 
+---
+
 4. Slide *Switch 0* to the **ON** position and type in some characters in the terminal window and see the character is echoed back.  Setting Switch 0 to the ON position makes the design function as a loopback.
 
 5. Select **File > Send File …** in the Tera Term window.
 
-6. Browse to **<2018\_2\_zynq\_sources>\lab4**, select **testpattern.txt** file, and click **Open**.
+6. Browse to **{SOURCES}\lab4**, select **testpattern.txt** file, and click **Open**.
 
    The file content will be send to the design.  The file content is as follows:
 
@@ -398,13 +408,11 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 11. Select **File > Close Hardware Manager**. Click **OK** to close it.
 
-12. Close the **SDK** program by selecting **File > Exit** and click **OK**.
-
 ### Generate and Instantiate an IPI Block
 
 #### Save the project as lab4\_ipi. Remove the char\_fifo IP from the design.    
 
-1. Select **File > Save Project As…** and save it as **lab4\_ipi** in the **<2018\_2\_zynq\_labs>** directory making sure that the *Create Project Subdirectory* option is checked.
+1. Select **File > Save Project As…** and save it as **lab4\_ipi** in the **{TUTORIAL}\lab4** directory making sure that the *Create Project Subdirectory* option is checked.
 
 2. Select the **IP Sources** tab in the *Sources* pane.
 
@@ -592,7 +600,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    <i>Renamed external ports</i>
    </p>
 
-8. Click on Regenerate Layout ( ![](lab4.assets/Fig28.png)  ) icon from the vertical toolbar to see the above diagram.
+8. Click on Regenerate Layout ( ![](./img/lab4/Fig28.png)  ) icon from the vertical toolbar to see the above diagram.
 
 9. Select **Tools > Validate Design**.
 
@@ -663,20 +671,24 @@ The char\_fifo\_wrapper.v instantiation template is opened in the text editor in
 
 5. Open the hardware manager and program the FPGA.
 
-6. Open **SDK** by selecting **Start > Xilinx Design Tools > Xilinx SDK 2018.2**
+---
 
-7. In the **Select a workspace** window, click on the browse button, browse to *C:\xup\fpga\_flow\2018\_2\_zynq\_sources\lab4\pynq\lab4.sdk* and click **OK**.
+**Extra Steps for PYNQ-Z2**
 
-8. Click **OK**.
+1. Open **SDK** by selecting **Start > Xilinx Design Tools > Xilinx SDK 2018.2**
+
+2. In the **Select a workspace** window, click on the browse button, browse to *{SOURCES}\lab4\pynq\lab4.sdk* and click **OK**.
+
+3. Click **OK**.
 
    In the *Project Explorer*, right-click on the wave\_gen\_uart, select *Run As*, and then **Launch on Hardware (System Debugger)**
 
-   verify the functionality of the design in the hardware.
 
-9. When done, close the **Vivado** program by selecting **File > Exit** and click **OK**.
+---
 
-10. Close the **SDK** program by selecting **File > Exit** and click **OK**.
+6. verify the functionality of the design in the hardware.
+7. When done, close the **Vivado** program by selecting **File > Exit** and click **OK**.
 
 ## Conclusion 
 
-In this lab, you learned how to add an existing IP during the project creation.  You also learned how to use IP Catalog and generate a core.  You then instantiated the core in the design, implemented the design, and verified the design in hardware.  You also used the IP Integrator capability of the tool to generate a FIFO and then use it in the HDL design.
+In this lab, you learned how to add an existing IP during the project creation.  You also learned how to use IP Catalog and generate a core.  You then instantiated the core in the design, implemented the design, and verified the design in hardware.  You also used the IP Integrator capability of the tool to generate a FIFO and then use it in the HDL design.his

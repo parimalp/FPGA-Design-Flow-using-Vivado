@@ -31,7 +31,7 @@ Boolean board will be using the on-board UART port to implement such function, w
 
 *The Complete Design on PL*
 
-[![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig2.png)](./img/lab5/Fig2.png)
+[![img](./img/lab5/Fig2.png)](./img/lab5/Fig2.png)
 
 *The Complete System*
 
@@ -39,7 +39,7 @@ Boolean board will be using the on-board UART port to implement such function, w
 
 ```mermaid
 flowchart TD
-1:[Step 1: Create a Vivado I/O Planning Project] --> 2:[Step 2: Assign Various Pins and Source Files] --> 3:[Step 3: Synthesize and Enter Timing Constraints] --> 4:[Step 4:Implement and Perform Timing Analysis] --> 5:[Optional Step 5: Generate Birstream and Verify]
+1:[Step 1: Create a Vivado I/O Planning Project] --> 2:[Step 2: Assign Various Pins and Source Files] --> 3:[Step 3: Synthesize and Enter Timing Constraints] --> 4:[Step 4:Implement and Perform Timing Analysis] --> 5:[Optional) Step 5: Generate Birstream and Verify]
 ```
 
 ###  In the instructions for the tutorial
@@ -72,7 +72,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog box. Click **Next**.
 
-3. Click the Browse button of the *Project location* field of the **New Project** form, browse to **{TUTORIAL}**, and click **Select**.
+3. lick the Browse button of the *Project location* field of the **New Project** form, browse to **{TUTORIAL}**, and click **Select**.
 
 4. Enter **lab5** in the *Project name* field. Make sure that the *Create Project Subdirectory* box is checked. Click **Next**.
 
@@ -80,9 +80,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 6. Select **Do not import I/O ports at this time**, and click **Next**.
 
-7. In the *Default Part* form, Use the **Boards** option, you may select the **PYNQ-Z1** or the **PYNQ-Z2** depending on your board from the Display Name drop down field.
-
-   You may also use the **Parts** option and various drop-down fields of the **Filter** section, select the **XC7Z020clg400-1 part**.
+7. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section, select the **XC7Z020clg400-1 part** (for PYNQ-Z2) or **XC7S50CSGA324-1 part**(for Boolean).
 
 8. Click **Next**.
 
@@ -90,7 +88,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
    The device view window and package pins tab will be displayed.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig4.png)](./img/lab5/Fig4.png)
+   [![img](./img/lab5/Fig4.png)](./img/lab5/Fig4.png)
 
    *I/O Planning project’s default windows and views*
 
@@ -104,7 +102,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 2. Type **clk_pin** in the *Name* field, select **Input** for the *Direction* and select **LVCMOS33** as the *I/O Standard*, and click **OK**.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig5.png)](./img/lab5/Fig5.png)
+   [![img](./img/lab5/Fig5.png)](./img/lab5/Fig5.png)
 
    *Creating I/O Port for clk_pin input*
 
@@ -114,7 +112,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 Hover the mouse over **H16** in the Device view window.
 
-[![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig6.png)](./img/lab5/Fig6.png)
+[![img](./img/lab5/Fig6.png)](./img/lab5/Fig6.png)
 
 *Locating H16 pin in the Device view*
 
@@ -128,7 +126,7 @@ Hover the mouse over **H16** in the Device view window.
 
 4. Select **Edit > Find** or Ctrl-F to open the Find form. Select **Package Pins** in the *Find* drop-down field, type **D20** in the match criteria field, and click on **OK**.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig7.png)](./img/lab5/Fig7.png)
+   [![img](./img/lab5/Fig7.png)](./img/lab5/Fig7.png)
 
    *Finding a package pin*
 
@@ -142,7 +140,7 @@ Hover the mouse over **H16** in the Device view window.
 
 1. In the I/O Ports tab, click on the create I/O port button on the left vertical ribbon.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig8.png)](./img/lab5/Fig8.png)
+   [![img](./img/lab5/Fig8.png)](./img/lab5/Fig8.png)
 
    *Create I/O Ports button*
 
@@ -150,7 +148,7 @@ Hover the mouse over **H16** in the Device view window.
 
 2. Type **led_pins** in the *Name* field, select *Output* direction, click on the check-box of **Create bus**, set the msb to **7**, and select **LVCMOS33** I/O standard and click **OK**.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig9.png)](./img/lab5/Fig9.png)
+   [![img](./img/lab5/Fig9.png)](./img/lab5/Fig9.png)
 
    *Creating I/O ports for the led\_pins output*
 
@@ -180,13 +178,13 @@ Hover the mouse over **H16** in the Device view window.
 
 2. Enter **uart_led_pynq** in the *File name* field, and click **OK**.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig10.png)](./img/lab5/Fig10.png)
+   [![img](./img/lab5/Fig10.png)](./img/lab5/Fig10.png)
 
    *Saving constraints*
 
    The uart_led_pynq.xdc file will be created and added to the Sources tab.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig11.png)](./img/lab5/Fig11.png)
+   [![img](./img/lab5/Fig11.png)](./img/lab5/Fig11.png)
 
    *The uart_led_pynq.xdc file added to the source tree*
 
@@ -202,13 +200,13 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 1. Change *io_1.v* to **uart_top.v**, and click **OK**
 
-[![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig12.png)](./img/lab5/Fig12.png)
+[![img](./img/lab5/Fig12.png)](./img/lab5/Fig12.png)
 
 *Assigning top-level file name*
 
 1. Select the **Hierarchy** tab and notice that the *uart_top.v* file has been added to the project with top-level module name as **ios**. If you double-click the entry, you will see the module name with the ports listing.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig13.png)](./img/lab5/Fig13.png)
+   [![img](./img/lab5/Fig13.png)](./img/lab5/Fig13.png)
 
    *The top-level module content and the design hierarchy after migrating to RTL*
 
@@ -240,7 +238,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
    Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined to be 115200 and 125 MHz respectively.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig14.png)](./img/lab5/Fig14.png)
+   [![img](./img/lab5/Fig14.png)](./img/lab5/Fig14.png)
 
    *CLOCK_RATE parameter of uart_led*
 
@@ -262,7 +260,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 5. Specify the frequency of the object *clk_pin* to be **125 MHz,** notice the Period, Rise At and Fall At are automatically populated. Also notice the Tcl command that can be previewed at the bottom of the wizard. Click **Next** to proceed.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig15.png)](./img/lab5/Fig15.png)
+   [![img](./img/lab5/Fig15.png)](./img/lab5/Fig15.png)
 
    *Constraints Wizard clk_pin parameters and Tcl command*
 
@@ -279,7 +277,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
    - Notice that under the Tcl Command Preview tab, 4 Tcl commands have been generated.
    - Click **Next**.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig16.png)](./img/lab5/Fig16.png)
+   [![img](./img/lab5/Fig16.png)](./img/lab5/Fig16.png)
 
    *Specifying Input Delays for btn_pin and rst_pin*
 
@@ -291,7 +289,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 13. **Check** *On Finish –* **View Timing Constraints** and click **Finish** to close the wizard. The option will open the Timing Constraints Editor to show you the generated timing constraint.
 
-    [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig17.png)](./img/lab5/Fig17.png)
+    [![img](./img/lab5/Fig17.png)](./img/lab5/Fig17.png)
 
     *Selecting View Timing constraints*
 
@@ -299,7 +297,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
     There is no need to click Apply since the constraints have already been applied in the Constraints Wizard.
 
-    [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig18.png)](./img/lab5/Fig18.png)
+    [![img](./img/lab5/Fig18.png)](./img/lab5/Fig18.png)
 
     *The constraints added after using the Constraints Wizard*
 
@@ -311,7 +309,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 2. In the **Options** tab, select *min_max* from the *Path delay type* drop-down list.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig19.png)](./img/lab5/Fig19.png)
+   [![img](./img/lab5/Fig19.png)](./img/lab5/Fig19.png)
 
    *Performing timing analysis*
 
@@ -319,7 +317,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
    The Timing Results view opens at the bottom of the Vivado IDE.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig20.png)](./img/lab5/Fig20.png)
+   [![img](./img/lab5/Fig20.png)](./img/lab5/Fig20.png)
 
    *Timing summary*
 
@@ -329,19 +327,19 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 4. Click on the link next to *Worst Hold Slack* (WHS) to see the list of failing paths.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig21.png)](./img/lab5/Fig21.png)
+   [![img](./img/lab5/Fig21.png)](./img/lab5/Fig21.png)
 
    *The list of paths showing hold violations*
 
 5. Double-click on the *Path 11* to see the actual path detail.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig22.png)](./img/lab5/Fig22.png)
+   [![img](./img/lab5/Fig22.png)](./img/lab5/Fig22.png)
 
    *Failing hold path*
 
 6. Select *Path 11*, right-click and select **Schematic**.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig23.png)](./img/lab5/Fig23.png)
+   [![img](./img/lab5/Fig23.png)](./img/lab5/Fig23.png)
 
    *The schematic of the failing path*
 
@@ -369,7 +367,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
    Note that failing timing paths are indicated in red.
 
-   [![img](https://github.com/xupgit/FPGA-Design-Flow-using-Vivado/raw/master/images/lab5/Fig24.png)](./img/lab5/Fig24.png)
+   [![img](./img/lab5/Fig24.png)](./img/lab5/Fig24.png)
 
    *Failing setup paths*
 

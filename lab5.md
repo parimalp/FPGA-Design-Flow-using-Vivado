@@ -39,7 +39,7 @@ Boolean board will be using the on-board UART port to implement such function, w
 
 ```mermaid
 flowchart TD
-1:[Step 1: Create a Vivado I/O Planning Project] --> 2:[Step 2: Assign Various Pins and Source Files] --> 3:[Step 3: Synthesize and Enter Timing Constraints] --> 4:[Step 4:Implement and Perform Timing Analysis] --> 5:[Optional) Step 5: Generate Birstream and Verify]
+1:[Step 1: Create a Vivado I/O Planning Project] --> 2:[Step 2: Assign Various Pins and Source Files] --> 3:[Step 3: Synthesize and Enter Timing Constraints] --> 4:[Step 4:Implement and Perform Timing Analysis] --> 5:[Optional Step 5: Generate Birstream and Verify]
 ```
 
 ###  In the instructions for the tutorial
@@ -90,7 +90,11 @@ The absolute path for the source code should only contain ascii characters. Deep
 
    [![img](./img/lab5/Fig4.png)](./img/lab5/Fig4.png)
 
-   *I/O Planning project’s default windows and views*
+   *I/O Planning project’s default windows and views (PYNQ-Z2)*
+   
+   ![img](./img/lab5/boolean_io.png)
+   
+   *I/O Planning project’s default windows and views (Boolean)*
 
 ### Create I/O Ports, Assign Various Pins and Add Source Files
 
@@ -108,33 +112,39 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 3. Similarly, create the **btn_pin** and **rst_pin** input ports.
 
-#### Assign input pins clk_pin, btn_pin and rst_pin to H16, D19 and D20 locations using the Device view and package pins.
+#### For PYNQ-Z2: Assign input pins clk_pin, btn_pin and rst_pin to H16, D19 and D20 locations using the Device view and package pins.
 
-Hover the mouse over **H16** in the Device view window.
+#### For Boolean: Assign input pins clk_pin, btn_pin and rst_pin to F14, J2 and J5 locations using the Device view and package pins.
+
+(The images below take PYNQ-Z2 as example)
+
+Hover the mouse over **H16**(PYNQ-Z2) or **F14**(Boolean) in the Device view window.
 
 [![img](./img/lab5/Fig6.png)](./img/lab5/Fig6.png)
 
-*Locating H16 pin in the Device view*
+*Locating H16 pin in the Device view*(PYNQ-Z2)
 
 1. When located, click on it.
 
    The pin entry will be highlighted and displayed in the Package Pins tab.
 
-2. In the *Package Pins* pane, click in the *Ports* column of **H16** pin’s row, and select **clk_pin**.
+2. In the *Package Pins* pane, click in the *Ports* column of **H16**(PYNQ-Z2) or **F14**(Boolean) pin’s row, and select **clk_pin**.
 
-3. Similarly, add the **btn_pin** input port at **D19**.
+3. Similarly, add the **btn_pin** input port at **D19**(PYNQ-Z2)  or **J2**(Boolean).
 
-4. Select **Edit > Find** or Ctrl-F to open the Find form. Select **Package Pins** in the *Find* drop-down field, type **D20** in the match criteria field, and click on **OK**.
+4. Select **Edit > Find** or Ctrl-F to open the Find form. Select **Package Pins** in the *Find* drop-down field, type **D20**(PYNQ-Z2) or **J5**(Boolean) in the match criteria field, and click on **OK**.
 
    [![img](./img/lab5/Fig7.png)](./img/lab5/Fig7.png)
 
-   *Finding a package pin*
+   *Finding a package pin*(PYNQ-Z2)
 
    Notice that the Find Results tab is opened, and the corresponding entry is shown in the tab.
 
 5. Assign the **rst_pin** input to the pin.
 
-#### Assign output pins led_pins[0] to led_pins[7] to locations R14, P14, N16, M14, W14, Y14, T11, T10. Create them as a vector and assign them using the Tcl command *set_property*. They all will be LVCMOS33.
+#### For PYNQ-Z2: Assign output pins led_pins[0] to led_pins[7] to locations B20, @8, U8, W6, Y7, F20, N16, M14. Create them as a vector and assign them using the Tcl command *set_property*. They all will be LVCMOS33.
+
+#### For Boolean: Assign output pins led_pins[0] to led_pins[7] to locations R14, P14, N16, M14, W14, Y14, T11, T10. Create them as a vector and assign them using the Tcl command *set_property*. They all will be LVCMOS33.
 
 **Note:** Notice that PYNQ has four LEDs hence we assign led_pins[3:0] to LEDs and led_pins[7:4] are assigned to PMODB.
 
@@ -156,31 +166,44 @@ Hover the mouse over **H16** in the Device view window.
 
 3. Type the following commands in the console to assign the pin locations.
 
-*set_property -dict { PACKAGE_PIN R14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[0] }];*
+**For PYNQ-Z2:**
 
-*set_property -dict { PACKAGE_PIN P14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[1] }];*
+```tcl
+set_property -dict { PACKAGE_PIN R14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[0] }];
+set_property -dict { PACKAGE_PIN P14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[1] }];
+set_property -dict { PACKAGE_PIN N16 IOSTANDARD LVCMOS33 } [get_ports { led_pins[2] }];
+set_property -dict { PACKAGE_PIN M14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[3] }];
+set_property -dict { PACKAGE_PIN W14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[4] }];
+set_property -dict { PACKAGE_PIN Y14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[5] }];
+set_property -dict { PACKAGE_PIN T11 IOSTANDARD LVCMOS33 } [get_ports { led_pins[6] }];
+set_property -dict { PACKAGE_PIN T10 IOSTANDARD LVCMOS33 } [get_ports { led_pins[7] }];
+ 
+```
 
-*set_property -dict { PACKAGE_PIN N16 IOSTANDARD LVCMOS33 } [get_ports { led_pins[2] }];*
+**For Boolean: **
 
-*set_property -dict { PACKAGE_PIN M14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[3] }];*
+```tcl
+set_property -dict {PACKAGE_PIN G1 IOSTANDARD LVCMOS33} [get_ports {led_pins[0]}]
+set_property -dict {PACKAGE_PIN G2 IOSTANDARD LVCMOS33} [get_ports {led_pins[1]}]
+set_property -dict {PACKAGE_PIN F1 IOSTANDARD LVCMOS33} [get_ports {led_pins[2]}]
+set_property -dict {PACKAGE_PIN F2 IOSTANDARD LVCMOS33} [get_ports {led_pins[3]}]
+set_property -dict {PACKAGE_PIN E1 IOSTANDARD LVCMOS33} [get_ports {led_pins[4]}]
+set_property -dict {PACKAGE_PIN E2 IOSTANDARD LVCMOS33} [get_ports {led_pins[5]}]
+set_property -dict {PACKAGE_PIN E3 IOSTANDARD LVCMOS33} [get_ports {led_pins[6]}]
+set_property -dict {PACKAGE_PIN E5 IOSTANDARD LVCMOS33} [get_ports {led_pins[7]}]
+```
 
-*set_property -dict { PACKAGE_PIN W14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[4] }];*
 
-*set_property -dict { PACKAGE_PIN Y14 IOSTANDARD LVCMOS33 } [get_ports { led_pins[5] }];*
 
-*set_property -dict { PACKAGE_PIN T11 IOSTANDARD LVCMOS33 } [get_ports { led_pins[6] }];*
-
-*set_property -dict { PACKAGE_PIN T10 IOSTANDARD LVCMOS33 } [get_ports { led_pins[7] }];*
-
-1. Select **File > Save Constraints**.
+4. Select **File > Constraints > Save**.
 
    The Save Constraints form will be displayed.
 
-2. Enter **uart_led_pynq** in the *File name* field, and click **OK**.
+5. Enter **uart_led_{BOARD}** in the *File name* field, and click **OK**.
 
    [![img](./img/lab5/Fig10.png)](./img/lab5/Fig10.png)
 
-   *Saving constraints*
+   *Saving constraints*(PYNQ-Z2)
 
    The uart_led_pynq.xdc file will be created and added to the Sources tab.
 
@@ -188,15 +211,15 @@ Hover the mouse over **H16** in the Device view window.
 
    *The uart_led_pynq.xdc file added to the source tree*
 
-3. Expand the **Flow Navigator > I/O PLANNING > Open I/O Design > Report DRC**.
+2. Expand the **Flow Navigator > I/O PLANNING > Open I/O Design > Report DRC**.
 
-4. Click **OK**. Notice the design rules checker is run warnings is reported. Ignore the warnings.
+3. Click **OK**. Notice the design rules checker is run warnings is reported. Ignore the warnings.
 
-5. Expand the **Flow Navigator > I/O PLANNING > Open I/O Design > Report Noise** and click **OK**. Notice the noise analysis is done on the output pins only (led_pins) and the results are displayed.
+4. Expand the **Flow Navigator > I/O PLANNING > Open I/O Design > Report Noise** and click **OK**. Notice the noise analysis is done on the output pins only (led_pins) and the results are displayed.
 
-6. Click on **Migrate to RTL**.
+5. Click on **Migrate to RTL**.
 
-The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/xup/fpga_flow/2018_2_zynq_labs/lab5/io_1.v* entry.
+The *Migrate to RTL* form will be displayed with Top RTL file field showing **{TUTORIAL}**/io_1.v* entry.
 
 1. Change *io_1.v* to **uart_top.v**, and click **OK**
 
@@ -210,37 +233,38 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
    *The top-level module content and the design hierarchy after migrating to RTL*
 
-#### Add the provided source files (from <2018_2_zynq_sources>\lab5) to the project. Copy the uart_top.txt (located in the <2018_2_zynq_sources >\lab5) content into the top-level source file.
+#### Add the provided source files (from {SOURCES}\lab5) to the project. Copy the uart_top.txt (located in the {SOURCES}\lab5) content into the top-level source file.
 
 1. Click **Flow Navigator > Add Sources**.
-
 2. In the *Add Sources* form, select *Add or Create Design Sources*, and click **Next**.
-
 3. Click on the **Blue Plus** button, then the **Add Files…**
-
-4. Browse to **<2018_2_zynq_sources>\lab5** and select all .v(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v, uart_rx.v uart_rx_ctl.v) files and click **OK**.
-
+4. Browse to **{SOURCES}\lab5** and select all .v(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v, uart_rx.v uart_rx_ctl.v) files and click **OK**.
 5. Click **Finish**.
+6. Using Windows Explorer, browse to **{SOURCES}\\{BOARD}\lab5** and open uart_top.txt using any text editor. Copy the content of it and paste it in uart_top.v (around line 22) in the Vivado project.
 
-6. Using Windows Explorer, browse to **<2018_2_zynq_sources>\lab5** and open uart_top.txt using any text editor. Copy the content of it and paste it in uart_top.v (around line 22) in the Vivado project.
+---
 
-7. In the Tcl Shell window enter the following command to change to the lab directory and hit the Enter key.
+**For PYNQ-Z2, there are two extra steps to take**
 
-   *cd C:/xup/fpga_flow/2018_2_zynq_sources/lab5*
+1. In the Tcl Shell window enter the following command to change to the lab directory and hit the Enter key.
 
-8. Generate the PS design by executing the provided Tcl script.
+   *cd {SOURCES}/lab5*
+
+2. Generate the PS design by executing the provided Tcl script.
 
    *source ps7_create_pynq.tcl*
 
    This script will create a block design called *system*, instantiate ZYNQ PS with one GPIO channel (GPIO14) and one EMIO channel. It will then create a top-level wrapper file called system_wrapper.v which will instantiate the system.bd (the block design). You can check the contents of the tcl files to confirm the commands that are being run.
 
-9. Double-click on the **uart_led** entry to view its content.
+---
 
-   Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined to be 115200 and 125 MHz respectively.
+7. Double-click on the **uart_led** entry to view its content.
 
-   [![img](./img/lab5/Fig14.png)](./img/lab5/Fig14.png)
+Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined to be 115200 and 125 MHz(PYNQ-Z2) or 100 MHz (Boolean) respectively.
 
-   *CLOCK_RATE parameter of uart_led*
+[![img](./img/lab5/Fig14.png)](./img/lab5/Fig14.png)
+
+*CLOCK_RATE parameter of uart_led*
 
 ### Synthesize and Enter Timing Constraints
 
@@ -258,7 +282,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 4. Read the *Identify and Recommend Missing Timing Constraints* screen of the wizard to understand what the wizard does and click **Next**.
 
-5. Specify the frequency of the object *clk_pin* to be **125 MHz,** notice the Period, Rise At and Fall At are automatically populated. Also notice the Tcl command that can be previewed at the bottom of the wizard. Click **Next** to proceed.
+5. Specify the frequency of the object *clk_pin* to be **125 MHz**(PYNQ-Z2) or **100MHz**(Boolean), notice the Period, Rise At and Fall At are automatically populated. Also notice the Tcl command that can be previewed at the bottom of the wizard. Click **Next** to proceed.
 
    [![img](./img/lab5/Fig15.png)](./img/lab5/Fig15.png)
 
@@ -301,7 +325,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
     *The constraints added after using the Constraints Wizard*
 
-15. Open uart_led_pynq.xdc (if it was already opened, click Reload in the yellow status bar) and notice additional constraints were added to the last line of the file.
+15. Open uart_led.xdc (if it was already opened, click Reload in the yellow status bar) and notice additional constraints were added to the last line of the file.
 
 #### Generate an estimated Timing Report showing both the setup and hold paths in the design.
 
@@ -403,6 +427,17 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 #### Connect the board and power it ON. Open a hardware session, and program the FPGA.
 
+---
+
+**Extra Steps for PYNQ-Z2:**
+
+#### Insert the SD card, Connect the board and power it ON
+
+1. Copy the provided SD card boot image (**{SOURCES}**/lab5/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
+2. Insert the SD card to the SD card slot on the back of the board and set the booting jumper to **SD**.
+
+---
+
 1. Make sure that the Micro-USB cable is connected to the JTAG PROG connector.
 
 2. Turn ON the power.
@@ -419,9 +454,9 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 
 6. Select the device and verify that the **ios.bit** is selected as the programming file in the General tab.
 
-#### Start a terminal emulator program such as TeraTerm or HyperTerminal. Select an appropriate COM port (you can find the correct COM number using the Control Panel). Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality.
+#### Start a terminal emulator program such as TeraTerm or Mobaxterm. Select an appropriate COM port (you can find the correct COM number using the Control Panel). Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality.
 
-1. Start a terminal emulator program such as TeraTerm or HyperTerminal.
+1. Start a terminal emulator program such as TeraTerm or Mobaxterm.
 
 2. Select an appropriate COM port (you can find the correct COM number using the Control Panel).
 
@@ -432,26 +467,6 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing *c:/
 5. Click on the **Program** button.
 
    The programming bit file be downloaded and the DONE light will be turned ON indicating the FPGA has been programmed.
-
-### Start a SDK session, point it to the c:/xup/fpga_flow/2018_2_zynq_sources/lab5/pynq/lab5.sdk workspace.
-
-1. Open **SDK** by selecting **Start > Xilinx Design Tools > Xilinx SDK 2018.2**
-
-2. In the **Select a workspace** window, click on the browse button, browse to *c:/xup/fpga_flow/2018_2_zynq_sources/lab5/pynq/lab5.sdk* and click **OK**.
-
-3. Click **OK**.
-
-   In the *Project Explorer*, right-click on the uart_led_zynq, select *Run As*, and then **Launch on Hardware (System Debugger)**
-
-4. Verify the functionality as you did in the previous lab, by typing some characters into the terminal, and watching the corresponding values appear on the LEDs.
-
-5. When satisfied, close the terminal emulator program and power OFF the board.
-
-6. Select **File > Close Hardware Manager**. Click **OK** to close it.
-
-7. When done, close the **Vivado** program by selecting **File > Exit** and click **OK**.
-
-8. Close the **SDK** program by selecting **File > Exit** and click **OK**.
 
 ## Conclusion
 

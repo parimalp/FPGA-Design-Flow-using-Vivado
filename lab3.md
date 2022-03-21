@@ -294,7 +294,7 @@ The write_bitstream command will be executed (you can verify it by looking in th
 #### Insert the SD card, Connect the board and power it ON. Open a hardware session, and program the FPGA.
 
 1. Copy the provided SD card boot image (**{SOURCES}**/lab3/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
-2. Insert the SD card to the SD card slot on the back of the board and set the jumper to **SD**.
+2. Insert the SD card to the SD card slot on the back of the board and set the booting jumper to **SD**.
 3. Select the *Open Hardware Manager* option and click **OK**.
    The Hardware Manager window will open indicating “unconnected” status.
 

@@ -33,7 +33,7 @@ Boolean board will be using the on-board UART port to implement such function, w
 
 [![img](./img/lab5/Fig2.png)](./img/lab5/Fig2.png)
 
-*The Complete System*
+<center>*The Complete System*</center>
 
 ## General Flow
 

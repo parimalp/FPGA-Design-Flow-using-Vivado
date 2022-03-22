@@ -33,7 +33,9 @@ Boolean board will be using the on-board UART port to implement such function, w
 
 [![img](./img/lab5/Fig2.png)](./img/lab5/Fig2.png)
 
-<center>*The Complete System*</center>
+<p align = "center">
+<i>The Complete System on PYNQ-Z2</i>
+</p>
 
 ## General Flow
 

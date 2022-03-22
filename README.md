@@ -61,7 +61,7 @@ When creating Vivado projects, targeting to the parts (instead of boards) to spe
 ## Labs Overview:
 
 ### Lab 1
-This lab guides you through the process of using Vivado IDE to create a simple HDL design targeting the PYNQ-Z1 or PYNQ-Z2.  You will simulate, synthesize, and implement the design with default settings.  Finally, you will generate the bitstream and download it into the hardware to verify the design functionality.
+This lab guides you through the process of using Vivado IDE to create a simple HDL design targeting the Boolean or PYNQ-Z2.  You will simulate, synthesize, and implement the design with default settings.  Finally, you will generate the bitstream and download it into the hardware to verify the design functionality.
 
 <p align="center">
 <img src ="./images/lab1/Fig1.png"/>

@@ -88,7 +88,7 @@ cd {TUTORIAL}/lab2
 source ps_init.tcl
 ```
 
-Please check if the path is right or not.
+Please check if the path in the tcl script is right or not.
 
 #### Analyze the design source files hierarchy.(Taking Boolean as an example)
 

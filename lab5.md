@@ -66,7 +66,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 **For Boolean:**
 
-#### Launch Vivado and create a project targeting XC7S50CSGA324-1 parts, and using the Verilog HDL. Use the provided Verilog source files and XDC  files from the **{SOURCES}**\lab4\ directory.
+#### Launch Vivado and create a project targeting XC7S50CSGA324-1 parts, and using the Verilog HDL. Use the provided Verilog source files and XDC  files from the **{SOURCES}**\lab5\ directory.
 
 ---
 
@@ -427,16 +427,41 @@ Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined 
 2. The write_bitstream command will be executed (you can verify it by looking in the Tcl console).
 3. Click **Cancel** when the bitstream generation is completed.
 
-#### Connect the board and power it ON. Open a hardware session, and program the FPGA.
-
 ---
 
-**Extra Steps for PYNQ-Z2:**
+**For Boolean:**
 
-#### Insert the SD card, Connect the board and power it ON
+#### Connect the board and power it ON. Open a hardware session, and program the FPGA.
 
-1. Copy the provided SD card boot image (**{SOURCES}**/lab5/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
+1. Make sure that the micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). Make sure that the jumper on the board is set to select USB power.
+
+2. Select the *Open Hardware Manager* option and click **OK**.
+   The Hardware Manager window will open indicating “unconnected” status.
+
+3. Click on the **Open target** link, then **Auto Connect** from the dropdown menu.
+
+  ![fig1](img/lab5/fig15-16479350107761.png)
+
+  Opening new hardware target
+
+4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
+5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
+
+**For PYNQ-Z2:**
+
+#### Insert the SD card, Connect the board and power it ON. Open a hardware session, and program the FPGA.
+
+1. Copy the provided SD card boot image (**{SOURCES}**/lab3/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
 2. Insert the SD card to the SD card slot on the back of the board and set the booting jumper to **SD**.
+3. Select the *Open Hardware Manager* option and click **OK**.
+   The Hardware Manager window will open indicating “unconnected” status.
+
+  ![fig1](img/lab5/fig15-16479350107761.png)
+
+  Opening new hardware target
+
+4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status may indicate that the device is programmed, **ignore the status**.
+5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
 
 ---
 

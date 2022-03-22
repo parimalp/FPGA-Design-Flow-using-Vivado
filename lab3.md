@@ -244,8 +244,12 @@ The write_bitstream command will be executed (you can verify it by looking in th
 
 3. Click Cancel when the bitstream generation is completed.
 
+### Step 4 Verify the Functionality 
 
-### Step 4 Verify the Functionality (Boolean Board)
+---
+
+**For Boolean:**
+
 #### Connect the board and power it ON. Open a hardware session, and program the FPGA.
 
 1. Make sure that the micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). Make sure that the jumper on the board is set to select USB power.
@@ -259,11 +263,26 @@ The write_bitstream command will be executed (you can verify it by looking in th
 
   Opening new hardware target
 
-  
-
 4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
-
 5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
+
+**For PYNQ-Z2:**
+
+#### Insert the SD card, Connect the board and power it ON. Open a hardware session, and program the FPGA.
+
+1. Copy the provided SD card boot image (**{SOURCES}**/lab3/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
+2. Insert the SD card to the SD card slot on the back of the board and set the booting jumper to **SD**.
+3. Select the *Open Hardware Manager* option and click **OK**.
+   The Hardware Manager window will open indicating “unconnected” status.
+
+  ![fig1](img/lab3/fig15.png)
+
+  Opening new hardware target
+
+4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status may indicate that the device is programmed, **ignore the status**.
+5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
+
+---
 
 ### Start a terminal emulator program such as Mobaxterm or etc. . Select an appropriate COM port (you can find the correct COM number using the Control Panel). Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality.
 
@@ -288,21 +307,6 @@ The write_bitstream command will be executed (you can verify it by looking in th
 9. Select **File > Close Hardware Manager**. Click **OK**.
 
 10. Close the Vivado program by selecting **File > Exit** and click **OK**.
-
-### Step 4 Verify the Functionality (PYNQ-Z2)
-
-#### Insert the SD card, Connect the board and power it ON. Open a hardware session, and program the FPGA.
-
-1. Copy the provided SD card boot image (**{SOURCES}**/lab3/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
-2. Insert the SD card to the SD card slot on the back of the board and set the booting jumper to **SD**.
-3. Select the *Open Hardware Manager* option and click **OK**.
-   The Hardware Manager window will open indicating “unconnected” status.
-
-  ![fig1](img/lab3/fig15.png)
-
-  Opening new hardware target
-
-4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status m.
 
 ## Conclusion
 In this lab, you learned about many of the reports available to designers in the Vivado IDE. You had the opportunity to learn basic design analysis tools including the Schematic viewer, delay path properties and reports viewer, Device viewer, and selecting primitive parents. You also learned about the basic timing report options that are at your disposal. You verified the functionality in hardware by typing characters on the host machine and seeing the LED pattern changes.

@@ -51,7 +51,7 @@ flowchart LR
 4. Make sure that the *flatten_hierarchy* is set to **rebuilt**, which allows the design hierarchy to be preserved for synthesis, and then rebuilt which is more useful for design analysis because many logical references  will be maintained.
    
 
-![fig1](img/lab3/fig1.png)
+![fig1](images/lab3/fig1.png)
 
 5. Click **OK**.
    
@@ -71,7 +71,7 @@ flowchart LR
     pane.
 
 4. Leave all the settings unchanged, and click **OK** to generate a default timing report, *timing_1*.
-![fig1](img/lab3/fig2.png)
+![fig1](images/lab3/fig2.png)
 
 5. Click on the link beside the **Worst Negative Slack** (WNS) and see the 8 failing paths.
 
@@ -82,37 +82,52 @@ flowchart LR
     The schematic for the output data path will be displayed.
 
 
-![fig1](img/lab3/fig3.png)
+![fig1](images/lab3/fig3.png)
 
-The output data path
+<p align = "center">
+<i>The output data path</i>
+</p>
+
 
 8. In order to see how the Source Clock Path is made up in schematic form, double-click on left end  of the C pin of the FDRE in the schematic.
     This will show the net between the BUFG and C port of the FDRE.
     
 9. Similarly, double-click on the left end of the BUFG to see the path between IBUF and BUFG.
 
-![fig1](img/lab3/fig4.png)
+![fig1](images/lab3/fig4.png)
 
-Source to clock port of the FDRE
 
+<p align = "center">
+<i>Source to clock port of the FDRE</i>
+</p>
 10. Finally, double-click on the input pin of IBUF to see the path between the clock input pin and the
     IBUF.
 
-![fig1](img/lab3/fig5.png)
+![fig1](images/lab3/fig5.png)
 
-The schematic view of the source clock path
-     This corresponds to the Source Clock Path in the timing report.
+<p align = "center">
+<i>The schematic view of the source clock path</i>
+</p>
 
-![fig1](img/lab3/fig6.png)
 
-The source clock path for the Boolean
+  This corresponds to the Source Clock Path in the timing report.
+
+![fig1](images/lab3/fig6.png)
+
+<p align = "center">
+<i>The source clock path for the Boolean</i>
+</p>
+
 
 Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns), the data path delay
 includes the clock period of the clk_pin clock source.
 
-![fig1](img/lab3/fig7.png)
+![fig1](images/lab3/fig7.png)
 
-Worst failing path for the Boolean
+
+<p align = "center">
+<i>Worst failing path for the Boolean</i>
+</p>
 
 #### Change the design constraint to constrain the virtual clock period to 10ns.Re-synthesize the design and analyze the results.
 
@@ -121,9 +136,13 @@ Worst failing path for the Boolean
    The Timing Constraints GUI will appear, showing the design has two create clocks, four inputs, and one output constraints. It also shows the constraints in the text form in the All Constraints
    section.
 
-   ![fig1](img/lab3/fig8.png)
+   ![fig1](images/lab3/fig8.png)
 
-Timing Constraints showing 12 ns Virtual Clock period defined
+<p align = "center">
+<i>Timing Constraints showing 12 ns Virtual Clock period defined</i>
+</p>
+
+
 
 2. Click in the Period cell of the virtual_clock and change the period from 12 to 10
 
@@ -131,14 +150,17 @@ Timing Constraints showing 12 ns Virtual Clock period defined
     Note that since the timing constraint has changed, a warning message in the console pane is
     displayed to rerun the report.
 
-  ![fig1](img/lab3/figa.png)
+  ![fig1](images/lab3/figa.png)
 
 4. Click on Rerun.
     Notice that setup timing violations are gone. However, there are still 2 failing paths for the Hold.
 
-![fig1](img/lab3/fig9.png)
+![fig1](images/lab3/fig9.png)
 
-  Setup timing met for the Boolean
+ <p align = "center">
+<i> Setup timing met for the Boolean</i>
+</p>
+
 
 5. Click on the WHS link to see the paths.
 
@@ -175,9 +197,12 @@ When the implementation is completed, a dialog box will appear with three option
 
 3. Select Slice LUTs to view how much and which module consumes the resource.
 
-![fig1](img/lab3/fig10.png)
+![fig1](images/lab3/fig10.png)
 
-Resource utilization for the Boolean
+<p align = "center">
+<i>Resource utilization for the Boolean</i>
+</p>
+
 
 #### Generate a timing summary report.
 
@@ -185,17 +210,24 @@ Resource utilization for the Boolean
 The Report Timing Summary dialog box opens.
 2. Leave all the settings unchanged and click OK to generate the report.
 
-![fig1](img/lab3/fig11.png)
+![fig1](images/lab3/fig11.png)
 
-The timing summary report showing timing violations for the Boolean
+<p align = "center">
+<i>The timing summary report showing timing violations for the Boolean</i>
+</p>
+
+
 
 3. Click on the WNS link to see a detailed report to determine the failing path entries.
 
 4. Double-click on the first failing path to see why it is failing.
 
-  ![fig1](img/lab3/fig12.png)
+  ![fig1](images/lab3/fig12.png)
 
-First failing path delays for the Boolean
+<p align = "center">
+<i>First failing path delays for the Boolean</i>
+</p>
+
 
 Compared to delays from the synthesis report, the net delays are actual delays (rather than an estimated figure). The data path delay is longer than the destination clock path delay giving a negative slack (violation). The data path delay is 11.534 ns for the Boolean, the destination clock path is 9.975 ns and the negative slack is -1.559 ns.
 At this point we can ignore this violation as the LED display change by a few nanoseconds won’t be observable by human eyes. We can also change the output delay by -2 ns and make the timings meet.
@@ -225,9 +257,12 @@ At this point we can ignore this violation as the LED display change by a few na
 13. Select *clk_pin* entry and observe the selected nets in the Device view.
     The clock nets are spread across multiple clock regions.
 
-![fig1](img/lab3/fig13.png)
+![fig1](images/lab3/fig13.png)
 
-Clock nets for the Boolean
+<p align = "center">
+<i>Clock nets for the Boolean</i>
+</p>
+
 
 ### Step 3 Generate the Bitstream 
 
@@ -235,9 +270,12 @@ Clock nets for the Boolean
 
 1. In the Flow Navigator, under Program and Debug, click Generate Bitstream.
 
-![fig1](img/lab3/fig14.png)
+![fig1](images/lab3/fig14.png)
 
-Generating the bitstream
+<p align = "center">
+<i>Generating the bitstream</i>
+</p>
+
 
 2. Click **Save** to save the constraints since the timing constraints had been changed, click OK, and then **Yes** to reset the runs and re-run all the processes.
 The write_bitstream command will be executed (you can verify it by looking in the Tcl console).
@@ -253,15 +291,16 @@ The write_bitstream command will be executed (you can verify it by looking in th
 #### Connect the board and power it ON. Open a hardware session, and program the FPGA.
 
 1. Make sure that the micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). Make sure that the jumper on the board is set to select USB power.
-
 2. Select the *Open Hardware Manager* option and click **OK**.
     The Hardware Manager window will open indicating “unconnected” status.
-
 3. Click on the **Open target** link, then **Auto Connect** from the dropdown menu.
 
-  ![fig1](img/lab3/fig15.png)
+  ![fig1](images/lab3/fig15.png)
 
-  Opening new hardware target
+<p align = "center">
+<i>Opening new hardware target</i>
+</p>
+
 
 4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
 5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
@@ -275,9 +314,12 @@ The write_bitstream command will be executed (you can verify it by looking in th
 3. Select the *Open Hardware Manager* option and click **OK**.
    The Hardware Manager window will open indicating “unconnected” status.
 
-  ![fig1](img/lab3/fig15.png)
+  ![fig1](images/lab3/fig15.png)
 
-  Opening new hardware target
+<p align = "center">
+<i>Opening new hardware target</i>
+</p>
+
 
 4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status may indicate that the device is programmed, **ignore the status**.
 5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.

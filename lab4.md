@@ -53,18 +53,19 @@ Boolean board will be using the on-board UART port to implement such function, w
 The system block diagram is as shown below
 
 <p align="center">
-<img src ="./img/lab4/Fig1.png">
+<img src ="./images/lab4/Fig1.png">
 </p>
 <p align = "center">
 <i>The complete design on PL</i>
 </p>
 
 <p align="center">
-<img src ="./img/lab4/Fig2.png">
+<img src ="./images/lab4/Fig2.png">
 </p>
 <p align = "center">
 <i>The Complete System</i>
 </p>
+
 ## General Flow
 
 ```mermaid
@@ -176,7 +177,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 2. Expand the **FPGA Features and Design > Clocking** sub-folders and double-click on the **Clocking Wizard** entry.
 
    <p align="center">
-   <img src ="./img/lab4/Fig4.png">
+   <img src ="./images/lab4/Fig4.png">
    </p>
    <p align = "center">
    <i>Accessing the clocking wizard</i>
@@ -187,7 +188,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 4. Change the core name to **clk\_core**.  Make sure that the *Primary* input clock frequency is **125.000** MHz(for PYNQ-Z2) or **100.000**MHz(for Boolean) and the primitive used is **MMCM**.
 
    <p align="center">
-   <img src ="./img/lab4/Fig5.png">
+   <img src ="./images/lab4/Fig5.png">
    </p>
    <p align = "center">
    <i>The clocking wizard</i>
@@ -196,7 +197,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 5. Select the **Output Clocks** tab. Click on the check box to enable the second clock output. Make sure that the requested output frequency is 50 MHz(for PYNQ-Z2) or 100MHz(for Boolean) for both clocks.
 
    <p align="center">
-   <img src ="./img/lab4/Fig6.png">
+   <img src ="./images/lab4/Fig6.png">
    </p>
    <p align = "center">
    <i>Setting output clocks</i>
@@ -205,7 +206,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 6. Click on the **Summary** tab and check the information.
 
    <p align="center">
-   <img src ="./img/lab4/Fig7.png">
+   <img src ="./images/lab4/Fig7.png">
    </p>
    <p align = "center">
    <i>Summary page of the clock core being generated</i>
@@ -214,7 +215,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 7. Click **OK** to see the *Generate Output Products* form.
 
 <p align="center">
-<img src ="./img/lab4/Fig8.png">
+<img src ="./images/lab4/Fig8.png">
 </p>
 <p align = "center">
 <i>Generate output products form</i>
@@ -235,7 +236,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 5. Change the instance name and net names to as shown in the figure below to match the names of existing signals in the design.
 
    <p align="center">
-   <img src ="./img/lab4/Fig9.png">
+   <img src ="./images/lab4/Fig9.png">
    </p>
    <p align = "center">
    <i>Assigning instance name and net connections</i>
@@ -246,7 +247,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 7. Select the *Hierarchy* tab, expand the **wave_gen > clk\_gen\_i0** hierarchy and verify that clk\_core.xci is in the hierarchy. The IP has a bordered yellow square icon next to it.
 
    <p align="center">
-   <img src ="./img/lab4/Fig11.png">
+   <img src ="./images/lab4/Fig11.png">
    </p>
    <p align = "center">
    <i>The clk_wiz_0 instantiated and shown in the hierarchy</i>
@@ -273,7 +274,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 3. Verify that the design is using the clock resource. 
 
    <p align="center">
-   <img src ="./img/lab4/Fig12.png">
+   <img src ="./images/lab4/Fig12.png">
    </p>
    <p align = "center">
    <i>Clock resource utilization</i>
@@ -330,7 +331,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    In the *Project Explorer*, right-click on the wave\_gen\_uart, select *Run As*, and then **Launch on Hardware (System Debugger)**
 
    <p align="center">
-   <img src ="./img/lab4/Fig13.png">
+   <img src ="./images/lab4/Fig13.png">
    </p>
    <p align = "center">
    <i>Running the application</i>
@@ -387,7 +388,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 7. The design understands various commands as listed in the figure below.  All values are in hexadecimal.  All values and addresses are in hexadecimal.
 
    <p align="center">
-   <img src ="./img/lab4/Fig14.png">
+   <img src ="./images/lab4/Fig14.png">
    </p>
    <p align = "center">
    <i>Commands</i>
@@ -400,7 +401,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 10. You can also type \*H to halt the play.
 
    <p align="center">
-   <img src ="./img/lab4/Fig15.png">
+   <img src ="./images/lab4/Fig15.png">
    </p>
    <p align = "center">
    <i>Terminal window display</i>
@@ -421,7 +422,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 4. If a following window appears, click on the check-box of *Also delete the project local file/directory from disk*, and click **OK** or else continue to next step.
 
    <p align="center">
-   <img src ="./img/lab4/Fig16.png">
+   <img src ="./images/lab4/Fig16.png">
    </p>
    <p align = "center">
    <i>Removing an existing IP from the project</i>
@@ -430,7 +431,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 5. Select **Hierarchy** tab in the *Sources* pane and observe that the char\_fifo instance has a ? mark indicating that it is missing the source file.
 
    <p align="center">
-   <img src ="./img/lab4/Fig17.png">
+   <img src ="./images/lab4/Fig17.png">
    </p>
    <p align = "center">
    <i>Removed source file</i>
@@ -441,7 +442,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 7. Toggle line comments the instantiation of the char\_fifo from the file around line 336.
 
 <p align="center">
-<img src ="./img/lab4/Fig18.png">
+<img src ="./images/lab4/Fig18.png">
 </p>
 <p align = "center">
 </p>
@@ -456,7 +457,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 2. Enter **char\_fifo** as the block design name.
 
 <p align="center">
-<img src ="./img/lab4/Fig19.png">
+<img src ="./images/lab4/Fig19.png">
 </p>
 <p align = "center">
 <i>Naming the new block design</i>
@@ -473,7 +474,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 5. Type FIFO in the search box at the top of the IP Integrator Catalog to see FIFO related available IPs.
 
 <p align="center">
-<img src ="./img/lab4/Fig20.png">
+<img src ="./images/lab4/Fig20.png">
 </p>
 <p align = "center">
 <i>Searching for an IP in the IP Catalog</i>
@@ -484,7 +485,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    The FIFO is added to the IP Integrator design canvas.
 
    <p align="center">
-   <img src ="./img/lab4/Fig21.png">
+   <img src ="./images/lab4/Fig21.png">
    </p>
    <p align = "center">
    <i>FIFO Generator instantiated</i>
@@ -501,7 +502,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 3. Select Independent Clocks Block RAM from the Fifo Implementation drop-down list. 
 
    <p align="center">
-   <img src ="./img/lab4/Fig22.png">
+   <img src ="./images/lab4/Fig22.png">
    </p>
    <p align = "center">
    <i>Configuring BRAM for separate read and write clocks</i>
@@ -520,7 +521,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 8. Deselect the *Enable Safety Circuit* option.
 
 <p align="center">
-<img src ="./img/lab4/Fig23.png">
+<img src ="./images/lab4/Fig23.png">
 </p>
 <p align = "center">
 <i>Configuring port width and read mode</i>
@@ -536,7 +537,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
     This tab displays a summary of all the selected configuration options, as well as listing resources used for this configuration.
 
     <p align="center">
-    <img src ="./img/lab4/Fig24.png">
+    <img src ="./images/lab4/Fig24.png">
     </p>
     <p align = "center">
     <i>Summary page</i>
@@ -547,7 +548,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 #### Make the ports external naming them as shown below.    
 
 <p align="center">
-<img src ="./img/lab4/Fig25.png">
+<img src ="./images/lab4/Fig25.png">
 </p>
 <p align = "center">
 <i>FIFO Generator IP fully generated and connected</i>
@@ -567,7 +568,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 5. In the *External Port Properties* window, in the Name field of the General tab, type the name **clk\_rx** and press Enter.  Similarly, select the external connection port named **rd\_clk** and change its name to **clk\_tx**.
 
    <p align="center">
-   <img src ="./img/lab4/Fig26.png">
+   <img src ="./images/lab4/Fig26.png">
    </p>
    <p align = "center">
    <i>Changing the external port name</i>
@@ -594,13 +595,13 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    When you have finished, your subsystem design should look like the figure below.  
 
    <p align="center">
-   <img src ="./img/lab4/Fig27.png">
+   <img src ="./images/lab4/Fig27.png">
    </p>
    <p align = "center">
    <i>Renamed external ports</i>
    </p>
 
-8. Click on Regenerate Layout ( ![](./img/lab4/Fig28.png)  ) icon from the vertical toolbar to see the above diagram.
+8. Click on Regenerate Layout ( ![](./images/lab4/Fig28.png)  ) icon from the vertical toolbar to see the above diagram.
 
 9. Select **Tools > Validate Design**.
 
@@ -613,7 +614,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 2. Right-click and select Generate Output Products. 
 
    <p align="center">
-   <img src ="./img/lab4/Fig29.png">
+   <img src ="./images/lab4/Fig29.png">
    </p>
    <p align = "center">
    <i>Generating the output products so the IP can be instantiated in the design</i>
@@ -624,7 +625,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    You should see the various IP output products displayed in the IP Sources tab of the Sources window.
 
    <p align="center">
-   <img src ="./img/lab4/Fig30.png">
+   <img src ="./images/lab4/Fig30.png">
    </p>
    <p align = "center">
    <i>Generated output products</i>
@@ -637,7 +638,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 2. Right-click and select View Instantiation Template.
 
    <p align="center">
-   <img src ="./img/lab4/Fig31.png">
+   <img src ="./images/lab4/Fig31.png">
    </p>
    <p align = "center">
    <i>Generating an instantiation template</i>
@@ -646,7 +647,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 The char\_fifo\_wrapper.v instantiation template is opened in the text editor in the Vivado IDE.
 
 <p align="center">
-<img src ="./img/lab4/Fig32.png">
+<img src ="./images/lab4/Fig32.png">
 </p>
 <p align = "center">
 <i>Part of the instantiation template</i>

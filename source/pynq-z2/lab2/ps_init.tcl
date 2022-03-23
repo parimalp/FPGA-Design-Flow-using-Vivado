@@ -32,6 +32,3 @@ validate_bd_design
 make_wrapper -files [get_files ./lab2.srcs/sources_1/bd/system/system.bd] -top
 add_files -norecurse ./lab2.gen/sources_1/bd/system/hdl/system_wrapper.v
 update_compile_order -fileset sources_1
-set_property top system_wrapper [current_fileset]
-update_compile_order -fileset sources_1
-

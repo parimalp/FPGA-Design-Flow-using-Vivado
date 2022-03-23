@@ -5,13 +5,7 @@ The labs have been developed on a PC running Microsoft Windows 10 professional e
 
 ## Source Files Setup
 
-To use the source files for each of the labs in this workshop, you have to clone this repository from XUP Github. For that, do the following:
-
-in git bash, run the following command
-
-```bash
-$ git clone https://github.com/xupgit/FPGA-Design-Flow-using-Vivado.git
-```
+All the source files are located in the path of **{this_repo}/sources/boards**
 
 ---
 #### In the instructions for the labs
@@ -31,17 +25,18 @@ Board support for the Boolean and PYNQ-Z2 are not included in Vivado 2021.2 by d
 
 **For Pynq-z2:**
 
-The relevant files need to be extracted and saved to:
+When creating Vivado projects, targeting to the parts  to specify the device, The Boolean uses a **xc7z020clg400-1** Zynq-7 device with the following attributes:
 
- {Vivado installation}\data\boards\board_files\
-
-These files can be downloaded from
-
-PYNQ-Z2:[/board_files](https://www.xilinx.com/support/documentation/university/vivado/workshops/vivado-adv-embedded-design-zynq/materials/2018x/PYNQZ2/pynq-z2.zip).
+| **Part Number**       | xc7z020clg400-1 |
+| --------------------- | --------------- |
+| **Family**            | Zynq-7          |
+| **Package**           | clg400          |
+| **Speed Grade**       | -1              |
+| **Temperature Grade** | C               |
 
 **For Boolean:**
 
-When creating Vivado projects, targeting to the parts (instead of boards) to specify the device, The Boolean uses a **xc7s50csga342-1** Spartan-7 device with the following attributes:
+When creating Vivado projects, targeting to the parts  to specify the device, The Boolean uses a **xc7s50csga342-1** Spartan-7 device with the following attributes:
 
 | **Part Number**       | xc7s50csga342-1 |
 | --------------------- | --------------- |
@@ -75,7 +70,7 @@ This lab shows you the synthesis process and effect of changing of synthesis set
 </p>
 
 ### Lab 3
-This lab continues with the previous lab. You will perform static timing analysis. You will implement the design with the default settings and generate a bitstream.  Then you will open a hardware session and program the FPGA. Finally the design will be validated by programming the hardware in SDK using the software application running on A9 that is provided to you.
+This lab continues with the previous lab. You will perform static timing analysis. You will implement the design with the default settings and generate a bitstream.  Then you will open a hardware session and program the FPGA. 
 
 ### Lab 4
 In this lab you will use the IP Catalog to generate a clock resource. You will instantiate the generated clock core in the provided waveform generator design. You will also use IP Integrator to generate a FIFO core and then use it in the HDL design.

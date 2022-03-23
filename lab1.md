@@ -19,7 +19,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
-**{BOARD}** refers to target *Boolean* and *Z2* boards. 
+**{BOARDS}** refers to target *Boolean* and *Z2* boards. 
 
 ## Steps
 
@@ -39,7 +39,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 <i>Project Name and Location entry</i>
 </p>
 
-5. Select **RTL Project** option in the *Project Type* form, and click **Next**.
+5. Select **RTL Project** option **ONLY** in the *Project Type* form, and click **Next**.
 
 6. Using the drop-down buttons, select **Verilog** as the *Target Language* and *Simulator Language* in the *Add Sources* form.
 
@@ -62,7 +62,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 8. Click **Next** to get to the *Add Constraints* form.
 
-9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{SOURCES}\lab1** directory (if necessary), select *lab1\_zynq.xdc* (for PYNQ-Z2) or *lab1_spratan.xdc* (for Boolean) and click **OK** (if necessary), and then click **Next.**
+9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{SOURCES}\lab1** directory (if necessary), select *lab1\_pynq.xdc* (for PYNQ-Z2) or *lab1_boolean.xdc* (for Boolean) and click **OK** (if necessary), and then click **Next.**
 
    The Xilinx Design Constraints file assigns the physical IO locations on FPGA to the switches and LEDs located on the board.  This information can be obtained either through the board’s schematic or the board’s user guide. 
 
@@ -146,11 +146,11 @@ lab1
 
 4. Lines 8-9 defines the input and output ports whereas lines 12-15 defines the actual functionality.
 
-#### Open the lab1\_<board>.xdc source and analyze the content.
+#### Open the lab1_{BOARDS}.xdc source and analyze the content.
 
 ##### For PYNQ-Z2:
 
-1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_zynq.xdc** entry to open the file in text mode. 
+1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_pynq.xdc** entry to open the file in text mode. 
 
    <p align="center">
    <img src ="./images/lab1/Fig9.png">
@@ -163,7 +163,7 @@ lab1
 
 ##### For Boolean
 
-1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_spartan.xdc** entry to open the file in text mode. 
+1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_boolean.xdc** entry to open the file in text mode. 
 
    <img src="./images/lab1/boolean_constr.png" alt="image" style="zoom:55%;" />
 
@@ -419,7 +419,7 @@ Observe the Tcl Console window and see the output is being displayed as the test
    <i>Synthesized design’s schematic view</i>
    </p>
 
-   Notice that IBUFs and OBUFs are automatically instantiated (added) to the design as the input and output are buffered.  The logical gates are implemented in LUTs (1 input is listed as LUT1, 2 input is listed as LUT2, and 3 input is listed as LUT3).  Four gates in RTL analysis output are mapped onto four LUTs in the synthesized output.
+   Notice that IBUFs and OBUFs are automatically instantiated (added) to the design as the input and output are buffered.  The logical gates are implemented in LUTs (1 input is listed as LUT1, 2 input is listed as LUT2, and 3 input is listed as LUT3).  Four gates in RTL analysis output are mapped onto 3 LUTs in the synthesized output.
 
    Using Windows Explorer, verify that **lab1.runs** directory is created under **lab1**.  Under the **runs** directory, **synth\_1** directory is created which holds several files related to synthesis.
 
@@ -440,7 +440,14 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
 1. Click on **Run Implementation** under the *Implementation* tasks of the *Flow Navigator* pane.
 
-The implementation process will be run on the synthesized design.  When the process is completed an *Implementation Completed* dialog box with three options will be displayed.
+   The implementation process will be run on the synthesized design.  When the process is completed an *Implementation Completed* dialog box with three options will be displayed. You can choose to use how many jobs you want to implement this design. In general, more jobs consumes more computing resources and less runtime
+
+   <p align="center">
+   <img src ="./images/lab1/choose_jobs.png">
+   </p>
+   <p align = "center">
+   <i>Select the threads(jobs) you want to use for implementation</i>
+   </p>
 
 2. Select **Open implemented design** and click **OK** as we want to look at the implemented design in a Device view tab.
 
@@ -455,27 +462,25 @@ The implementation process will be run on the synthesized design.  When the proc
    <p align = "center">
    <i>Viewing implemented design</i>
    </p>
-<p align = "center">
-<i>Selecting a net</i>
-</p>
-   <p align="center">
+<p align="center">
 <img src ="./images/lab1/Fig36.png">
 </p>
 <p align = "center">
 <i>Selecting a net</i>
 </p>
 
+
 6. Close the implemented design view by selecting **File > Close Implemented Design**, and select the **Project Summary** tab (you may have to change to the Default Layout view) and observe the results.
 
 7. Select the Post-Implementation tab.
 
-   **Notice** that the actual resource utilization is 3 LUTs and 8 IOs.  Also, it indicates that no timing constraints were defined for this design (since the design is combinatorial).
+   **Notice** that the actual resource utilization is 3 LUTs and 8 IOs.  Also, it indicates that no timing constraints were defined for this design (since the design is combinational).
 
    <p align="center">
    <img src ="./images/lab1/Fig37.png">
    </p>
    <p align = "center">
-   <i>Implementation results for the Boolean and PYNQ-Z2</i>
+   <i>Implementation results for the Boolean</i>
    </p>
 
 
@@ -529,7 +534,7 @@ The implementation process will be run on the synthesized design.  When the proc
 
    Make sure that the board is set to use USB power.
    
-   <img src="img/lab1/boolean_sche.png" alt="image" style="zoom:70%;" />
+   <img src="images/lab1/boolean_sche.png" alt="image" style="zoom:70%;" />
 
 
 <p align = "center">
@@ -575,6 +580,8 @@ The implementation process will be run on the synthesized design.  When the proc
 
 7. From the dropdown menu, click **Auto Connect.**
 
+   ---
+
    **For PYNQ-Z2**:
 
    The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
@@ -612,6 +619,8 @@ The implementation process will be run on the synthesized design.  When the proc
 
    ![image](./images/lab1/boolean_hw_dev_prop.png)
 
+   ---
+
 8. Click on the *Program device* link in the green information bar to program the target FPGA device. Another way is to right click on the device and select *Program Device.*
 
 <p align="center">
@@ -620,10 +629,6 @@ The implementation process will be run on the synthesized design.  When the proc
 <p align = "center">
 <i>Selecting to program the FPGA</i>
 </p>
-
-
-
-
 9. Click **Program** to program the FPGA.
 
    The DONE LED will lit when the device is programmed. You may see some other LEDs lit depending on switch positions.

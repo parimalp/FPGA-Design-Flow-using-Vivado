@@ -54,11 +54,11 @@ flowchart TD
 
 The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
 
-**{SOURCES}** refers to *.\\source\\Labn*. You can use the source files from the cloned repository's *sources* directory
-
-**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
-
 **{BOARD}** refers to target *Boolean* and *Z2* boards. 
+
+**{SOURCES}** refers to *./source/{BOARD}/Labn*. You can use the source files from the cloned repository's *sources* directory
+
+**{TUTORIAL}** refers to *C:\vivado_tutorial/*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
 ## Steps
 
@@ -88,11 +88,11 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 6. Using the drop-down buttons, select **Verilog** as the *Target Language* and *Simulator Language* in the *Add Sources* form.
 
-7. Click on the **Blue Plus** button, then the **Add Files…** button and browse to the ****{SOURCES}**\lab6** directory, select all the Verilog files *(led\_ctl.v, meta\_harden.v, uart\_baud\_gen.v, uart\_led.v, uart\_rx.v, uart\_rx\_ctl.v and uart\_top.v),* click **OK**, and then click **Next**.
+7. Click on the **Blue Plus** button, then the **Add Files…** button and browse to the **{SOURCES}/{BOARD}/lab6** directory, select all the Verilog files *(led\_ctl.v, meta\_harden.v, uart\_baud\_gen.v, uart\_led.v, uart\_rx.v and uart\_rx\_ctl.v ),* click **OK**, and then click **Next**.
 
 8. Click **Next** to get to the *Add Cons*traints form.
 
-9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{SOURCES}\\{BOARDS}\lab6** directory (if necessary), select *uart\_led\_timing\_{BOARDS}.xdc* and the appropriate *uart\_led\_pins\_{BOARDS}.xdc* and click **Open**.
+9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{SOURCES}/{BOARDS}\lab6** directory (if necessary), select *uart\_led\_timing\_{BOARDS}.xdc* and the appropriate *uart\_led\_pins\_{BOARDS}.xdc* and click **Open**.
 
 10. Click **Next.**
 
@@ -104,19 +104,21 @@ The absolute path for the source code should only contain ascii characters. Deep
 
     (If you are using PYNQ-Z2)
 
-14. In the Tcl Shell window enter the following command to change to the lab directory and hit the Enter key.
+14. Copy the `ps_init.tcl` to the path **{TUTORIAL}/lab6**. In the Tcl Shell window enter the following command to change to the lab directory and hit the Enter key.
 
     ```tcl
-    cd {SOURCES}/pynq-z2/lab6
+    cd {TUTORIAL}/lab6
     ```
 
 15. Generate the PS design by executing the provided Tcl script.
 
     ```tcl
-    source ps7_create_pynq.tcl
+    source ps_init.tcl
     ```
 
     This script will create a block design called *system*, instantiate ZYNQ PS with one GPIO channel (GPIO14) and one EMIO channel. It will then create a top-level wrapper file called system\_wrapper.v which will instantiate the system.bd (the block design). You can check the contents of the tcl files to confirm the commands that are being run. 
+
+    **NOTICE**: Please make sure that when you perform *Run Synthesis* or *Run Implementation*, top of the design must be set to `system_wrapper.v`
 
 16. Double-click on the **uart\_led** entry to view its content.
 
@@ -135,7 +137,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
    The catalog will be displayed in the Auxiliary pane.
 
-2. Expand the **Debug & Verification > Debug** folders and double-click the **ILA** entry.
+2. Expand the **Debug & Verification > Debug** folders and double-click the **ILA(Integrated Logic Analyzer)** entry.
 
    <p align="center">
    <img src ="./images/lab6/Fig5.png">
@@ -147,7 +149,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
    This exercise will be connecting the ILA core/component to the LED port which is 8-bit wide.
 
-3. Double click the **ILA(Integrated Logic Analyzer** on the following Add IP window. The ILA IP will open.
+3. Double click the **ILA(Integrated Logic Analyzer > Customize IP** on the following Add IP window. The ILA IP will open.
 
 4. Change the component name to **ila\_led**.
 
@@ -291,7 +293,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    <i>Debug tab showing assigned and unassigned nets</i>
    </p>
 
-9. Either click on the ![](img/lab6/Fig15.png) button in the top vertical tool buttons of the Debug pane, or right-click on the *Unassigned Debug Nets* and select the **Set up Debug…** option. 
+9. Either click on the ![](images/lab6/Fig15.png) button in the top vertical tool buttons of the Debug pane, or right-click on the *Unassigned Debug Nets* and select the **Set up Debug…** option. 
 
    <p align="center">
    <img src ="./images/lab6/Fig16.png">
@@ -372,7 +374,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 3. Set the COM port for 115200 baud rate communication. 
 
-4. Right-click on the FPGA, and select **Program Device…** and click **Program**.
+4. Right-click on the FPGA, and select **Program Device…** and click **Program**. For PYNQ-Z2, the localhost will show "programmed", **ignore the status and program the device with generated bitstream**.
 
    The programming bit file be downloaded and the DONE light will be turned ON indicating the FPGA has been programmed. Debug Probes window will also be opened, if not, then select **Window > Debug Probes.**
    
@@ -439,7 +441,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 4. Similarly, set the trigger position of the *hw\_ila\_2* to **512**.
 
-5. Select the *hw\_ila\_1* in the Hardware window and then click on the Run Trigger ( ![](img/lab6/Fig25.png)  ) button. Observe that the hw\_ila\_1 core is armed and showing the status as **Waiting for Trigger**.  
+5. Select the *hw\_ila\_1* in the Hardware window and then click on the Run Trigger ( ![](images/lab6/Fig25.png)  ) button. Observe that the hw\_ila\_1 core is armed and showing the status as **Waiting for Trigger**.  
 
    <p align="center">
    <img src ="./images/lab6/Fig26.png">

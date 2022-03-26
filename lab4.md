@@ -97,7 +97,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 In this design we will use board’s USB-UART which is controlled by the Zynq’s ARM Cortex-A9 processor.  Our PL design needs access to this USB-UART. So first thing we will do is to create a Processing System design which will put the USB-UART connections in a simple GPIO-style and make it available to the PL section.
 
-#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use the provided tcl script file (ps7\_create\_pynq.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, wave\_gen\_pins\_pynq.xdc and wave\_gen\_timing\_pynq.xdc files from the **{SOURCES}**\lab4 directory.
+#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use the provided tcl script file (ps_init.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, wave\_gen\_pins\_pynq.xdc and wave\_gen\_timing\_pynq.xdc files from the **{SOURCES}**\lab4 directory.
 
 ---
 
@@ -149,7 +149,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 9. In the *Sources* pane, expand *Design Sources* and *wave\_gen\_top* and wave\_gen if necessary, and double-click on the **clk\_gen\_i0** entry.
 
-   Scroll down the file and notice that around line 203 there is an instruction to instantiate a clock core.
+   Scroll down the file and notice that around line 79 there is an instruction to instantiate a clock core.
 
 ---
 
@@ -157,12 +157,20 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 10. In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**.
 
-    *cd C:/xup/fpga\_flow/2018\_2\_zynq\_sources/lab4*
+    ```tcl
+    cd {TUTORIAL}/lab4
+    ```
+
+    
 
 11. Generate the PS design by executing the provided Tcl script.
 
-    *source ps7\_create\_pynq.tcl*
-
+    ```tcl
+    source ps_init.tcl
+    ```
+    
+    
+    
     This script will create a block design called *system*, instantiate ZYNQ PS, enable two GPIO channels (GPIO14 and GPIO15) and two EMIO channels. It will create system.bd that is instantiated under system\_wrapper.v wrapper file. You can check the contents of the tcl files to confirm the commands that are being run.
 
 ---
@@ -185,7 +193,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 3. Click **Customize IP** on the following Add IP window. The clocking wizard will open.
 
-4. Change the core name to **clk\_core**.  Make sure that the *Primary* input clock frequency is **125.000** MHz(for PYNQ-Z2) or **100.000**MHz(for Boolean) and the primitive used is **MMCM**.
+4. Make sure that the *Primary* input clock frequency is **125.000** MHz(for PYNQ-Z2) or **100.000**MHz(for Boolean) and the primitive used is **MMCM**.
 
    <p align="center">
    <img src ="./images/lab4/Fig5.png">
@@ -227,7 +235,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 1. Select the **IP Sources** tab in the *Sources* pane.
 
-2. Expand the **IP ** branch. Notice the two IP entries. ~~The *char\_fifo* IP is the core that was included while creating project.  The second core clk\_core is the one that you have generated.~~
+2. Expand the **IP ** branch. Notice the two IP entries. The *char\_fifo* IP is the core that was included while creating project.  The second core clk\_core is the one that you have generated.
 
 3. Expand **clk\_wiz_0 > Instantiation Template** and double-click on **clk\_core.veo** to see the instantiation template.
 
@@ -242,7 +250,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
    <i>Assigning instance name and net connections</i>
    </p>
 
-6. Click (![](img/lab4/image-20220309165336377.png)) to save **clk\_gen.v** 
+6. Click (![](images/lab4/image-20220309165336377.png)) to save **clk\_gen.v** 
 
 7. Select the *Hierarchy* tab, expand the **wave_gen > clk\_gen\_i0** hierarchy and verify that clk\_core.xci is in the hierarchy. The IP has a bordered yellow square icon next to it.
 
@@ -320,22 +328,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 **Extra Steps for PYNQ-Z2**
 
-### Start a SDK session, point it to the *c:/xup/fpga\_flow/2018\_2\_zynq\_sources /lab4/pynq/lab4.sdk* workspace. 
-
-1. Open **SDK** by selecting **Start > Xilinx Design Tools > Xilinx SDK 2018.2**
-
-2. In the **Select a workspace** window, click on the browse button, browse to *C:\xup\fpga\_flow\2018\_2\_zynq\_sources\lab4\pynq\lab4.sdk* and click **OK.**
-
-3. Click **OK**.
-
-   In the *Project Explorer*, right-click on the wave\_gen\_uart, select *Run As*, and then **Launch on Hardware (System Debugger)**
-
-   <p align="center">
-   <img src ="./images/lab4/Fig13.png">
-   </p>
-   <p align = "center">
-   <i>Running the application</i>
-   </p>
+will be added after boot image has been made
 
 ---
 
@@ -516,7 +509,7 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
 
 6. Set the write width to be 8 bits. 
 
-7. Click in the *Read Width* field to change it automatically to match the write width. 
+7. Click in the **Read Width** field to change it automatically to match the write width. 
 
 8. Deselect the *Enable Safety Circuit* option.
 
@@ -676,13 +669,7 @@ The char\_fifo\_wrapper.v instantiation template is opened in the text editor in
 
 **Extra Steps for PYNQ-Z2**
 
-1. Open **SDK** by selecting **Start > Xilinx Design Tools > Xilinx SDK 2018.2**
-
-2. In the **Select a workspace** window, click on the browse button, browse to *{SOURCES}\lab4\pynq\lab4.sdk* and click **OK**.
-
-3. Click **OK**.
-
-   In the *Project Explorer*, right-click on the wave\_gen\_uart, select *Run As*, and then **Launch on Hardware (System Debugger)**
+Will be delivered after completing the boot image of PYNQ-Z2
 
 
 ---

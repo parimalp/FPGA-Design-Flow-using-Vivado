@@ -3,6 +3,10 @@ This workshop provides participants the necessary skills to develop digital desi
 
 The labs have been developed on a PC running Microsoft Windows 10 professional edition and using **Vivado 2021.2** version tools.
 
+## Change Log
+
+2022 : Upgrade the tool version to Vivado 2021.2, adding support for Boolean board. At this time, tutorial sources and docs for boolean has finished initial release, PYNQ-Z2 will be followed up as soon as possible.
+
 ## Source Files Setup
 
 All the source files are located in the path of **{this_repo}/sources/boards**
@@ -17,6 +21,8 @@ For more information, you can refer [this](https://www.xilinx.com/support/docume
 **{SOURCES}** refers to *\\FPGA-Design-Flow-using-Vivado\\*. You can download the source files for the labs from the cloned sources directory
 
 **{LABS}** refers to *C:\vivado\_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this workshop
+
+**{BOARD}** refers to the board supported, including PYNQ-Z2 and Boolean Board
 
 ---
 **NOTE**

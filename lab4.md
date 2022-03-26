@@ -486,7 +486,7 @@ will be added after boot image has been made
 
 #### Customize the FIFO Generator IP instance.    
 
-1. Double-click the FIFO Generator IP.
+1. Double-click the FIFO Generator IP, deselect **show disbled port**.
 
    The FIFO Generator displays in the Re-customize IP dialog box.
 

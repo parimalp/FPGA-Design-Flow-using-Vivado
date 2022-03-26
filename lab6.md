@@ -102,6 +102,8 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 13. Click **Finish** to create the Vivado project.  
 
+    ---
+
     (If you are using PYNQ-Z2)
 
 14. Copy the `ps_init.tcl` to the path **{TUTORIAL}/lab6**. In the Tcl Shell window enter the following command to change to the lab directory and hit the Enter key.
@@ -118,7 +120,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
     This script will create a block design called *system*, instantiate ZYNQ PS with one GPIO channel (GPIO14) and one EMIO channel. It will then create a top-level wrapper file called system\_wrapper.v which will instantiate the system.bd (the block design). You can check the contents of the tcl files to confirm the commands that are being run. 
 
-    **NOTICE**: Please make sure that when you perform *Run Synthesis* or *Run Implementation*, top of the design must be set to `system_wrapper.v`
+    ---
 
 16. Double-click on the **uart\_led** entry to view its content.
 
@@ -209,7 +211,7 @@ The absolute path for the source code should only contain ascii characters. Deep
     ```verilog
     .clk(CLK)          . clk(clk_pin)
     
-    .probe0(PROBE0)   . probe0(rx_data_rdy_out)
+    .probe0(PROBE0)   . probe0(rx_data_rdy)
     
     .probe1(PROBE1)   . probe1(led_pins)
     ```

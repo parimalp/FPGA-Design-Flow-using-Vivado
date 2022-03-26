@@ -102,13 +102,7 @@ module uart_led (
     .led_o       (led_pins)
   );
 
-ila_led ila_led_i0 (
-	.clk(clk_pin), // input wire clk
 
-
-	.probe0(rx_data_rdy), // input wire [0:0]  probe0  
-	.probe1(led_pins) // input wire [7:0]  probe1
-);
 
 
 endmodule

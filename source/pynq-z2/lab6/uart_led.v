@@ -28,7 +28,8 @@ module uart_led (
   input            rst_pin,      // Active HIGH reset (from pin)
   input            btn_pin,      // Button to swap high and low bits
   input            rxd_pin,      // RS232 RXD pin - directly from pin
-  output     [7:0] led_pins      // 8 LED outputs
+  output     [7:0] led_pins,      // 8 LED outputs
+  output           rx_data_rdy_out
 );
 
 //***************************************************************************
@@ -54,6 +55,8 @@ module uart_led (
   // Between uart_rx and led_ctl
   wire [7:0]       rx_data;      // Data output of uart_rx
   wire             rx_data_rdy;  // Data ready output of uart_rx
+  
+  assign rx_data_rdy_out = rx_data_rdy;
   
 //***************************************************************************
 // Code

@@ -64,11 +64,11 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 **For PYNQ-Z2:**
 
-#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use the provided tcl script file (ps7_create_pynq.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, uart_led_pins_pynq.xdc and uart_led_timing_pynq.xdc files from the *<2018_2_zynq_sources>\lab5* directory.
+#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use the provided tcl script file (ps7_create_pynq.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, uart_led_pins_pynq.xdc and uart_led_timing_pynq.xdc files from the *{SOURCES}\\{BOARD}\lab5* directory.
 
 **For Boolean:**
 
-#### Launch Vivado and create a project targeting XC7S50CSGA324-1 parts, and using the Verilog HDL. Use the provided Verilog source files and XDC  files from the **{SOURCES}**\lab5\ directory.
+#### Launch Vivado and create a project targeting XC7S50CSGA324-1 parts, and using the Verilog HDL. Use the provided Verilog source files and XDC  files from the **{SOURCES}**\\{BOARD}\lab5\ directory.
 
 ---
 
@@ -223,7 +223,7 @@ set_property -dict {PACKAGE_PIN E5 IOSTANDARD LVCMOS33} [get_ports {led_pins[7]}
 
 5. Enter **uart_led_{BOARDS}** in the *File name* field, and click **OK**.
 
-   ![images](./images/lab5/Fig10.png)
+![images](./images/lab5/Fig10.png)
 
    <p align = "center">
    <i>Saving constraints</i>

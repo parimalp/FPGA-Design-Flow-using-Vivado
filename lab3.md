@@ -22,7 +22,7 @@ This lab is broken into steps that consist of general overview statements provid
 ## General Flow
 
 ```mermaid
-flowchart LR
+flowchart 
 	1(Step 1 : Create a Vivado Project)-->2(Step 2: Implement the Design)-->3(Step 3: Generate the Bitstream)-->4(Step 4: Verify the Functionality)
 ```
 
@@ -30,7 +30,7 @@ flowchart LR
 
 ### In the instructions below:
 
-**{SOURCES}** refers to *.\\source\\Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *.\\source\\{BOARD}\\Labn*. You can use the source files from the cloned repository's *sources* directory
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
@@ -85,9 +85,14 @@ flowchart LR
 ![fig1](images/lab3/fig3.png)
 
 <p align = "center">
-<i>The output data path</i>
+<i>The output data path(Boolean)</i>
 </p>
 
+![image-20220406155214280](images/lab3/image-20220406155214280.png)
+
+<p align = "center">
+<i>The output data path(PYNQ-Z2)</i>
+</p>
 
 8. In order to see how the Source Clock Path is made up in schematic form, double-click on left end  of the C pin of the FDRE in the schematic.
     This will show the net between the BUFG and C port of the FDRE.
@@ -100,15 +105,17 @@ flowchart LR
 <p align = "center">
 <i>Source to clock port of the FDRE</i>
 </p>
-10. Finally, double-click on the input pin of IBUF to see the path between the clock input pin and the
-    IBUF.
-
 ![fig1](images/lab3/fig5.png)
 
 <p align = "center">
-<i>The schematic view of the source clock path</i>
+<i>The schematic view of the source clock path(Boolean)</i>
 </p>
 
+![image-20220406155310848](images/lab3/image-20220406155310848.png)
+
+<p align = "center">
+<i>The schematic view of the source clock path(PYNQ-Z2)</i>
+</p>
 
   This corresponds to the Source Clock Path in the timing report.
 
@@ -119,8 +126,7 @@ flowchart LR
 </p>
 
 
-Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns), the data path delay
-includes the clock period of the clk_pin clock source.
+Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns for Boolean or 8 ns for PYNQ-Z2), the data path delay includes the clock period of the clk_pin clock source.
 
 ![fig1](images/lab3/fig7.png)
 
@@ -139,12 +145,11 @@ includes the clock period of the clk_pin clock source.
    ![fig1](images/lab3/fig8.png)
 
 <p align = "center">
-<i>Timing Constraints showing 12 ns Virtual Clock period defined</i>
+<i>Timing Constraints showing 12 ns Virtual Clock period defined (Boolean)</i>
 </p>
 
 
-
-2. Click in the Period cell of the virtual_clock and change the period from 12 to 10
+2. Click in the Period cell of the virtual_clock and change the period from 12 to 10(Boolean) or to 8(PYNQ-z2)
 
 3. Click **Apply**.
     Note that since the timing constraint has changed, a warning message in the console pane is
@@ -158,8 +163,9 @@ includes the clock period of the clk_pin clock source.
 ![fig1](images/lab3/fig9.png)
 
  <p align = "center">
-<i> Setup timing met for the Boolean</i>
+<i> Setup timing met for Boolean</i>
 </p>
+
 
 
 5. Click on the WHS link to see the paths.
@@ -213,8 +219,9 @@ The Report Timing Summary dialog box opens.
 ![fig1](images/lab3/fig11.png)
 
 <p align = "center">
-<i>The timing summary report showing timing violations for the Boolean</i>
+<i>The timing summary report showing timing violations</i>
 </p>
+
 
 
 

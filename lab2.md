@@ -34,7 +34,7 @@ nibbles are swapped. The block diagram is as shown in the following figure.
 ## General Flow
 
 ```mermaid
-flowchart LR
+flowchart
 	1(Step 1 : Create a Vivado Project)-->2(Step 2: Elaborate the Design)-->3(Step 3: Synthesize the Design)-->4(Step 4: Read the Check points)
 ```
 
@@ -42,7 +42,7 @@ flowchart LR
 
 The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
 
-**{SOURCES}** refers to *.\\source\\Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *.\\source\\{BOARD}\\Labn*. You can use the source files from the cloned repository's *sources* directory
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
@@ -94,9 +94,11 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 13. Click **Finish** to create the Vivado project.
 
+---
+
 (If you are using PYNQ-Z2)
 
-14. Copy the tcl script `ps_init.tcl` from **{SOURCES}/lab2** to **{TUTORIAL}/lab2**.In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**. 
+14. Copy the tcl script `ps_init.tcl` from **{SOURCES}/pynq-z2/lab2** to **{TUTORIAL}/lab2**.In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**. 
 
 ```tcl
 cd {TUTORIAL}/lab2
@@ -110,6 +112,8 @@ source ps_init.tcl
 
 Please check if the path in the tcl script is right or not.
 
+---
+
 #### Analyze the design source files hierarchy.(Taking Boolean as an example)
 
 1. In the Sources pane, expand the uart_led entry and notice hierarchy of the lower-level modules.
@@ -117,8 +121,9 @@ Please check if the path in the tcl script is right or not.
 ![image-20220222143623444](images/lab2/fig2.png)
 
 <p align = "center">
-<i>Opening the source file</i>
+<i>Opening the source file(Boolean as example)</i>
 </p>
+
 
 
 
@@ -132,7 +137,7 @@ Please check if the path in the tcl script is right or not.
 
 #### Open the uart_led_timing.xdc source and analyze the content.
 
-1. In the *Sources* pane, expand the *Constraints* folder and double-click the *uart_led_timing.xdc*  entry to open the file in text mode.
+1. In the *Sources* pane, expand the *Constraints* folder and double-click the *uart_led_timing_{BOARD}.xdc*  entry to open the file in text mode.
 
 ![image-20220222143623444](images/lab2/fig3.png)
 
@@ -396,8 +401,7 @@ consumption.
 
 #### Write the checkpoint in order to analyze the results without going through the actual synthesis process.
 
-1. Select **File > Checkpoint > Write ** to save the processed design so it can be opened later for
-   further analysis.
+1. Select **File > Checkpoint > Write ** to save the processed design so it can be opened later for further analysis.
 2. A dialog box will appear showing the default name of the file in the current project directory.
 
 3. Click **OK**
@@ -408,11 +412,11 @@ consumption.
 
 1. Launch Vivado and select **File > Checkpoint > Open **at the *Getting Started* Screen.
 
-2. Browse to **{TUTORIAL}/lab2** and select *uart_led.dcp*
+2. Browse to **{TUTORIAL}/lab2** and select *uart_led.dcp* or *system_wrapper.dcp*
 
 3. Click **OK**
 
-4. If the schematic isn’t open by default, in the netlist tab, select the top-level instance, uart_led,
+4. If the schematic isn’t open by default, in the netlist tab, select the top-level instance, uart_led/system_wrapper,
    right-click and select **Schematic**.
 
    You will see the hierarchical blocks. You can double-click on any of the first-level block and see
@@ -427,7 +431,7 @@ consumption.
 
 7. Select **Reports > Report Utilization** and click OK to see the utilization report you saw previously.
 
-8. Select File > Open Checkpoint, browse to **./{TUTORIAL}/lab2/lab2.srcs/utils_1/imports/synth_flatten** and select *uart_led.dcp*.
+8. Select File > Open Checkpoint, browse to **./{TUTORIAL}/lab2/lab2.srcs/utils_1/imports/synth_flatten** and select *uart_led.dcp* or *system_wrapper.dcp*.
 
 9. Click No to keep the Checkpoint_1 open. 
 

@@ -91,5 +91,3 @@
     .rx_data_rdy (rx_data_rdy),
     .led_o       (led_pins)
   );
-
-endmodule

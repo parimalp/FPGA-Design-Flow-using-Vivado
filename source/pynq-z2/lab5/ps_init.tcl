@@ -11,7 +11,7 @@ startgroup
 create_bd_port -dir O -from 0 -to 0 GPIO_O
 connect_bd_net [get_bd_pins /processing_system7_0/GPIO_O] [get_bd_ports GPIO_O]
 endgroup
-create_bd_cell -type module -reference uart_led uart_led_0
+create_bd_cell -type module -reference ios uart_led_0
 startgroup
 make_bd_pins_external  [get_bd_pins uart_led_0/btn_pin] [get_bd_pins uart_led_0/rst_pin] [get_bd_pins uart_led_0/clk_pin]
 endgroup

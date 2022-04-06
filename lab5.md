@@ -248,13 +248,14 @@ set_property -dict {PACKAGE_PIN E5 IOSTANDARD LVCMOS33} [get_ports {led_pins[7]}
 
 The *Migrate to RTL* form will be displayed with Top RTL file field showing **{TUTORIAL}**/io_1.v entry.
 
-1. Change *io_1.v* to **uart_led.v**, and click **OK**
+1. Change *io_1.v* to **uart_led.v(for PYNQ-Z2)** or **uart_top.v(for Boolean)**, and click **OK**
 
 ![images](./images/lab5/Fig12.png)
 
 <p align = "center">
-<i>Assigning top-level file name</i>
+<i>Assigning top-level file name(for Boolean)</i>
 </p>
+
 
 1. Select the **Hierarchy** tab and notice that the *uart_top.v* file has been added to the project with top-level module name as **ios**. If you double-click the entry, you will see the module name with the ports listing.
 
@@ -271,7 +272,7 @@ The *Migrate to RTL* form will be displayed with Top RTL file field showing **{T
 3. Click on the **Blue Plus** button, then the **Add Files…**
 4. Browse to **{SOURCES}\lab5** and select all .v(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v, uart_rx.v uart_rx_ctl.v) files and click **OK**.
 5. Click **Finish**.
-6. Using Windows Explorer, browse to **{SOURCES}\\{BOARD}\lab5** and open uart_top.txt using any text editor. Copy the content of it and paste it in uart_top.v (around line 22) in the Vivado project.
+6. Using Windows Explorer, browse to **{SOURCES}\\{BOARD}\lab5** and open uart_top.txt using any text editor. Copy the content of it and paste it in uart_top.vor uart_led.v in the Vivado project.
 
 ---
 
@@ -400,7 +401,7 @@ Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined 
 
    The *Design Timing Summary* report provides a brief worst Setup and Hold slack information and Number of failing endpoints to indicate whether the design has met timing or not.
 
-   Note that there are three timing failures under the hold check.
+   Note that there are two timing failures under the hold check.
 
 4. Click on the link next to *Worst Hold Slack* (WHS) to see the list of failing paths.
 
@@ -414,13 +415,19 @@ Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined 
 
    [![images](./images/lab5/Fig22.png)](./images/lab5/Fig22.png)
 
-   *Failing hold path*
-
+   <p align = "center">
+   <i>Failing hold path</i>
+   </p>
+   
+   
 6. Select *Path 11*, right-click and select **Schematic**.
 
    [![images](./images/lab5/Fig23.png)](./images/lab5/Fig23.png)
 
-   *The schematic of the failing path*
+   <p align = "center">
+   <i>The schematic of the failing path</i>
+   </p>
+
 
 ### Implement and Analyze Timing Summary
 
@@ -459,6 +466,8 @@ Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined 
    The output path delay can be reduced by placing the register in IOB.
 
 5. Apply the constraint by typing the following two commands in the Tcl console.
+
+   ***Hint**: The implemented results are dependent on your own computer, if possible, tunning the output delay towards appropriate value to meet the timing constrains. As our testing shows, normally 0 ~ -4 ns will be a practical value.
 
    ```tcl
    set_output_delay -clock [get_clocks clk_pin] -min -add_delay -4 [get_ports {led_pins[*]}]

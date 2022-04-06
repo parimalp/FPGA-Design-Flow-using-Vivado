@@ -74,10 +74,9 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 6. Using the drop-down buttons, select **Verilog** as the *Target Language* and *Simulator Language* in the *Add Sources* form.
 
-7. Click on the Green Plus button, then the Add Files… button and browse to the {sources}\lab2
-    directory, select all the Verilog files *(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v,*
+7. Click on the Green Plus button, then the Add Files… button and browse to the {SOURCES}\\{BOARD}\lab2 directory, select all the Verilog files *(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v,*
     *uart_rx.v, and uart_rx_ctl.v*), click OK, and then click **Next** to get to the Add Existing IP form.
-
+    
 8. Since we do not have any IP to add, click **Next** to get to the *Add Constraints* form.
 
 9. Click on the Blue Plus button, then *Add Files…* and browse to the {sources}\lab2 directory (if
@@ -123,10 +122,6 @@ Please check if the path in the tcl script is right or not.
 <p align = "center">
 <i>Opening the source file(Boolean as example)</i>
 </p>
-
-
-
-
 2. Double-click on the uart_led entry to view its content.
    Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined to be
    115200 and 125M Hz(PYNQ-Z2) or 100 MHz(Boolean) respectively as shown in the design diagram . Also notice that the
@@ -287,15 +282,16 @@ Under the Setup column Worst Negative Slack (WNS) is linked indicating that clic
 
    ![image-20220222143623444](images/lab2/fig11.png)
 
-Worst failing path for the Boolean
+<p align = "center">
+<i>Worst failing path for the Boolean</i>
+</p>
 
 Note that this is an estimate only. The nets are specified as unplaced and have all been allocated
 default values (0.800 ns). No actual routing delays are considered.
 
 #### Generate the utilization and power reports.
 
-1. Click **Report Utilization** under the *Synthesized Design*, and click **OK** to generate the utilization
-   report.
+1. Click **Report Utilization** under the *Synthesized Design*, and click **OK** to generate the utilization report.
 
 ![image-20220222143623444](images/lab2/fig12.png)
 
@@ -318,7 +314,9 @@ Look through the table and find the number used of each of the following:
 
 ![image-20220222143623444](images/lab2/fig13.png)
 
-Utilization of lower-level modules for the Boolean
+<p align = "center">
+<i>Utilization of lower-level modules for the Boolean</i>
+</p>
 
 3. Click **Report Power** under the Synthesized Design, and click **OK** to generate the estimated power consumption report using default values.
    Note that this is just an estimate as no simulation run data was provided and no accurate activity
@@ -367,8 +365,7 @@ consumption.
 
 3. Click **OK**
 
-4. A Create New Run dialog box will appear asking you whether you want to create a new run since
-   the settings have been changed.
+4. A Create New Run dialog box will appear asking you whether you want to create a new run since  the settings have been changed.
 
    ![image-20220222143623444](images/lab2/fig17.png)
 
@@ -431,7 +428,7 @@ consumption.
 
 7. Select **Reports > Report Utilization** and click OK to see the utilization report you saw previously.
 
-8. Select File > Open Checkpoint, browse to **./{TUTORIAL}/lab2/lab2.srcs/utils_1/imports/synth_flatten** and select *uart_led.dcp* or *system_wrapper.dcp*.
+8. Select File > Open Checkpoint, browse to **{TUTORIAL}/lab2** and select *uart_led.dcp* or *system_wrapper.dcp*.
 
 9. Click No to keep the Checkpoint_1 open. 
 

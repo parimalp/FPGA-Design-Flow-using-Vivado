@@ -147,8 +147,6 @@ Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns for Boo
 <p align = "center">
 <i>Timing Constraints showing 12 ns Virtual Clock period defined (Boolean)</i>
 </p>
-
-
 2. Click in the Period cell of the virtual_clock and change the period from 12 to 10(Boolean) or to 8(PYNQ-z2)
 
 3. Click **Apply**.
@@ -163,8 +161,9 @@ Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns for Boo
 ![fig1](images/lab3/fig9.png)
 
  <p align = "center">
-<i> Setup timing met for Boolean</i>
+<i> Setup timing met</i>
 </p>
+
 
 
 
@@ -181,7 +180,7 @@ Notice that the Synthesis Out-of-Date status is displayed on the top-right corne
 ### Step 2 Implement the Design 
 #### Run the implementation after saving the synthesis run. Perform the timing analysis.
 
-1. In the Design Runs tab, right-click on the synth_2 and select **Reset Runs**. Make sure the generated files are deleted. Click **Reset**.
+1. In the Design Runs tab, right-click on the synth_1 and select **Reset Runs**. Make sure the generated files are deleted. Click **Reset**.
 
 2. Click the **Close Design** link in the status bar. If prompted, do not save anything.
 
@@ -236,8 +235,8 @@ The Report Timing Summary dialog box opens.
 </p>
 
 
-Compared to delays from the synthesis report, the net delays are actual delays (rather than an estimated figure). The data path delay is longer than the destination clock path delay giving a negative slack (violation). The data path delay is 11.534 ns for the Boolean, the destination clock path is 9.975 ns and the negative slack is -1.559 ns.
-At this point we can ignore this violation as the LED display change by a few nanoseconds won’t be observable by human eyes. We can also change the output delay by -2 ns and make the timings meet.
+Compared to delays from the synthesis report, the net delays are actual delays (rather than an estimated figure). The data path delay is longer than the destination clock path delay giving a negative slack (violation). The data path delay is 11.534 ns for the Boolean, the destination clock path is 9.975 ns and the negative slack is -1.559 ns(In this case).
+At this point we can ignore this violation as the LED display change by a few nanoseconds won’t be observable by human eyes. We can also change the output delay by $ \approx $ -2 ns and make the timings meet.
 
 
 5. Select **Implemented Design** > **Edit Timing Constraints** the *Flow Navigator* pane.

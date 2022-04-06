@@ -29,7 +29,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 1. Open Vivado by selecting **Start > Xilinx Design Tools > Vivado 2021.2**
 2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog box. Click **Next**.
-3. Click the Browse button of the *Project location* field of the **New Project** form, browse to **{LABS}**, i.e. **C:\vivado_tutorial**, and click **Select**.
+3. Click the Browse button of the *Project location* field of the **New Project** form, browse to **{TUTORIAL}**, i.e. **C:\vivado_tutorial**, and click **Select**.
 4. Enter **lab1** in the *Project name* field.  Make sure that the *Create Project Subdirectory* box is checked.  Click **Next**.
 
 <p align="center">
@@ -50,7 +50,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 <i>Selecting Target and Simulator language</i>
 </p>	
 
-7. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{sources}\lab1** directory, select *lab1.v,* click **OK**.
+7. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{sources}\\{BOARD}\lab1** directory, select *lab1.v,* click **OK**.
 
    <p align="center">
    <img src ="./images/lab1/Fig5.png">
@@ -98,7 +98,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 11.  Click **Finish** to create the Vivado project.  
 
-Use the Windows Explorer and look at the **{LABS}\lab1** directory.  You will find that the lab1.cache and lab1.srcs directories and the lab1.xpr (Vivado) project file have been created. The lab1.cache directory is a place holder for the Vivado program database. Two directories, constrs\_1 and sources\_1, are created under the lab1.srcs directory; deep down under them, the copied lab1\_<board>.xdc (constraint) and lab1.v (source) files respectively are placed.
+Use the Windows Explorer and look at the **{TUTORIAL}\lab1** directory.  You will find that the lab1.cache and lab1.srcs directories and the lab1.xpr (Vivado) project file have been created. The lab1.cache directory is a place holder for the Vivado program database. Two directories, constrs\_1 and sources\_1, are created under the lab1.srcs directory; deep down under them, the copied lab1\_<board>.xdc (constraint) and lab1.v (source) files respectively are placed.
 
 ```
 lab1

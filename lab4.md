@@ -42,7 +42,7 @@ There are three clock domains within this design: **clk\_rx**, **clk\_tx**, and 
 
 In this design we will use board’s USB-UART which is controlled by the Zynq’s ARM Cortex-A9 processor.  Our PL design needs access to this USB-UART. So first thing we will do is to create a Processing System design which will put the USB-UART connections in a simple GPIO-style and make it available to the PL section. 
 
-The provided design places the UART (RX and TX) pins of the PS (Processing System) on the Cortex-A9 in a simple GPIO mode to allow the UART to be connected (passed through) to the Programmable Logic.  The processor samples the RX signal and sends it to the EMIO channel 0 which is connected to Rx input of the HDL module provided in the Static directory. Similarly, the design samples the Tx output of the HDL module through another EMIO channel 1 and sends it on the PS UART TX pin. This part has been integrated into a boot image `BOOT.bin`located in the **{SOURCE}/lab4** folder. There will be no need for you to run the PS side configuration or software application.
+The provided design places the UART (RX and TX) pins of the PS (Processing System) on the Cortex-A9 in a simple GPIO mode to allow the UART to be connected (passed through) to the Programmable Logic.  The processor samples the RX signal and sends it to the EMIO channel 0 which is connected to Rx input of the HDL module provided in the Static directory. Similarly, the design samples the Tx output of the HDL module through another EMIO channel 1 and sends it on the PS UART TX pin. This part has been integrated into a boot image `BOOT.bin`located in the **{SOURCES}/{BOARD}/lab4** folder. There will be no need for you to run the PS side configuration or software application.
 
 **For Boolean:**
 
@@ -77,7 +77,7 @@ flowchart
 
 The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
 
-**{SOURCES}** refers to *.\\source\\Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *.\\source\\{BOARD}*. You can use the source files from the cloned repository's *sources* directory
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
@@ -91,7 +91,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 **For Boolean:**
 
-#### Launch Vivado and create a project targeting XC7S50CSGA324-1 parts, and using the Verilog HDL. Use the provided Verilog source files, a device ecific ip, and XDC  files from the **{sources}**\lab4\ directory.
+#### Launch Vivado and create a project targeting XC7S50CSGA324-1 parts, and using the Verilog HDL. Use the provided Verilog source files, a device ecific ip, and XDC  files from the **{SOURCES}**\lab4 directory.
 
 **For PYNQ-Z2:**
 
@@ -161,15 +161,11 @@ In this design we will use board’s USB-UART which is controlled by the Zynq’
     cd {TUTORIAL}/lab4
     ```
 
-    
-
 11. Generate the PS design by executing the provided Tcl script.
 
     ```tcl
     source ps_init.tcl
     ```
-    
-    
     
     This script will create a block design called *system*, instantiate ZYNQ PS, enable two GPIO channels (GPIO14 and GPIO15) and two EMIO channels. It will create system.bd that is instantiated under system\_wrapper.v wrapper file. You can check the contents of the tcl files to confirm the commands that are being run.
 
@@ -679,4 +675,4 @@ Will be delivered after completing the boot image of PYNQ-Z2
 
 ## Conclusion 
 
-In this lab, you learned how to add an existing IP during the project creation.  You also learned how to use IP Catalog and generate a core.  You then instantiated the core in the design, implemented the design, and verified the design in hardware.  You also used the IP Integrator capability of the tool to generate a FIFO and then use it in the HDL design.his
+In this lab, you learned how to add an existing IP during the project creation.  You also learned how to use IP Catalog and generate a core.  You then instantiated the core in the design, implemented the design, and verified the design in hardware.  You also used the IP Integrator capability of the tool to generate a FIFO and then use it in the HDL design.

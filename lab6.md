@@ -56,7 +56,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 **{BOARD}** refers to target *Boolean* and *Z2* boards. 
 
-**{SOURCES}** refers to *./source/{BOARD}/Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *./source/{BOARD}/*. You can use the source files from the cloned repository's *sources* directory
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial/*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
@@ -68,7 +68,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 **For PYNQ-Z2:**
 
-#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use the provided tcl script file (ps7_create_pynq.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, uart_led_pins_pynq.xdc and uart_led_timing_pynq.xdc files from the *<2018_2_zynq_sources>\lab5* directory.
+#### Launch Vivado and create a project targeting the XC7Z020clg400-1 device, and use the provided tcl script file (ps_init.tcl) to generate the block design for the PS subsystem. Also, add the Verilog HDL files, uart_led_pins_pynq.xdc and uart_led_timing_pynq.xdc files from the *{SOURCES}\lab5* directory.
 
 **For Boolean:**
 
@@ -475,7 +475,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 9. In the Hardware window, right-click on the **hw\_ila\_2** and select **Run Trigger,** and notice that the status of the hw\_ila\_2 changes  from *idle* to *Waiting for Trigger.* Also notice that the hw\_ila\_1 status does not change from idle as it is not armed.
 
-10. Switch to the terminal emulator window and  **U** (shift+u) to trigger the core.
+10. Switch to the terminal emulator window and  **U** (capital ,shift+u) to trigger the core.
 
 11. Select the corresponding waveform window and verify that it shows 55 after the trigger.
 

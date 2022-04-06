@@ -505,7 +505,10 @@ Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined 
 
   ![fig1](images/lab5/fig15-16479350107761.png)
 
-  Opening new hardware target
+<p align = "center">
+<i>Opening new hardware target</i>
+</p>
+  
 
 4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
 5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
@@ -521,7 +524,9 @@ Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined 
 
   ![fig1](images/lab5/fig15-16479350107761.png)
 
-  Opening new hardware target
+<p align = "center">
+<i>Opening new hardware target</i>
+</p>
 
 4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status may indicate that the device is programmed, **ignore the status**.
 5. Select the device in the Hardware Device Properties, and verify that the **system_wrapper.bit**  is selected as the programming file in the General tab.

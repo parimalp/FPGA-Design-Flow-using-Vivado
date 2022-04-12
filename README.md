@@ -27,7 +27,7 @@ For more information, you can refer [this](https://www.xilinx.com/support/docume
 ---
 **NOTE**
 
-Board support for the Boolean and PYNQ-Z2 are not included in Vivado 2021.2 by default. 
+Board support for the Boolean and PYNQ-Z2 are not included in Vivado 2021.2 by default.
 
 **For Pynq-z2:**
 
@@ -76,7 +76,7 @@ This lab shows you the synthesis process and effect of changing of synthesis set
 </p>
 
 ### Lab 3
-This lab continues with the previous lab. You will perform static timing analysis. You will implement the design with the default settings and generate a bitstream.  Then you will open a hardware session and program the FPGA. 
+This lab continues from the previous lab. You will perform static timing analysis. You will implement the design with the default settings and generate a bitstream.  Then you will open a hardware manager session and program the FPGA.
 
 ### Lab 4
 In this lab you will use the IP Catalog to generate a clock resource. You will instantiate the generated clock core in the provided waveform generator design. You will also use IP Integrator to generate a FIFO core and then use it in the HDL design.

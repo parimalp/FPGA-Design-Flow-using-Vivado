@@ -1,6 +1,10 @@
 # Hardware Debugging
 
-## Objectives 
+## Introduction
+
+In this lab you will use the uart_led design that was introduced in the previous labs. You will use Mark Debug feature and also the available Integrated Logic Analyzer (ILA) core (in IP Catalog) to debug the hardware.
+
+## Objectives
 
 After completing this lab, you will be able to:
 
@@ -8,12 +12,12 @@ After completing this lab, you will be able to:
 
 - Use Mark Debug feature of Vivado to debug a design
 
--  Use hardware debugger to debug a design
+- Use hardware debugger to debug a design
 
 
 ## Design Description
 
-The design consists of a uart receiver receiving the input typed on a keyboard and displaying the binary equivalent of the typed character on the LEDs.  When a push button is pressed, the lower and upper nibbles are swapped. 
+The design consists of a uart receiver receiving the input typed on a keyboard and displaying the binary equivalent of the typed character on the LEDs.  When a push button is pressed, the lower and upper nibbles are swapped.
 
 ---
 
@@ -47,22 +51,22 @@ Boolean board will be using the on-board UART port to implement such function, w
 
 ```mermaid
 flowchart TD
-1:[Step1: Create a Vivado Project] --> 2:[Step2: Add the ILD Core] --> 3:[Step3: Synthesize the Design and Mark Debug] --> 4:[Implement and Generate Birstream] -->5:[Step5: Debug in Hardware]
+1:[Step1: Create a Vivado Project] --> 2:[Step2: Add the ILA Core] --> 3:[Step3: Synthesize the Design and Mark Debug] --> 4:[Step4: Implement and Generate Birstream] -->5:[Step5: Debug in Hardware]
 ```
 
 ###  In the instructions for the tutorial
 
 The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
 
-**{BOARD}** refers to target *Boolean* and *Z2* boards. 
+**{BOARD}** refers to target *Boolean* and *Z2* boards.
 
-**{SOURCES}** refers to *./source/{BOARD}/*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *./source/{BOARD}/labn*. You can use the source files from the cloned repository's *source* directory
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial/*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
 ## Steps
 
-### Create a Vivado Project using IDE
+### Step 1 Create a Vivado Project using IDE
 
 ---
 
@@ -96,7 +100,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 10. Click **Next.**
 
-11. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section, select the **XC7Z020clg400-1**(PYNQ-Z2) or **XC7S50CSGA324-1**(Boolean) part. 
+11. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section, select the **XC7Z020clg400-1**(PYNQ-Z2) or **XC7S50CSGA324-1**(Boolean) part.
 
 12. Click **Next**.
 
@@ -104,7 +108,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
     ---
 
-    (If you are using PYNQ-Z2)
+    **If you are using PYNQ-Z2**
 
 14. Copy the `ps_init.tcl` to the path **{TUTORIAL}/lab6**. In the Tcl Shell window enter the following command to change to the lab directory and hit the Enter key.
 
@@ -118,7 +122,7 @@ The absolute path for the source code should only contain ascii characters. Deep
     source ps_init.tcl
     ```
 
-    This script will create a block design called *system*, instantiate ZYNQ PS with one GPIO channel (GPIO14) and one EMIO channel. It will then create a top-level wrapper file called system\_wrapper.v which will instantiate the system.bd (the block design). You can check the contents of the tcl files to confirm the commands that are being run. 
+    This script will create a block design called *system*, instantiate ZYNQ PS with one GPIO channel (GPIO14) and one EMIO channel. It will then create a top-level wrapper file called system\_wrapper.v which will instantiate the system.bd (the block design). You can check the contents of the tcl files to confirm the commands that are being run.
 
     ---
 
@@ -133,7 +137,7 @@ The absolute path for the source code should only contain ascii characters. Deep
     <i>CLOCK_RATE parameter of uart_led(PYNQ-Z2 as Example)</i>
     </p>
 
-#### Add the ILA Core
+### Step 2 Add the ILA Core
 
 1. Click **Flow Navigator > PROJECT MANAGER > IP Catalog**.
 
@@ -149,7 +153,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    </p>
 
 
-   This exercise will be connecting the ILA core/component to the LED port which is 8-bit wide.
+   You will be connecting the ILA core/component to the LED port which is 8-bit wide.
 
 3. Double click the **ILA(Integrated Logic Analyzer > Customize IP** on the following Add IP window. The ILA IP will open.
 
@@ -175,7 +179,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 7. Click **OK**.
 
-   The Generate Output Products dialog box will appear.
+   The *Generate Output* Products dialog box will appear.
 
    <p align="center">
    <img src ="./images/lab6/Fig8.png">
@@ -202,7 +206,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 9. Select the **IP Sources** tab, expand the **IP(1) > ila\_led > Instantiation Template**, and double-click the **ila\_led.veo** entry to see the instantiation template.
 
-10. Instantiate the ila\_led in design by copying lines 56 – 62 and pasting to ~line 69(PYNQ-Z2) or 107(Boolean) (before “endmodule” on the last line) in the top module.
+10. Instantiate the *ila\_led* in design by copying lines 56 – 62 and pasting to ~line 69(PYNQ-Z2) or 107(Boolean) (before “endmodule” on the last line) in the top module.
 
 11. Change *your\_instance\_name* to **ila\_led\_i0.**
 
@@ -210,13 +214,13 @@ The absolute path for the source code should only contain ascii characters. Deep
 
     ```verilog
     .clk(CLK)          . clk(clk_pin)
-    
+
     .probe0(PROBE0)   . probe0(rx_data_rdy)
-    
+
     .probe1(PROBE1)   . probe1(led_pins)
     ```
 
-    
+
 
     <p align="center">
     <img src ="./images/lab6/Fig10.png">
@@ -235,7 +239,7 @@ The absolute path for the source code should only contain ascii characters. Deep
     <p align = "center">
     <i>ILA Core added to the design(PYNQ-Z2)</i>
     </p>
-    
+
     <p align="center">
     <img src ="./images/lab6/Fig11_b.png">
     </p>
@@ -243,19 +247,19 @@ The absolute path for the source code should only contain ascii characters. Deep
     <i>ILA Core added to the design(Boolean)</i>
     </p>
 
-### Synthesize the Design and Mark Debug
+### Step 3 Synthesize the Design and Mark Debug
 
 #### Synthesize the design. Open the synthesized design.  View the schematic. Add Mark Debug on the rx\_data bus between the uart\_rx\_i0 and led\_ctl\_i0 instances.
 
-1. Click **Flow Navigator > SYNTHESIS > Run Synthesis**. Click **Save** to Save Project if prompted.
+1. Click **Flow Navigator > SYNTHESIS > Run Synthesis**. Click **Save** to save Project if prompted.
 
-   The synthesis process will be run on the uart\_top.v and all its hierarchical files.  When the process is completed a *Synthesis Completed* dialog box with three options will be displayed.
+   The synthesis process will be run on the *uart\_top.v* and all its hierarchical files.  When the process is completed a *Synthesis Completed* dialog box with three options will be displayed.
 
 2. Select the *Open Synthesized Design* option and click **OK**.
 
 3. Click on **Flow Navigator > SYNTHESIS > Synthesized Design > Schematic** to view the synthesized design in a schematic view.
 
-4. Expand component **U0**(PYNQ-Z2) or **uart_rx_i0**(Boolean) and Select the **rx\_data** bus between the *uart\_rx\_i0* and the *led\_ctl\_i0* instances or , right-click, and select **Mark Debug**. 
+4. Expand component **U0**(PYNQ-Z2) or **uart_rx_i0**(Boolean) and Select the **rx\_data** bus between the *uart\_rx\_i0* and the *led\_ctl\_i0* instances or right-click, and select **Mark Debug**.
 
    <p align="center">
    <img src ="./images/lab6/Fig12.png">
@@ -295,7 +299,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    <i>Debug tab showing assigned and unassigned nets</i>
    </p>
 
-9. Either click on the ![](images/lab6/Fig15.png) button in the top vertical tool buttons of the Debug pane, or right-click on the *Unassigned Debug Nets* and select the **Set up Debug…** option. 
+9. Either click on the ![](images/lab6/Fig15.png) button in the top vertical tool buttons of the Debug pane, or right-click on the *Unassigned Debug Nets* and select the **Set up Debug…** option.
 
    <p align="center">
    <img src ="./images/lab6/Fig16.png">
@@ -316,7 +320,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 11. Click **Next** and again **Next** (leaving everything as defaults) then **Finish**.
 
-12. In the Synthesized Design Schematic, click on the net on the output side of the BUFG for the input pin named clk\_pin. Hover over the now highlighted net and notice the name is clk\_pin\_IBUF\_BUFG. This is the clock net selected for the debug nets earlier.
+12. In the *Synthesized Design Schematic*, click on the net on the output side of the BUFG for the input pin named *clk\_pin*. Hover over the now highlighted net and notice the name is *clk\_pin\_IBUF\_BUFG*. This is the clock net selected for the debug nets earlier.
 
     <p align="center">
     <img src ="./images/lab6/Fig18.png">
@@ -336,9 +340,9 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 14. Select **File > Constraints > Save** and click **OK** and Click **Yes.**
 
-15. Open *uart\_led\_pins\_(BOARDS).xdc* and notice the debug nets have been appended to the bottom of the file.
+15. Open *uart\_led\_pins\_{BOARDS}.xdc* and notice the debug nets have been appended to the bottom of the file.
 
-### Implement and Generate Bitstream 
+### Step 4 Implement and Generate Bitstream
 
 #### Generate the bitstream.    
 
@@ -346,11 +350,11 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 2. Click **Yes** to run the implementation processes.
 
-3. When the bitstream generation process has completed successfully, a box with three options will appear.  Select the **Open Hardware Manager** option and click **OK**. 
+3. When the bitstream generation process has completed successfully, a box with three options will appear.  Select the **Open Hardware Manager** option and click **OK**.
 
-### Debug in Hardware
+### Step 5 Debug in Hardware
 
-#### Connect the board and power it ON. Open a hardware session, and program the FPGA.  
+#### Connect the board and power it ON. Open a hardware manager session, and program the FPGA.  
 
 1. Make sure that the Micro-USB cable is connected to the JTAG PROG connector.
 
@@ -368,18 +372,18 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 6. Select the device and verify that the **uart\_top.bit** is selected as the programming file in the General tab. Also notice that there is an entry in the *Debug probes file* field.
 
-#### Start a terminal emulator program such as TeraTerm or HyperTerminal. Select an appropriate COM port (you can find the correct COM number using the Control Panel).  Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality. 
+#### Start a terminal emulator program such as TeraTerm or HyperTerminal. Select an appropriate COM port (you can find the correct COM number using the Control Panel).  Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality.
 
-1. Start a terminal emulator program such as TeraTerm or HyperTerminal. 
+1. Start a terminal emulator program such as TeraTerm or HyperTerminal.
 
 2. Select an appropriate COM port (you can find the correct COM number using the Control Panel).  
 
-3. Set the COM port for 115200 baud rate communication. 
+3. Set the COM port for 115200 baud rate communication.
 
 4. Right-click on the FPGA, and select **Program Device…** and click **Program**. For PYNQ-Z2, the localhost will show "programmed", **ignore the status and program the device with generated bitstream**.
 
    The programming bit file be downloaded and the DONE light will be turned ON indicating the FPGA has been programmed. Debug Probes window will also be opened, if not, then select **Window > Debug Probes.**
-   
+
    In the Hardware window in Vivado notice that there are two debug cores, hw\_ila\_1 and hw\_ila\_2.
 
 <p align="center">
@@ -400,7 +404,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    </p>
 
 
-   Select the target FPGA xc7z020\_1 or xc7s50_0, and click on the **Run Trigger Immediate** button to see the signals in the waveform window.
+   Select the target FPGA *xc7z020\_1* or *xc7s50_0*, and click on the **Run Trigger Immediate** button to see the signals in the waveform window.
 
    <p align="center">
    <img src ="./images/lab6/Fig21.png">
@@ -410,7 +414,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    </p>
 
 
-   Two waveform windows will be created, one for each ila; one ila is of the instantiated ILA core and another for the MARK DEBUG method.
+   Two waveform windows will be created, one for each ILA; one ILA window is for the instantiated ILA core and another for the MARK DEBUG method.
 
 #### Setup trigger conditions to trigger on a write to led port (rx\_data\_rdy\_out=1) and the trigger position to 512. Arm the trigger.
 
@@ -423,7 +427,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    <i>Adding a signal to trigger setup</i>
    </p>
 
-2. Set the compare value (== [B] X) and change the value from x to 1. Click **OK**.
+2. Set the compare value *(== [B] X)* and change the value from **x** to **1**. Click **OK**.
 
    <p align="center">
    <img src ="./images/lab6/Fig23.png">
@@ -443,7 +447,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 4. Similarly, set the trigger position of the *hw\_ila\_2* to **512**.
 
-5. Select the *hw\_ila\_1* in the Hardware window and then click on the Run Trigger ( ![](images/lab6/Fig25.png)  ) button. Observe that the hw\_ila\_1 core is armed and showing the status as **Waiting for Trigger**.  
+5. Select the *hw\_ila\_1* in the Hardware window and then click on the **Run Trigger** ( ![](images/lab6/Fig25.png)  ) button. Observe that the *hw\_ila\_1* core is armed and showing the status as **Waiting for Trigger**.  
 
    <p align="center">
    <img src ="./images/lab6/Fig26.png">
@@ -452,9 +456,9 @@ The absolute path for the source code should only contain ascii characters. Deep
    <i>Hardware analyzer running in capture mode</i>
    </p>
 
-6. In the terminal emulator window, type a character, and observe that the hw\_ila\_1 status changes from capturing to idle as the rx\_data\_rdy\_out became 1.
+6. In the terminal emulator window, type a character, and observe that the *hw\_ila\_1* status changes from capturing to idle as the *rx\_data\_rdy\_out* became *1*.
 
-7. Select the hw\_ila\_data\_1.wcfg window and see the waveform.  Notice that the *rx\_data\_rdy\_out* goes from 0 to 1 at 512th sample.
+7. Select the *hw\_ila\_data\_1.wcfg* window and see the waveform.  Notice that the *rx\_data\_rdy\_out* goes from 0 to 1 at 512th sample.
 
 <p align="center">
 <img src ="./images/lab6/Fig27.png">
@@ -464,7 +468,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 </p>
 
 
-8. Add the hw\_ila\_2 probes to the trigger window of the hw\_ila\_2 and change the trigger condtion for rx\_data[7:0]’s Radix from Hexadecimal to Binary. Change XXXX\_XXXX to **0101\_0101** (for the ASCII equivalent of U).
+8. Add the *hw\_ila\_2* probes to the trigger window of the *hw\_ila\_2* and change the trigger condtion for *rx\_data[7:0]*’s Radix from Hexadecimal to Binary. Change *XXXX\_XXXX* to **0101\_0101** (for the ASCII equivalent of U).
 
    <p align="center">
    <img src ="./images/lab6/Fig28.png">
@@ -473,7 +477,7 @@ The absolute path for the source code should only contain ascii characters. Deep
    <i>Setting up trigger condition for a particular input pattern</i>
    </p>
 
-9. In the Hardware window, right-click on the **hw\_ila\_2** and select **Run Trigger,** and notice that the status of the hw\_ila\_2 changes  from *idle* to *Waiting for Trigger.* Also notice that the hw\_ila\_1 status does not change from idle as it is not armed.
+9. In the Hardware window, right-click on the **hw\_ila\_2** and select **Run Trigger,** and notice that the status of the *hw\_ila\_2* changes  from *idle* to *Waiting for Trigger.* Also notice that the *hw\_ila\_1* status does not change from idle as it is not armed.
 
 10. Switch to the terminal emulator window and  **U** (capital ,shift+u) to trigger the core.
 
@@ -486,14 +490,12 @@ The absolute path for the source code should only contain ascii characters. Deep
     <i>Second ila core triggered</i>
     </p>
 
-12. When satisfied, close the terminal emulator program and power OFF the board.
+12. When satisfied, Select **File > Close Hardware Manager**. Click **OK** to close it.
 
-13. Select **File > Close Hardware Manager**. Click **OK** to close it.
+13. Close the terminal emulator program and power OFF the board.
 
 14. Close the **Vivado** program by selecting **File > Exit** and click **OK**.
 
-## Conclusion 
+## Conclusion
 
 You used ILA core from the IP Catalog and Mark Debug feature of Vivado to debug the hardware design.  
-
- 

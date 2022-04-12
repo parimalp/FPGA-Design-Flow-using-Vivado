@@ -1,6 +1,6 @@
 # Synthesizing a RTL Design
 
-## Objectives 
+## Objectives
 
 After completing this lab, you will be able to:
 
@@ -25,7 +25,7 @@ The design consists of a uart receiver receiving the input typed on a keyboard a
 equivalent of the typed character on the 8 LEDs. When a push button is pressed, the lower and upper
 nibbles are swapped. The block diagram is as shown in the following figure.
 
-![image-20220222143623444](images/lab2/fig1.png)
+![image-20220222143623444](images/lab2/Fig1.png)
 
 <p align = "center">
 <i>The Completed Design</i>
@@ -42,29 +42,29 @@ flowchart
 
 The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
 
-**{SOURCES}** refers to *.\\source\\{BOARD}\\Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *.\\source\\{BOARD}\\*. You can use the source files from the cloned repository's *source* directory.
 
-**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
+**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial.
 
-**{BOARD}** refers to target *Boolean* and *Z2* boards. 
+**{BOARD}** refers to target *Boolean* and *Z2* boards.
 
 ## Steps
 
-### Create a Vivado Project 
+### Step 1 Create a Vivado Project
 
-#### Launch Vivado and create an empty project targeting the XC7S50CSGA324-1(for Boolean) or XC7Z020CLG400-1 (PYNQ-Z2) board, selecting Verilog as a target language. Use the provided Verilog source files, uart_led_pins_{board}.xdc and uart_led_timing.xdc files from the {sources}\lab2 directory.
+#### Launch Vivado and create an empty project targeting the XC7S50CSGA324-1(for Boolean) or XC7Z020CLG400-1 (PYNQ-Z2) board, selecting Verilog as a target language. Use the provided Verilog source files, uart_led_pins_{board}.xdc and uart_led_timing.xdc files from the {SOURCES}\lab2 directory.
 
-1. Open Vivado by selecting **Start > All Programs > Xilinx Design Tools > Vivado 2021.2** 
+1. Open Vivado by selecting **Start > All Programs > Xilinx Design Tools > Vivado 2021.2**
 
 2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog
    box. Click **Next**.
-   
+
 3. Click the **Browse** button of the *Project location* field of the **New Project** form, browse to **{TUTORIAL}**,
    and click **Select**.
-   
-4. Enter lab2 in the *Project name* field. Make sure that the *Create Project Subdirectory* box is checked. Click **Next**.
 
-5. Select **RTL Projec**t option in the *Project Type* form, and click **Next**.
+4. Enter **lab2** in the *Project name* field. Make sure that the *Create Project Subdirectory* box is checked. Click **Next**.
+
+5. Select **RTL Project** option in the *Project Type* form, and click **Next**.
 
    ![image-20220222143623444](images/lab2/create_new_prj.png)
 
@@ -74,9 +74,9 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 6. Using the drop-down buttons, select **Verilog** as the *Target Language* and *Simulator Language* in the *Add Sources* form.
 
-7. Click on the Green Plus button, then the Add Files… button and browse to the {SOURCES}\\{BOARD}\lab2 directory, select all the Verilog files *(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v,*
-    *uart_rx.v, and uart_rx_ctl.v*), click OK, and then click **Next** to get to the Add Existing IP form.
-    
+7. Click on the Green Plus button, then the *Add Files…* button and browse to the {SOURCES}\\{BOARD}\lab2 directory, select all the Verilog files *(led_ctl.v, meta_harden.v, uart_baud_gen.v, uart_led.v,*
+    *uart_rx.v, and uart_rx_ctl.v*), click **OK**, and then click **Next** to get to the Add Existing IP form.
+
 8. Since we do not have any IP to add, click **Next** to get to the *Add Constraints* form.
 
 9. Click on the Blue Plus button, then *Add Files…* and browse to the {sources}\lab2 directory (if
@@ -86,8 +86,8 @@ The absolute path for the source code should only contain ascii characters. Deep
     This Xilinx Design Constraints file assigns the basic timing constraints (period, input delay, and
     output delay) to the design.
 
-11. In the Default Part form, using the Parts option and various drop-down fields of the Filter section,
-    select XC7S50CSGA324-1(for Boolean) or XC7Z020CLG400-1 (PYNQ-Z2).
+11. In the Default Part form, using the **Parts** option and various drop-down fields of the Filter section,
+    select **XC7S50CSGA324-1**(for Boolean) or **XC7Z020CLG400-1**(PYNQ-Z2).
 
 12. Click **Next**.
 
@@ -97,7 +97,7 @@ The absolute path for the source code should only contain ascii characters. Deep
 
 (If you are using PYNQ-Z2)
 
-14. Copy the tcl script `ps_init.tcl` from **{SOURCES}/pynq-z2/lab2** to **{TUTORIAL}/lab2**.In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**. 
+14. Copy the tcl script `ps_init.tcl` from **{SOURCES}/pynq-z2/lab2** to **{TUTORIAL}/lab2**.In the Tcl Shell window enter the following command to change to the lab directory and hit **Enter**.
 
 ```tcl
 cd {TUTORIAL}/lab2
@@ -109,20 +109,20 @@ cd {TUTORIAL}/lab2
 source ps_init.tcl
 ```
 
-Please check if the path in the tcl script is right or not.
+Please check if the path in the tcl script is correct or not.
 
 ---
 
-#### Analyze the design source files hierarchy.(Taking Boolean as an example)
+#### Analyze the design source files hierarchy (Taking Boolean as an example).
 
 1. In the Sources pane, expand the uart_led entry and notice hierarchy of the lower-level modules.
 
-![image-20220222143623444](images/lab2/fig2.png)
+![image-20220222143623444](images/lab2/Fig2.png)
 
 <p align = "center">
-<i>Opening the source file(Boolean as example)</i>
+<i>Opening the source file (Boolean as example)</i>
 </p>
-2. Double-click on the uart_led entry to view its content.
+2. Double-click on the **uart_led** entry to view its content.
    Notice in the Verilog code, the BAUD_RATE and CLOCK_RATE parameters are defined to be
    115200 and 125M Hz(PYNQ-Z2) or 100 MHz(Boolean) respectively as shown in the design diagram . Also notice that the
    lower level modules are instantiated. The meta_harden modules are used to synchronize the
@@ -134,7 +134,7 @@ Please check if the path in the tcl script is right or not.
 
 1. In the *Sources* pane, expand the *Constraints* folder and double-click the *uart_led_timing_{BOARD}.xdc*  entry to open the file in text mode.
 
-![image-20220222143623444](images/lab2/fig3.png)
+![image-20220222143623444](images/lab2/Fig3.png)
 
 <p align = "center">
 <i>Timing constraints</i>
@@ -144,13 +144,13 @@ Line 3 creates the period constraint of 10 ns with a duty cycle of 50%. Line 6 c
 
 ### Step 2 Elaborate the Design
 
-### Elaborate and perform the RTL analysis on the source file.
+#### Elaborate and perform the RTL analysis on the source file.
 
 1. Expand the Open Elaborated Design entry under the *RTL Analysis* tasks of the *Flow Navigator*
    pane and click on **Schematic**.
    The model (design) will be elaborated and a logical view of the design is displayed.
 
-![image-20220222143623444](images/lab2/fig4.png)
+![image-20220222143623444](images/lab2/Fig4.png)
 
 <p align = "center">
 <i>A logic view of the design</i>
@@ -166,7 +166,7 @@ uart_rx, and one instance of led_ctl.
 3. Double-click on the uart_rx_i0 instance in the schematic diagram to see the underlying
    components.
 
-![image-20220222143623444](images/lab2/fig5.png)
+![image-20220222143623444](images/lab2/Fig5.png)
 
 <p align = "center">
 <i>Lower level components of the uart_rx_i0 module</i>
@@ -176,7 +176,7 @@ uart_rx, and one instance of led_ctl.
    *Flow Navigator* pane.
 5. Click **OK** to generate the report named **ssn_1**.
 
-![image-20220222143623444](images/lab2/fig6.png)
+![image-20220222143623444](images/lab2/Fig6.png)
 
 <p align = "center">
 <i>Noise report</i>
@@ -196,7 +196,7 @@ uart_rx, and one instance of led_ctl.
    Notice that the sources are modified and the tools detect it, showing a warning status bar to reload
    the design.
 
-   ![image-20220222143623444](images/lab2/fig7.png)
+   ![image-20220222143623444](images/lab2/Fig7.png)
 
 9. Click on the **Reload** link. The constraints will be processed.
 10. Click on **Report** **Noise** and click **OK** to generate the report named **ssn_1**. Observe that this time
@@ -214,7 +214,7 @@ uart_rx, and one instance of led_ctl.
 
    Click **Yes** to close the elaborated design if the dialog box is displayed.
 
-3. Select the Project Summary tab 
+3. Select the Project Summary tab
 
    If you don’t see the Project Summary tab then select **Layout > Default Layout** .
 
@@ -234,14 +234,13 @@ Look through the table and find the number used of each of the following:
 5. Click on **Schematic** under the *Open* *Synthesized* *Design* tasks of *Synthesis* tasks of the *Flow*
    *Navigator* pane to view the synthesized design in a schematic view.
 
-![image-20220222143623444](images/lab2/fig8.png)
+![image-20220222143623444](images/lab2/Fig8.png)
 
 <p align = "center">
 <i>Synthesized design’s schematic view</i>
 </p>
 
-Notice that IBUF and OBUF are automatically instantiated (added) to the design as the input and
-output are buffered. There are still four lower level modules instantiated.
+   Notice that IBUF and OBUF are automatically instantiated (added) to the design as the input and output are buffered. There are still four lower level modules instantiated.
 
 6. Double-click on the *uart_rx_i0* instance in the schematic view to see the underlying instances.
 
@@ -260,19 +259,19 @@ output are buffered. There are still four lower level modules instantiated.
    pane.
 2. Click **OK** to generate the Timing_1 report.
 
-![image-20220222143623444](images/lab2/fig9.png)
+![image-20220222143623444](images/lab2/Fig9.png)
 
 <p align = "center">
 <i>Timing report for the Boolean</i>
 </p>
 
-Notice that the Design Timing Summary and Inter-Clock and Intra-Clock Paths entry in the left pane is highlighted in red indicating timing violations. In the right pane, the information is grouped in Setup, Hold, and Width columns. 
+   Notice that the Design Timing Summary and Inter-Clock and Intra-Clock Paths entry in the left pane is highlighted in red indicating timing violations. In the right pane, the information is grouped in Setup, Hold, and Width columns.
 
-Under the Setup column Worst Negative Slack (WNS) is linked indicating that clicking on it can give us insight on how the failing path has formed. The Total Negative Slack (TNS) is highlighted in red indicating the total amount of violations in the design and the Number of Failing Endpoints indicate total number of failing paths.
+   Under the Setup column Worst Negative Slack (WNS) is linked indicating that clicking on it can give us insight on how the failing path has formed. The Total Negative Slack (TNS) is highlighted in red indicating the total amount of violations in the design and the Number of Failing Endpoints indicate total number of failing paths.
 
 3. Click on the WNS link and see the 8 failing paths.
 
-![image-20220222143623444](images/lab2/fig10.png)
+![image-20220222143623444](images/lab2/Fig10.png)
 
 <p align = "center">
 <i>The 8 failing paths for the Boolean</i>
@@ -280,27 +279,26 @@ Under the Setup column Worst Negative Slack (WNS) is linked indicating that clic
 
 4. Double-click on the **Path 23** to see how the path is made.
 
-   ![image-20220222143623444](images/lab2/fig11.png)
+   ![image-20220222143623444](images/lab2/Fig11.png)
 
 <p align = "center">
 <i>Worst failing path for the Boolean</i>
 </p>
 
-Note that this is an estimate only. The nets are specified as unplaced and have all been allocated
-default values (0.800 ns). No actual routing delays are considered.
+   Note that this is an estimate only. The nets are specified as unplaced and have all been allocated default values (0.800 ns). No actual routing delays are considered.
 
 #### Generate the utilization and power reports.
 
 1. Click **Report Utilization** under the *Synthesized Design*, and click **OK** to generate the utilization report.
 
-![image-20220222143623444](images/lab2/fig12.png)
+![image-20220222143623444](images/lab2/Fig12.png)
 
 <p align = "center">
 <i>Utilization report for the Boolean</i>
 </p>
 **Question 2**
 
-Look through the table and find the number used of each of the following:
+   Look through the table and find the number used of each of the following:
 
 | Resources | Estimation |
 | --------- | ---------- |
@@ -309,10 +307,9 @@ Look through the table and find the number used of each of the following:
 | I/O       |            |
 | BUFG      |            |
 
-2. Select Slice LUTs entry in the left pane and see the utilization by lower-level instances. You can
-   expand the instances in the right pane to see the complete hierarchy utilization.
+2. Select Slice LUTs entry in the left pane and see the utilization by lower-level instances. You can    expand the instances in the right pane to see the complete hierarchy utilization.
 
-![image-20220222143623444](images/lab2/fig13.png)
+![image-20220222143623444](images/lab2/Fig13.png)
 
 <p align = "center">
 <i>Utilization of lower-level modules for the Boolean</i>
@@ -322,7 +319,7 @@ Look through the table and find the number used of each of the following:
    Note that this is just an estimate as no simulation run data was provided and no accurate activity
    rate, or environment information was entered.
 
-![image-20220222143623444](images/lab2/fig14.png)
+![image-20220222143623444](images/lab2/Fig14.png)
 
 **Question 3**
 From the power report, find the % power consumption used by each of the following:
@@ -334,16 +331,14 @@ From the power report, find the % power consumption used by each of the followin
 | I/O        |         % |
 | BUFG       |         % |
 
-You can move the mouse on the boxes which do not show the percentage to see the
-consumption.
+You can move the mouse on the boxes which do not show the percentage to see the consumption.
 
 #### Write the checkpoint in order to analyze the results without going through the actual synthesis process.
 
-1. Select **File > Checkpoint > Write ** to save the processed design so it can be opened later for
-   further analysis.
+1. Select **File > Checkpoint > Write** to save the processed design so it can be opened later for    further analysis.
 2. A dialog box will appear showing the default name of the file in the current project directory.
 
-![image-20220222143623444](images/lab2/fig15.png)
+![image-20220222143623444](images/lab2/Fig15.png)
 
 <p align = "center">
 <i>Wiring Checkpoint</i>
@@ -356,18 +351,18 @@ consumption.
 1. Click on the **Settings** under the *Project Manager*, and select **Synthesis**.
 2. Click on the **flatten_hierarchy** drop-down button and select **full** to flatten the design.
 
-![image-20220222143623444](images/lab2/fig16.png)
+![image-20220222143623444](images/lab2/Fig16.png)
 
 <p align = "center">
 <i>Selecting flatten hierarchy option</i>
 </p>
 
 
-3. Click **OK**
+3. Click **OK**.
 
 4. A Create New Run dialog box will appear asking you whether you want to create a new run since  the settings have been changed.
 
-   ![image-20220222143623444](images/lab2/fig17.png)
+   ![image-20220222143623444](images/lab2/Fig17.png)
 
 <p align = "center">
 <i>Create New Run dialog box</i>
@@ -382,11 +377,10 @@ consumption.
 
 8. Click **OK** to open the synthesized design when synthesis process is completed.
 
-9. lick on **Schematic** under the *Open Synthesized Design* tasks of *Synthesis* tasks of the *Flow*
-   *Navigator* pane to view the synthesized design in a schematic view.
+9. Click on **Schematic** under the *Open Synthesized Design* tasks of *Synthesis* tasks of the *Flow Navigator* pane to view the synthesized design in a schematic view.
    Notice that the design is completely flattened.
 
-![image-20220222143623444](images/lab2/fig18.png)
+![image-20220222143623444](images/lab2/Fig18.png)
 
 <p align = "center">
 <i>Flattened design</i>
@@ -398,52 +392,48 @@ consumption.
 
 #### Write the checkpoint in order to analyze the results without going through the actual synthesis process.
 
-1. Select **File > Checkpoint > Write ** to save the processed design so it can be opened later for further analysis.
+1. Select **File > Checkpoint > Write** to save the processed design so it can be opened later for further analysis.
+
 2. A dialog box will appear showing the default name of the file in the current project directory.
 
-3. Click **OK**
+3. Click **OK**.
 
-### Step 3 Read the Checkpoints
+### Step 4 Read the Checkpoints
 
 #### Read the previously saved checkpoint (checkpoint_1) in order to analyze the results without going through the actual synthesis process.
 
-1. Launch Vivado and select **File > Checkpoint > Open **at the *Getting Started* Screen.
+1. Launch Vivado and select **File > Checkpoint > Open ** at the *Getting Started* Screen.
 
 2. Browse to **{TUTORIAL}/lab2** and select *uart_led.dcp* or *system_wrapper.dcp*
 
 3. Click **OK**
 
-4. If the schematic isn’t open by default, in the netlist tab, select the top-level instance, uart_led/system_wrapper,
-   right-click and select **Schematic**.
+4. If the schematic isn’t open by default, in the netlist tab, select the top-level instance, uart_led/system_wrapper, right-click and select **Schematic**.
 
    You will see the hierarchical blocks. You can double-click on any of the first-level block and see
-   the underlying blocks. You can also select any lower-level block in the netlist tab, right-click and
-   select Schematic to see the corresponding level design.
+   the underlying blocks. You can also select any lower-level block in the netlist tab, right-click and select Schematic to see the corresponding level design.
 
-5. In the netlist tab, select the top-level instance, uart_led, right-click and select Show Hierarchy.
+5. In the netlist tab, select the top-level instance, uart_led, right-click and select **Show Hierarchy.**
 
    You will see how the blocks are hierarchically connected.
 
 6. Select **Reports > Timing > Report Timing Summary** and click **OK** to see the report you saw previously.
 
-7. Select **Reports > Report Utilization** and click OK to see the utilization report you saw previously.
+7. Select **Reports > Report Utilization** and click **OK** to see the utilization report you saw previously.
 
-8. Select File > Open Checkpoint, browse to **{TUTORIAL}/lab2** and select *uart_led.dcp* or *system_wrapper.dcp*.
+8. Select **File > Open Checkpoint**, browse to **{TUTORIAL}/lab2** and select *uart_led.dcp* or *system_wrapper.dcp*.
 
-9. Click No to keep the Checkpoint_1 open. 
+9. Click **No** to keep the *Checkpoint_1* open.
 
    This will invoke second Vivado GUI.
 
-0. If the schematic isn’t open by default, in the netlist tab, select the top-level instance, uart_led, right-click and select Schematic. 
+0. If the schematic isn’t open by default, in the netlist tab, select the top-level instance, *uart_led*, right-click and select Schematic.
 
    You will see the flattened design.
-   
+
 0. You can generate the desired reports on this checkpoint as you wish.
 
 0. Close the Vivado program by selecting **File > Exit** and click **OK**.
 
 ## Conclusion
-In this lab you applied the timing constraints and synthesized the design. You viewed various postsynthesis reports. You wrote checkpoints and read it back to perform the analysis you were doing during the design flow. You saw the effect of changing synthesis settings.
-
-   
-
+In this lab you applied the timing constraints and synthesized the design. You viewed various post-synthesis reports. You wrote checkpoints and read it back to perform the analysis you were doing during the design flow. You saw the effect of changing synthesis settings.

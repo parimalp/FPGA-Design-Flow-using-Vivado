@@ -22,40 +22,40 @@ This lab is broken into steps that consist of general overview statements provid
 ## General Flow
 
 ```mermaid
-flowchart 
-	1(Step 1 : Create a Vivado Project)-->2(Step 2: Implement the Design)-->3(Step 3: Generate the Bitstream)-->4(Step 4: Verify the Functionality)
+flowchart
+	1(Step 1 : Open a created Vivado Project)-->2(Step 2: Implement the Design)-->3(Step 3: Generate the Bitstream)-->4(Step 4: Verify the Functionality)
 ```
 
 
 
 ### In the instructions below:
 
-**{SOURCES}** refers to *.\\source\\{BOARD}\\Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *.\\source\\{BOARD}\\Labn*. You can use the source files from the cloned repository's *source* directory.
 
-**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
+**{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial.
 
 **{BOARD}** refers to target *Boolean* and *Z2* boards.
 
 ## Steps
 
-### Open a Vivado Project using IDE
+### Step 1 Open a Vivado Project using IDE
 
 #### Launch Vivado and open the lab2 project. Save the project as lab3 in the {TUTORIAL} directory making sure that the create subdirectory option is selected. Set the flatten_hierarchy setting to rebuilt. Create new synthesis run naming it as synth_2.
 
-1. Start the Vivado if necessary and open either the lab2 project (lab2.xpr) you created in the previous lab or the lab2 project in the labsolution directory using the **Open Project** link in the Getting Started page.
+1. Start the Vivado, if necessary, and open either the *lab2* project (lab2.xpr) you created in the previous lab or the *lab2* project in the **labsolution** directory using the **Open Project** link in the *Getting Started* page.
 
-2. Select **File > Project > Save As …** to open the *Save Project As* dialog box. Enter lab3 as the project name. Make sure that the Create Project Subdirectory option is checked, the project directory path is  {TUTORIAL} and click **OK**.
+2. Select **File > Project > Save As …** to open the *Save Project As* dialog box. Enter **lab3** as the project name. Make sure that the *Create Project Subdirectory* option is checked, the project directory path is **{TUTORIAL}** and click **OK**.
 
-3. Click on the *Settings* in the *Flow Navigato*r pane, select **Project Settings > Synthesis**.
+3. Click on the *Settings* in the *Flow Navigator* pane, select **Project Settings > Synthesis**.
 
 4. Make sure that the *flatten_hierarchy* is set to **rebuilt**, which allows the design hierarchy to be preserved for synthesis, and then rebuilt which is more useful for design analysis because many logical references  will be maintained.
-   
 
-![fig1](images/lab3/fig1.png)
+
+![Fig1](images/lab3/Fig1.png)
 
 5. Click **OK**.
-   
-     A Create New Run dialog box will appear asking you if a new run should be created. Click **Yes**
+
+     A Create *New Run* dialog box will appear asking you if a new run should be created. Click **Yes**
      and then **OK** to create the new run with *synth_2* name.
 
 #### Synthesize the design. Generate the timing summary and analyze the design.
@@ -71,7 +71,7 @@ flowchart
     pane.
 
 4. Leave all the settings unchanged, and click **OK** to generate a default timing report, *timing_1*.
-![fig1](images/lab3/fig2.png)
+![Fig1](images/lab3/Fig2.png)
 
 5. Click on the link beside the **Worst Negative Slack** (WNS) and see the 8 failing paths.
 
@@ -82,13 +82,13 @@ flowchart
     The schematic for the output data path will be displayed.
 
 
-![fig1](images/lab3/fig3.png)
+![Fig1](images/lab3/Fig3.png)
 
 <p align = "center">
 <i>The output data path(Boolean)</i>
 </p>
 
-![image-20220406155214280](images/lab3/image-20220406155214280.png)
+![image-20220406155214280](images/lab3/Fig3_z2.png)
 
 <p align = "center">
 <i>The output data path(PYNQ-Z2)</i>
@@ -96,22 +96,22 @@ flowchart
 
 8. In order to see how the Source Clock Path is made up in schematic form, double-click on left end  of the C pin of the FDRE in the schematic.
     This will show the net between the BUFG and C port of the FDRE.
-    
+
 9. Similarly, double-click on the left end of the BUFG to see the path between IBUF and BUFG.
 
-![fig1](images/lab3/fig4.png)
+![Fig1](images/lab3/Fig4.png)
 
 
 <p align = "center">
 <i>Source to clock port of the FDRE</i>
 </p>
-![fig1](images/lab3/fig5.png)
+![Fig1](images/lab3/Fig5.png)
 
 <p align = "center">
 <i>The schematic view of the source clock path(Boolean)</i>
 </p>
 
-![image-20220406155310848](images/lab3/image-20220406155310848.png)
+![image-20220406155310848](images/lab3/Fig5_z2.png)
 
 <p align = "center">
 <i>The schematic view of the source clock path(PYNQ-Z2)</i>
@@ -119,7 +119,7 @@ flowchart
 
   This corresponds to the Source Clock Path in the timing report.
 
-![fig1](images/lab3/fig6.png)
+![Fig1](images/lab3/Fig6.png)
 
 <p align = "center">
 <i>The source clock path for the Boolean</i>
@@ -128,21 +128,21 @@ flowchart
 
 Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns for Boolean or 8 ns for PYNQ-Z2), the data path delay includes the clock period of the clk_pin clock source.
 
-![fig1](images/lab3/fig7.png)
+![Fig1](images/lab3/Fig7.png)
 
 
 <p align = "center">
 <i>Worst failing path for the Boolean</i>
 </p>
 
-#### Change the design constraint to constrain the virtual clock period to 10ns.Re-synthesize the design and analyze the results.
+#### Change the design constraint to constrain the virtual clock period to 10ns. Re-synthesize the design and analyze the results.
 
 1. Click **Edit Timing Constraints** under the Synthesized Design.
 
-   The Timing Constraints GUI will appear, showing the design has two create clocks, four inputs, and one output constraints. It also shows the constraints in the text form in the All Constraints
+   The *Timing Constraints* GUI will appear, showing the design has two created clocks, four inputs, and one output constraints. It also shows the constraints in the text form in the *All Constraints*
    section.
 
-   ![fig1](images/lab3/fig8.png)
+   ![Fig1](images/lab3/Fig8.png)
 
 <p align = "center">
 <i>Timing Constraints showing 12 ns Virtual Clock period defined (Boolean)</i>
@@ -150,59 +150,53 @@ Since the virtual clock is slower (12 ns) than the clk_pin period (10 ns for Boo
 2. Click in the Period cell of the virtual_clock and change the period from 12 to 10(Boolean) or to 8(PYNQ-z2)
 
 3. Click **Apply**.
-    Note that since the timing constraint has changed, a warning message in the console pane is
-    displayed to rerun the report.
+    Note that since the timing constraint has changed, a warning message in the console pane is displayed to rerun the report.
 
-  ![fig1](images/lab3/figa.png)
+  ![Fig1](images/lab3/Figa.png)
 
 4. Click on Rerun.
     Notice that setup timing violations are gone. However, there are still 2 failing paths for the Hold.
 
-![fig1](images/lab3/fig9.png)
+![Fig1](images/lab3/Fig9.png)
 
  <p align = "center">
 <i> Setup timing met</i>
 </p>
 
+5. Click on the *WHS* link to see the paths.
 
+6. Double-click on the first path to see the timing compositions. Notice that the clock path delay does not include the entire clock period.
 
-
-5. Click on the WHS link to see the paths.
-
-6. Double-click on the first path to see the timing compositions. Notice that the clock path delay
-    does not include the entire clock period.
-
-7. Select **File > Constraint > Save **
+7. Select **File > Constraint > Save**
 
 8. Click **OK** and then click **Yes** to save the synthesized design.
 Notice that the Synthesis Out-of-Date status is displayed on the top-right corner.
 
-### Step 2 Implement the Design 
+### Step 2 Implement the Design
+
 #### Run the implementation after saving the synthesis run. Perform the timing analysis.
 
-1. In the Design Runs tab, right-click on the synth_1 and select **Reset Runs**. Make sure the generated files are deleted. Click **Reset**.
+1. In the *Design Runs* tab, right-click on the **synth_1** and select **Reset Runs**. Make sure the generated files are deleted. Click **Reset**.
 
 2. Click the **Close Design** link in the status bar. If prompted, do not save anything.
 
-
 3. Click on the **Run Implementation** in the *Flow Navigator* pane.
-
 
 4. Click **OK** when prompted to run the synthesis first before running the implementation process.
 When the implementation is completed, a dialog box will appear with three options.
 
-5. Select the Open Implemented Design option and click **OK**.
+5. Select the *Open Implemented Design* option and click **OK**.
 
 #### View the amount of FPGA resources consumed by the design using Report Utilization.
 
-1. In the *Flow Navigator* pane, select **Open Implemented Design > Report Utilization**. The Report Utilization dialog box opens.
+1. In the *Flow Navigator* pane, select **Open Implemented Design > Report Utilization**. The *Report Utilization* dialog box opens.
 
 2. Click **OK**.
    The utilization report is displayed at the bottom of the Vivado IDE. You can select any of the resources on the left to view its corresponding utilization.
 
 3. Select Slice LUTs to view how much and which module consumes the resource.
 
-![fig1](images/lab3/fig10.png)
+![Fig1](images/lab3/Fig10.png)
 
 <p align = "center">
 <i>Resource utilization for the Boolean</i>
@@ -211,32 +205,29 @@ When the implementation is completed, a dialog box will appear with three option
 
 #### Generate a timing summary report.
 
-1. In the *Flow Navigator*, under **Implementation > Open Implemented Design**, click **Report Timing Summary**
+1. In the *Flow Navigator*, under **Implementation > Open Implemented Design**, click **Report Timing Summary.**
 The Report Timing Summary dialog box opens.
-2. Leave all the settings unchanged and click OK to generate the report.
+2. Leave all the settings unchanged and click **OK** to generate the report.
 
-![fig1](images/lab3/fig11.png)
+![Fig1](images/lab3/Fig11.png)
 
 <p align = "center">
 <i>The timing summary report showing timing violations</i>
 </p>
 
-
-
-
-3. Click on the WNS link to see a detailed report to determine the failing path entries.
+3. Click on the *WNS* link to see a detailed report to determine the failing path entries.
 
 4. Double-click on the first failing path to see why it is failing.
 
-  ![fig1](images/lab3/fig12.png)
+  ![Fig1](images/lab3/Fig12.png)
 
 <p align = "center">
 <i>First failing path delays for the Boolean</i>
 </p>
 
 
-Compared to delays from the synthesis report, the net delays are actual delays (rather than an estimated figure). The data path delay is longer than the destination clock path delay giving a negative slack (violation). The data path delay is 11.534 ns for the Boolean, the destination clock path is 9.975 ns and the negative slack is -1.559 ns(In this case).
-At this point we can ignore this violation as the LED display change by a few nanoseconds won’t be observable by human eyes. We can also change the output delay by $ \approx $ -2 ns and make the timings meet.
+Compared to delays from the synthesis report, the net delays are actual delays (rather than an estimated figure). The data path delay is longer than the destination clock path delay giving a negative slack (violation). The data path delay is 11.534 ns for the Boolean, the destination clock path is 9.975 ns and the negative slack is -1.559 ns (in this case).
+At this point we can ignore this violation as the LED display change by a few nanoseconds won’t be observable by human eyes. We can also change the output delay by approximately -2 ns and make the timings meet.
 
 
 5. Select **Implemented Design** > **Edit Timing Constraints** the *Flow Navigator* pane.
@@ -248,14 +239,14 @@ At this point we can ignore this violation as the LED display change by a few na
 8. Click **Rerun** link to re-run the timing report.
     Observe that the timing violations of the Intra-clock paths are gone.
 
-9. Expand the **Intra-Clock Paths** folder on the left, expand *clk_pin*, and select the Setup group to
+9. Expand the **Intra-Clock Paths** folder on the left, expand *clk_pin*, and select the *Setup* group to
     see the list of 10 worst case delays on the right side.
 
-10. Double-click on the any path to see how that is made up of. Also right-click on it and select
+10. Double-click on any of the paths to see how that is made up of. Also right-click on it and select
     **Schematic**.
     Click on the **Device** tab and see the highlighted path in the view.
 
-11. Select **Open Implemented Design** > **Report Clock Networks**.
+11. Select **Open Implemented Design > Report Clock Networks**.
 
 12. Click **OK**.
     The Clock Networks report will be displayed in the Console pane showing two clock net entries.
@@ -263,78 +254,78 @@ At this point we can ignore this violation as the LED display change by a few na
 13. Select *clk_pin* entry and observe the selected nets in the Device view.
     The clock nets are spread across multiple clock regions.
 
-![fig1](images/lab3/fig13.png)
+![Fig1](images/lab3/Fig13.png)
 
 <p align = "center">
 <i>Clock nets for the Boolean</i>
 </p>
 
 
-### Step 3 Generate the Bitstream 
+### Step 3 Generate the Bitstream
 
 #### Generate the bitstream.
 
-1. In the Flow Navigator, under Program and Debug, click Generate Bitstream.
+1. In the *Flow Navigator*, under Program and Debug, click **Generate Bitstream.**
 
-![fig1](images/lab3/fig14.png)
+![Fig1](images/lab3/Fig14.png)
 
 <p align = "center">
 <i>Generating the bitstream</i>
 </p>
 
 
-2. Click **Save** to save the constraints since the timing constraints had been changed, click OK, and then **Yes** to reset the runs and re-run all the processes.
+2. Click **Save** to save the constraints since the timing constraints had been changed, click **OK**, and then **Yes** to reset the runs and re-run all the processes.
 The write_bitstream command will be executed (you can verify it by looking in the Tcl console).
 
-3. Click Cancel when the bitstream generation is completed.
+3. Click **Cancel** when the bitstream generation is completed.
 
-### Step 4 Verify the Functionality 
+### Step 4 Verify the Functionality
 
 ---
 
 **For Boolean:**
 
-#### Connect the board and power it ON. Open a hardware session, and program the FPGA.
+#### Connect the board and power it ON. Open a hardware manager session, and program the FPGA.
 
-1. Make sure that the micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). Make sure that the jumper on the board is set to select USB power.
+1. Make sure that the micro-USB cable is connected to the *JTAG PROG connector* (next to the power supply connector). Make sure that the jumper on the board is set to select *USB* power.
 2. Select the *Open Hardware Manager* option and click **OK**.
     The Hardware Manager window will open indicating “unconnected” status.
 3. Click on the **Open target** link, then **Auto Connect** from the dropdown menu.
 
-  ![fig1](images/lab3/fig15.png)
+  ![Fig1](images/lab3/Fig15.png)
 
 <p align = "center">
 <i>Opening new hardware target</i>
 </p>
 
 
-4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. Also notice that the Status indicates that it is not programmed.
+4. The *Hardware Manager Session* status changes from **Unconnected** to the server name and the device is highlighted. Also notice that the *Status* indicates that it is not programmed.
 5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
 
 **For PYNQ-Z2:**
 
-#### Insert the SD card, Connect the board and power it ON. Open a hardware session, and program the FPGA.
+#### Insert the SD card, connect the board and power it ON. Open a hardware manager session, and program the FPGA.
 
 1. Copy the provided SD card boot image (**{SOURCES}**/lab3/BOOT.bin) into a blank SD card, noticing that file system of SD card should be FAT32.
 2. Insert the SD card to the SD card slot on the back of the board and set the booting jumper to **SD**.
 3. Select the *Open Hardware Manager* option and click **OK**.
    The Hardware Manager window will open indicating “unconnected” status.
 
-  ![fig1](images/lab3/fig15.png)
+  ![Fig1](images/lab3/Fig15.png)
 
 <p align = "center">
 <i>Opening new hardware target</i>
 </p>
 
 
-4. The Hardware Session status changes from Unconnected to the server name and the device is highlighted. The status may indicate that the device is programmed, **ignore the status**.
-5. Select the device in the Hardware Device Properties, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
+4. The *Hardware Manager Session* status changes from **Unconnected** to the server name and the device is highlighted. The status may indicate that the device is programmed, **ignore the status**.
+5. Select the device in the *Hardware Device Properties*, and verify that the **uart_led.bit** is selected as the programming file in the General tab.
 
 ---
 
-### Start a terminal emulator program such as Mobaxterm or etc. . Select an appropriate COM port (you can find the correct COM number using the Control Panel). Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality.
+### Start a terminal emulator program such as Mobaxterm or TeraTerm . Select an appropriate COM port (you can find the correct COM number using the Control Panel). Set the COM port for 115200 baud rate communication. Program the FPGA and verify the functionality.
 
-1. Start a terminal emulator program such as Mobaxterm.
+1. Start a terminal emulator program such as Mobaxterm or TeraTerm.
 
 2. Select an appropriate COM port (you can find the correct COM number using the Control Panel).
 
@@ -350,9 +341,9 @@ The write_bitstream command will be executed (you can verify it by looking in th
 
 7. Press and hold BTNU and see the the upper four bits are swapped with the lower four bits on the LEDs.
 
-8. When satisfied, close the terminal emulator program and power OFF the board.
+8. When satisfied, Select **File > Close Hardware Manager**. Click **OK**.
 
-9. Select **File > Close Hardware Manager**. Click **OK**.
+9. Close the terminal emulator program and power OFF the board.
 
 10. Close the Vivado program by selecting **File > Exit** and click **OK**.
 

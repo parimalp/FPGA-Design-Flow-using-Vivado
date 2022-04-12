@@ -1,13 +1,13 @@
 # Vivado Design Flow
 
-## Objectives 
+## Objectives
 
 After completing this lab, you will be able to:
 
-- Create a Vivado project sourcing HDL model(s) and targeting the ZYNQ or Spartan devices located on the Boolean or PYNQ-Z2
+- Create a Vivado project sourcing HDL model(s) and targeting the ZYNQ or Spartan devices located on the Boolean or PYNQ-Z2 boards
 - Use the provided Xilinx Design Constraint (XDC) file to constrain the pin locations
 - Simulate the design using the Vivado simulator
-- Synthesize and implement the design 
+- Synthesize and implement the design
 - Generate the bitstream
 - Configure ZYNQ and Spartan using the generated bitstream and verify the functionality
 
@@ -15,17 +15,17 @@ After completing this lab, you will be able to:
 
 The absolute path for the source code should only contain ascii characters. Deep path should also be avoided since the maximum supporting length of path for Windows is 260 characters.
 
-**{SOURCES}** refers to *.\\source\\{BOARDS}\\Labn*. You can use the source files from the cloned repository's *sources* directory
+**{SOURCES}** refers to *.\\source\\{BOARDS}\\*. You can use the source files from the cloned repository's *source* directory
 
 **{TUTORIAL}** refers to *C:\vivado_tutorial\\*. It assumes that you will create the mentioned directory structure to carry out the labs of this tutorial
 
-**{BOARDS}** refers to target *Boolean* and *Z2* boards. 
+**{BOARDS}** refers to target *Boolean* and *PYNQ-Z2* boards.
 
 ## Steps
 
 ### Create a Vivado Project                                                 
 
-#### Launch Vivado and create an empty project targeting the XC7S50CSGA324-1(for Boolean) or XC7Z020CLG400-1 (PYNQ-Z2) board, selecting Verilog as a target language. Use the provided lab1.v and lab1\_zynq.xdc files(For PYNQ-Z2) and lab1_spartan.xdc (for Boolean) from the *.\\sources\\lab1\\* directory.
+#### Launch Vivado and create an empty project targeting the XC7S50CSGA324-1 (for Boolean) or XC7Z020CLG400-1 (for PYNQ-Z2), selecting Verilog as a target language. Use the provided lab1.v, and lab1\_zynq.xdc (for PYNQ-Z2) and lab1_spartan.xdc (for Boolean) files from the *.\\sources\\lab1\\* directory.
 
 1. Open Vivado by selecting **Start > Xilinx Design Tools > Vivado 2021.2**
 2. Click **Create New Project** to start the wizard. You will see *Create A New Vivado Project* dialog box. Click **Next**.
@@ -48,23 +48,24 @@ The absolute path for the source code should only contain ascii characters. Deep
 </p>
 <p align = "center">
 <i>Selecting Target and Simulator language</i>
-</p>	
+</p>
 
-7. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{sources}\\{BOARD}\lab1** directory, select *lab1.v,* click **OK**.
+7. Click on the **Blue Plus** button, then click **Add Files…** and browse to the **{sources}\\{BOARD}\lab1** directory, select *lab1.v,* and click **OK**.
 
    <p align="center">
    <img src ="./images/lab1/Fig5.png">
    </p>
    <p align = "center">
+   <i>Adding source files</i>
    </p>
 
    If it is not already checked, check **Copy sources into project**
 
 8. Click **Next** to get to the *Add Constraints* form.
 
-9. Click on the **Blue Plus** button, then **Add Files…** and browse to the **{SOURCES}\lab1** directory (if necessary), select *lab1\_pynq.xdc* (for PYNQ-Z2) or *lab1_boolean.xdc* (for Boolean) and click **OK** (if necessary), and then click **Next.**
+9. Click on the **Blue Plus** button, then click **Add Files…** and browse to the **{SOURCES}\lab1** directory (if necessary), select *lab1\_pynq.xdc* (for PYNQ-Z2) or *lab1_boolean.xdc* (for Boolean) and click **OK** (if necessary), and then click **Next.**
 
-   The Xilinx Design Constraints file assigns the physical IO locations on FPGA to the switches and LEDs located on the board.  This information can be obtained either through the board’s schematic or the board’s user guide. 
+   The Xilinx Design Constraints file assigns the physical IO locations on FPGA to the switches and LEDs located on the board.  This information can be obtained either through the board’s schematic or the board’s user guide.
 
 10. In the *Default Part* form, use the **Parts** option and various drop-down fields of the **Filter** section. Select the **XC7Z020clg400-1**(for PYNQ-Z2) or **xc7s50csga-1** (for Boolean). 		
 
@@ -74,16 +75,6 @@ The absolute path for the source code should only contain ascii characters. Deep
     <p align = "center">
     <i>Part Selection for the PYNQ</i>
     </p>
-    
-    <p align="center">
-	<img src ="./images/lab1/boolean_select.png">
-    </p>
-    <p align = "center">
-    <i>Part Selection for the Boolean</i>
-    </p>
-    
-    
-    You may also select the **Boards** option, tul.com.tw for the PYNQ-Z2 board under the Vendor filter and select the appropriate board. Notice that Boolean and  PYNQ-Z2 may not be listed as they are not in the tools database. If not listed then you can download the board files for the desired boards from TUL PYNQ-Z2 webpage.
 
     <p align="center">
 	<img src ="./images/lab1/boolean_select.png">
@@ -91,12 +82,13 @@ The absolute path for the source code should only contain ascii characters. Deep
     <p align = "center">
     <i>Part Selection for the Boolean</i>
     </p>
-    
-    
 
-     Click **Next**.
 
-11.  Click **Finish** to create the Vivado project.  
+    You may also select the **Boards** option, `tul.com.tw` for the PYNQ-Z2 board or `RealDigital.org` for the Boolean board under the *Vendor* filter and select the appropriate board. Notice that Boolean and  PYNQ-Z2 may not be listed as they are not in the tools database. If not listed then you can download the board files for the desired boards from the respective board vendor webpage.
+
+11.  Click **Next**.
+
+12.  Click **Finish** to create the Vivado project.  
 
 Use the Windows Explorer and look at the **{TUTORIAL}\lab1** directory.  You will find that the lab1.cache and lab1.srcs directories and the lab1.xpr (Vivado) project file have been created. The lab1.cache directory is a place holder for the Vivado program database. Two directories, constrs\_1 and sources\_1, are created under the lab1.srcs directory; deep down under them, the copied lab1\_<board>.xdc (constraint) and lab1.v (source) files respectively are placed.
 
@@ -150,7 +142,7 @@ lab1
 
 ##### For PYNQ-Z2:
 
-1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_pynq.xdc** entry to open the file in text mode. 
+1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_pynq.xdc** entry to open the file in text mode.
 
    <p align="center">
    <img src ="./images/lab1/Fig9.png">
@@ -163,7 +155,7 @@ lab1
 
 ##### For Boolean
 
-1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_boolean.xdc** entry to open the file in text mode. 
+1. In the *Sources* pane, expand the *Constraints* folder and double-click the **lab1\_boolean.xdc** entry to open the file in text mode.
 
    <img src="./images/lab1/boolean_constr.png" alt="image" style="zoom:55%;" />
 
@@ -205,7 +197,7 @@ The model (design) will be elaborated and a logic view of the design is displaye
    </p>
 
 
-3. In the *Add Sources Files* form, click the **Blue Plus** button and then **Add Files…**.
+3. In the *Add Sources Files* form, click the **Blue Plus** button and then then **Add Files…**.
 
 4. Browse to the **{SOURCES}\lab1** folder and select *lab1\_tb.v* and click **OK**.
 
@@ -222,7 +214,7 @@ The model (design) will be elaborated and a logic view of the design is displaye
    <i>Simulation Sources hierarchy</i>
    </p>
 
-7. Using the Windows Explorer, verify that the **sim\_1** directory is created at the same level as constrs\_1 and sources\_1 directories under the lab1.srcs directory, and that a copy of lab1\_tb.v is placed under **lab1.srcs > sim\_1 > imports > lab1**. 
+7. Using the Windows Explorer, verify that the **sim\_1** directory is created at the same level as *constrs\_1* and *sources\_1* directories under the *lab1.srcs* directory, and that a copy of lab1\_tb.v is placed under **lab1.srcs > sim\_1 > imports > lab1**.
 
 8. Double-click on the **lab1\_tb** in the *Sources* pane to view its contents.
 
@@ -265,7 +257,7 @@ The model (design) will be elaborated and a logic view of the design is displaye
 
    You will see four main views: (i) *Scopes,* where the testbench hierarchy as well as glbl instances are displayed, (ii) *Objects,* where top-level signals are displayed, (iii) the waveform window, and (iv) *Tcl Console* where the simulation activities are displayed.  Notice that since the testbench used is self-checking, the results are displayed as the simulation is run.
 
-   Notice that the **lab1.sim** directory is created under the **lab1** directory, along with several lower-level directories. 
+   Notice that the **lab1.sim** directory is created under the **lab1** directory, along with several lower-level directories.
 
 ```
 //Directory structure after running behavioral simulation
@@ -351,7 +343,7 @@ Select **i[31:0]** in the waveform window, right-click, select *Radix*, and then
 
 2. Select **btn[3:0]** and **led[3:0]** and drag them into the waveform window to monitor those lower-level signals.
 
-3. On the simulator tool buttons ribbon bar![](./images/lab1/Fig23.png), type 500 over in the simulation run time field,  click on the drop-down button of the units field and select ns since we want to run for 500 ns (total of 700 ns), and click on the (  ![](./images/lab1/Fig25.png) ) button. The simulation will run for an additional 500 ns.     
+3. On the simulator tool buttons ribbon bar![](./images/lab1/Fig23.png), type 500 over in the simulation run time field,  click on the drop-down button of the units field and select *ns* since we want to run for 500 ns (total of 700 ns), and click on the (  ![](./images/lab1/Fig25.png) ) button. The simulation will run for an additional 500 ns.     
 4. Click on the *Zoom Fit* button and observe the output.
 
 <p align="center">
@@ -370,13 +362,13 @@ Observe the Tcl Console window and see the output is being displayed as the test
 <i>Tcl Console output after running the simulation for additional 500 ns</i>
 </p>
 
-5. Close the simulator by selecting **File > Close Simulation**. 
+5. Close the simulator by selecting **File > Close Simulation**.
 
 6. Click **OK** and then click **Discard** to close it without saving the waveform.
 
 ### Synthesize the Design
 
-#### Synthesize the design with the Vivado synthesis tool and analyze the Project Summary output. 
+#### Synthesize the design with the Vivado synthesis tool and analyze the Project Summary output.
 
 1. Click on **Run Synthesis** under the *SYNTHESIS* tasks of the *Flow Navigator* pane.
 
@@ -451,10 +443,10 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
 2. Select **Open implemented design** and click **OK** as we want to look at the implemented design in a Device view tab.
 
-3. Click **Yes,** if prompted, to close the synthesized design.  The implemented design will be opened. 
+3. Click **Yes,** if prompted, to close the synthesized design.  The implemented design will be opened.
 4. In the *Netlist* pane, select one of the nets (e.g. led\_OBUF[3]) and notice that the net displayed in the X1Y2 clock region in the Device view tab (you may have to zoom in to see it).
 
-5. If it is not selected, click the *Routing Resources* icon ![](./images/lab1/Fig34.png) to show routing resources. 
+5. If it is not selected, click the *Routing Resources* icon ![](./images/lab1/Fig34.png) to show routing resources.
 
    <p align="center">
    <img src ="./images/lab1/Fig35.png">
@@ -472,7 +464,7 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
 6. Close the implemented design view by selecting **File > Close Implemented Design**, and select the **Project Summary** tab (you may have to change to the Default Layout view) and observe the results.
 
-7. Select the Post-Implementation tab.
+7. Select the **Post-Implementation** tab.
 
    **Notice** that the actual resource utilization is 3 LUTs and 8 IOs.  Also, it indicates that no timing constraints were defined for this design (since the design is combinational).
 
@@ -486,7 +478,7 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
    Using the Windows Explorer, verify that **impl\_1** directory is created at the same level as **synth\_1** under the **lab1.runs** directory.  The **impl\_1** directory contains several files including the implementation report files.
 
-8. In Vivado, select the **Reports** tab in the bottom panel (if not visible, click *Window* in the menu bar and select **Reports**), and double-click on the *Utilization Report* entry under the *Place Design* section. The report will be displayed in the auxiliary view pane showing resource utilization.  Note that since the design is combinatorial no registers are used.
+8. In Vivado, select the **Reports** tab in the bottom panel (if not visible, click *Window* in the menu bar and select **Reports**), and double-click on the *Utilization Report* entry under the *Place Design* section. The report will be displayed in the auxiliary view pane showing resource utilization.  Note that since the design is combinatorial, no registers are used.
 
 <p align="center">
 <img src ="./images/lab1/Fig38.png">
@@ -526,14 +518,14 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
 ### Generate the Bitstream and Verify Functionality
 
-#### Connect the board and power it ON. Generate the bitstream, open a hardware session, and program the FPGA.  
+#### Connect the board and power it ON. Generate the bitstream, open a hardware manager session, and program the FPGA.  
 
 1. Make sure that the Micro-USB cable is connected to the JTAG PROG connector.
 
 2. The Boolean and PYNQ-Z2 can be powered through USB power via the JTAG PROG.
 
    Make sure that the board is set to use USB power.
-   
+
    <img src="images/lab1/boolean_sche.png" alt="image" style="zoom:70%;" />
 
 
@@ -563,7 +555,7 @@ Observe the Tcl Console window and see the output is being displayed as the test
    <i>Bitstream generation</i>
    </p>
 
-   This process will have generated a **lab1.bit** file under the **impl\_1** directory in the **lab1.runs** directory.
+   This process will have generated a **lab1.bit** file under the **lab1.runs > impl\_1** directory.
 
 5. Select the *Open Hardware Manager* option and click **OK**.
 
@@ -590,9 +582,9 @@ Observe the Tcl Console window and see the output is being displayed as the test
    <img src ="./images/lab1/Fig45.png">
    </p>
    <p align = "center">
-   <i>Opened hardware session</i>
+   <i>Opened hardware manager session</i>
    </p>
-   
+
 
    Select the device and verify that the lab1.bit is selected as the programming file in the General tab.
 
@@ -609,10 +601,10 @@ Observe the Tcl Console window and see the output is being displayed as the test
 
    ![Opened hardware session](./images/lab1/boolean_hwmg.png)
 
-   
+
 
    <p align = "center">
-   <i>Opened hardware session</i>
+   <i>Opened hardware manager session</i>
    </p>
 
    Select the device and verify that the lab1.bit is selected as the programming file in the General tab.
@@ -620,6 +612,7 @@ Observe the Tcl Console window and see the output is being displayed as the test
    ![image](./images/lab1/boolean_hw_dev_prop.png)
 
    ---
+
 
 8. Click on the *Program device* link in the green information bar to program the target FPGA device. Another way is to right click on the device and select *Program Device.*
 
@@ -629,20 +622,21 @@ Observe the Tcl Console window and see the output is being displayed as the test
 <p align = "center">
 <i>Selecting to program the FPGA</i>
 </p>
+
 9. Click **Program** to program the FPGA.
 
    The DONE LED will lit when the device is programmed. You may see some other LEDs lit depending on switch positions.
 
 10. Verify the functionality by flipping the switches and observing the output on the LEDs (Refer to the earlier logic diagram).
 
-11. When satisfied, power **OFF** the board.
+11. When satisfied, close the hardware manager session by selecting **File > Close Hardware Manager.**
 
-12. Close the hardware session by selecting **File > Close Hardware Manager.** 
+12. Click **OK** to close the session.
 
-13. Click **OK** to close the session.
+13. Power **OFF** the board.
 
 14. Close the **Vivado** program by selecting **File > Exit** and click **OK**.
 
-## Conclusion 
+## Conclusion
 
 The Vivado software tool can be used to perform a complete HDL based design flow.  The project was created using the supplied source files (HDL model and user constraint file). A behavioral simulation using the provided testbench was done to verify the model functionality. The model was then synthesized, implemented, and a bitstream was generated.  The timing simulation was run on the implemented design using the same testbench. The functionality was verified in hardware using the generated bitstream.  
